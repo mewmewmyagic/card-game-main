@@ -66,7 +66,7 @@ enemy = NodePath("badGuy")
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
 [node name="Character" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(400, 323)
+position = Vector2(235, 316)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 myname = "goodguy"
