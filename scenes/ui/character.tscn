@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqojtyf4in0y3"]
 
-[ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://scenes/ui/combatant.gd" id="1_ddi1i"]
+[ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://Scripts/combatant/combatant.gd" id="1_ddi1i"]
 [ext_resource type="Texture2D" uid="uid://cv6rut0k2gi5s" path="res://Textures/The_Thumb_Nursefather_-_Valencina_Idle_Sprite.png" id="2_bhuil"]
 [ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_ui.tscn" id="3_gqvtd"]
 
