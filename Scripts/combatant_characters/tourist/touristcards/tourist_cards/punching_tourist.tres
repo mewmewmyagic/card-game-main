@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://cs1vxgii2b1ip"]
+
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_hsdbj"]
+[ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_c5o6c"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="3_noata"]
+
+[sub_resource type="Resource" id="Resource_twwan"]
+script = ExtResource("2_c5o6c")
+amount = 6
+metadata/_custom_type_script = "uid://dmpv8844g3q0f"
+
+[resource]
+script = ExtResource("3_noata")
+card_name = "punching"
+stamina_cost = 1
+recovery_cost = 2
+effects = Array[ExtResource("1_hsdbj")]([SubResource("Resource_twwan")])

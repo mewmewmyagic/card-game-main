@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dqojtyf4in0y3"]
+
+[ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://scenes/ui/combatant.gd" id="1_ddi1i"]
+[ext_resource type="Texture2D" uid="uid://cv6rut0k2gi5s" path="res://Textures/The_Thumb_Nursefather_-_Valencina_Idle_Sprite.png" id="2_bhuil"]
+[ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_ui.tscn" id="3_gqvtd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
+
+[node name="Character" type="Node2D" unique_id=1903320986 groups=["character"]]
+script = ExtResource("1_ddi1i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=292705466]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_bhuil")
+
+[node name="StatsUI" parent="." unique_id=43148091 instance=ExtResource("3_gqvtd")]
+offset_left = -295.0
+offset_top = 38.999985
+offset_right = -163.0
+offset_bottom = 87.999985
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1975118247]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1604127139]
+shape = SubResource("RectangleShape2D_crx7y")

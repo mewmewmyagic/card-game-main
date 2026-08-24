@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://b6uhkbq1pyx30"]
+
+[ext_resource type="Texture2D" uid="uid://debp215u608m0" path="res://Textures/1c6d43d3a7bf55f98461049c02b0c987.jpg" id="1_vceff"]
+[ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://global/battle_state.gd" id="2_ekamt"]
+[ext_resource type="PackedScene" uid="uid://dqojtyf4in0y3" path="res://scenes/ui/character.tscn" id="3_djc8l"]
+[ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://characters/tourist/tourist.tres" id="4_h4dll"]
+[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://characters/tourist/touristcards/tourist_starting_deck.tres" id="5_p0caf"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://CardStuff/card.gd" id="6_61i1y"]
+[ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://custom resources/card_pile.gd" id="7_saiin"]
+[ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://default_enemy.gd" id="8_dd63g"]
+[ext_resource type="Resource" uid="uid://b2m5jayhifcs5" path="res://characters/tourist/touristcards/tourist_starting_deck2.tres" id="9_fpf3k"]
+[ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://scenes/battle_ui.gd" id="10_bi5l8"]
+[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://scenes/the_hand.gd" id="11_jt4d8"]
+[ext_resource type="PackedScene" uid="uid://d0tus8eitn6fa" path="res://scenes/card_ui/card_ui.tscn" id="12_kl6ie"]
+[ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/stamina_ui.tscn" id="13_1m01a"]
+[ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://turn_ui.tscn" id="14_lv4so"]
+[ext_resource type="PackedScene" uid="uid://sewshbwxty6x" path="res://card_piles_ui.tscn" id="15_eivww"]
+
+[sub_resource type="Resource" id="Resource_lf06l"]
+script = ExtResource("7_saiin")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_4f3f8"]
+script = ExtResource("7_saiin")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_c62f8"]
+script = ExtResource("7_saiin")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_rfwfw"]
+script = ExtResource("8_dd63g")
+metadata/_custom_type_script = "uid://b5myvxmry6cml"
+
+[sub_resource type="Resource" id="Resource_r7yem"]
+script = ExtResource("7_saiin")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_mv28p"]
+script = ExtResource("7_saiin")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_mgs5k"]
+script = ExtResource("7_saiin")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[node name="Battle" type="Node2D" unique_id=17023024]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1877770250]
+offset_left = -13.0
+offset_top = 501.00003
+offset_right = 32.54971
+offset_bottom = 541.444
+scale = Vector2(28.803698, 4.505384)
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=848171344]
+position = Vector2(-8, -292)
+scale = Vector2(1.0358334, 1.1753345)
+texture = ExtResource("1_vceff")
+centered = false
+
+[node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("player", "enemy") groups=["battle_state"]]
+script = ExtResource("2_ekamt")
+player = NodePath("Character")
+enemy = NodePath("badGuy")
+metadata/_custom_type_script = "uid://yt5bgjthmi7b"
+
+[node name="Character" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("3_djc8l")]
+position = Vector2(192, 364)
+scale = Vector2(0.5, 0.5)
+stats = ExtResource("4_h4dll")
+myname = "goodguy"
+starting_deck = ExtResource("5_p0caf")
+draw_pile = SubResource("Resource_lf06l")
+discard_pile = SubResource("Resource_4f3f8")
+hand_pile = SubResource("Resource_c62f8")
+battle_state = NodePath("..")
+
+[node name="badGuy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("3_djc8l")]
+position = Vector2(839, 366)
+scale = Vector2(0.5, 0.5)
+stats = ExtResource("4_h4dll")
+ai_behavior = SubResource("Resource_rfwfw")
+myname = "badguy"
+starting_deck = ExtResource("9_fpf3k")
+draw_pile = SubResource("Resource_r7yem")
+discard_pile = SubResource("Resource_mv28p")
+hand_pile = SubResource("Resource_mgs5k")
+battle_state = NodePath("..")
+
+[node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui") groups=["ui_layer"]]
+follow_viewport_enabled = true
+script = ExtResource("10_bi5l8")
+battle_state = NodePath("../BattleState")
+the_hand_ui = NodePath("Hand")
+stamina_ui = NodePath("StaminaUI")
+turn_ui = NodePath("turn_ui")
+draw_pile_ui = NodePath("DrawPile")
+discard_pile_ui = NodePath("DiscardPile")
+
+[node name="Hand" type="Control" parent="BattleUI" unique_id=1430552393]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 508.0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("11_jt4d8")
+card_ui_scene = ExtResource("12_kl6ie")
+
+[node name="StaminaUI" parent="BattleUI" unique_id=1157727669 instance=ExtResource("13_1m01a")]
+anchors_preset = -1
+anchor_left = -0.040798612
+anchor_right = 0.97960067
+offset_left = 58.0
+offset_top = 511.0
+offset_right = -1093.0
+offset_bottom = -136.0
+scale = Vector2(2, 2)
+
+[node name="turn_ui" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_lv4so")]
+offset_bottom = -648.0
+
+[node name="DrawPile" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_eivww")]
+offset_left = 99.0
+offset_top = 585.0
+offset_right = -1026.0
+offset_bottom = -36.0
+
+[node name="DiscardPile" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_eivww")]
+offset_left = 1085.0
+offset_top = 584.0
+offset_right = -40.0
+offset_bottom = -37.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=234212178]
+anchor_mode = 0

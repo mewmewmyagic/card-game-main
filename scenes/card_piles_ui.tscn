@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://sewshbwxty6x"]
+
+[ext_resource type="Script" uid="uid://unuep7hwmmr7" path="res://card_piles_ui.gd" id="1_kfw6m"]
+[ext_resource type="Texture2D" uid="uid://c625u4qb3ffuy" path="res://Textures/blehhhhh.png" id="1_mgkhi"]
+
+[node name="CardPileUI" type="Control" unique_id=188438490]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kfw6m")
+
+[node name="CardAmmount" type="Label" parent="." unique_id=1956059886]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 49.0
+text = "20
+"
+
+[node name="CardPile" type="Sprite2D" parent="." unique_id=1475599605]
+position = Vector2(-18, -16)
+texture = ExtResource("1_mgkhi")

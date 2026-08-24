@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dlu03t4n8gu3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
+size = Vector2(2, 2)
+
+[node name="CardTargetSelector" type="Node2D" unique_id=453504832]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=256911997]
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=798237790]
+shape = SubResource("RectangleShape2D_crx7y")
