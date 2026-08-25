@@ -27,7 +27,8 @@ func set_recovery_time(value: int) -> void:
 	
 func reset_recovery_time() -> void:
 	recovery_time = 0
-func can_play_card(card: Card) -> bool:
+	
+func enough_stamina(card: Card) -> bool:
 	return stamina >= card.stamina_cost
 	
 func create_instance() -> Resource:

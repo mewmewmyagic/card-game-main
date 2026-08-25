@@ -1,6 +1,8 @@
 extends Node2D
 class_name Combatant
 
+signal im_dead(combatant: Combatant)
+
 @export var stats: CombatantStats : set = set_combatant_stats
 @export var ai_behavior: EnemyAIBehavior
 @export var myname: String
@@ -14,10 +16,10 @@ class_name Combatant
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-
 @onready var stats_ui: StatsUI = $StatsUI as StatsUI
 
 var is_active_turn: bool = false
+var is_dead: bool = false
 
 func bind_turn_manager(turn_manager: TurnManager) -> void:
 	if not turn_manager.turn_started.is_connected(_on_self_turn_started) and not turn_manager.turn_ended.is_connected(_on_self_turn_ended):
@@ -33,7 +35,12 @@ func _on_self_turn_ended(combatant: Combatant) -> void:
 		is_active_turn = false
 		
 func can_act() -> bool:
-	return is_active_turn
+	if is_dead:
+		return false
+	if not is_active_turn:
+		return false
+	#TODO change
+	return has_playable_card()
 
 func _ready() -> void:
 	build_deck()
@@ -53,32 +60,32 @@ func discard_hand() -> void:
 	hand_pile.clear()
 	
 func draw_to_hand() -> void:
-	if draw_pile.empty():
+	if draw_pile.empty(): 
 		if discard_pile.empty():
 			return
-		draw_pile.cards = discard_pile.cards.duplicate()
-		discard_pile.clear()
-		draw_pile.shuffle()
-	var card := draw_pile.draw_card()
-	hand_pile.add_card(card)
+		draw_pile.cards = discard_pile.cards.duplicate() #draw pile takes discard piles cards
+		discard_pile.clear() #discard pil
+		draw_pile.shuffle() #draw pile is shuffled for randomness
+	var card := draw_pile.draw_card() #card is the first in shuffled draw pile
+	hand_pile.add_card(card) #we add it to our deck
 	
 func build_hand() -> void:
-	discard_hand()
+	discard_hand() #hand gets discarded and added back to discard pile
 	for i in stats.OPENING_HAND_SIZE:
 		draw_to_hand()
 		
 
 func has_playable_card() -> bool:
-	
 	if hand_pile.cards.is_empty():
 		print("lol %s %s" % [myname, hand_pile.cards.size()])
 		return false
 		
 	for card in hand_pile.cards:
-		if stats.can_play_card(card):
+		if stats.enough_stamina(card):
 			return true
 	return false
 
+#TODO i dont want this here bruh
 func take_ai_turn(battle: BattleState) -> void:
 	if ai_behavior == null:
 		return
@@ -88,7 +95,7 @@ func take_ai_turn(battle: BattleState) -> void:
 		#battle.turn_manager.end_turn(card.recovery_cost)
 		return
 	var target := ai_behavior.choose_target(self, battle)
-	battle.card_play_resolver.resolve(card, self, target)
+	battle.resolve_ai_card_play(self, card, target)
 
 func set_combatant_stats(value: CombatantStats) -> void:
 	stats = value.create_instance()
@@ -111,7 +118,7 @@ func update_stats()->void:
 	stats_ui.update_stats(stats)
 	if stats.health <= 0:
 		print("yeah die")
-		queue_free()  
+		_die()
 	
 func take_damage(damage: int) ->void:
 	if (stats.health <= 0):
@@ -125,3 +132,7 @@ func take_damage(damage: int) ->void:
 
 func gain_shield(shield: int) -> void:
 	stats.shield += shield                
+
+func _die() -> void:
+	is_dead = true
+	im_dead.emit(self)

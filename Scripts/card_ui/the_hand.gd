@@ -30,12 +30,12 @@ func bind(pile: CardPile, resolver: CardPlayResolver, source: Combatant) -> void
 	_sync()
 
 func _on_stamina_changed(_new_stamina: int) -> void:
-	_update_playability_ui()
+	_update_interactability_ui()
 
-func _update_playability_ui() -> void:
+func _update_interactability_ui() -> void:
 	for card_ui in card_to_ui.values():
 		var playable := card_play_resolver.can_play(card_ui.card, source_combatant, null)
-		card_ui.set_playable(playable)
+		card_ui.set_interactable_ui(playable)
 
 func _on_pile_changed(_count: int) -> void:
 	_sync()

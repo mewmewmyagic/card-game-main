@@ -15,5 +15,5 @@ func _ready() -> void:
 	draw_pile_ui.bind(battle_state.player.draw_pile)
 	discard_pile_ui.bind(battle_state.player.discard_pile)
 	# BattleUI._ready() — confirm these two lines exist:
-	battle_state.turn_manager.turn_started.connect(func(_c): the_hand_ui._update_playability_ui())
-	battle_state.turn_manager.turn_ended.connect(func(_c): the_hand_ui._update_playability_ui())
+	battle_state.turn_manager.turn_started.connect(func(_c): the_hand_ui._update_interactability_ui())
+	battle_state.turn_manager.turn_ended.connect(func(_c): the_hand_ui._update_interactability_ui())

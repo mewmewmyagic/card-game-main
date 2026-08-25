@@ -38,9 +38,24 @@ func _ready() -> void:
 	#return success
 
 func _on_player_card_play_requested(card_ui: CardUI, target: Combatant) -> void:
-	var success := card_play_resolver.resolve(card_ui.card, player, target)
+	var card_play_context = CardEffectContext.new()
+	card_play_context.battle = self
+	card_play_context.source = player
+	card_play_context.card = card_ui.card
+	card_play_context.target = target
+	
+	var success := card_play_resolver.resolve(card_play_context)
 	if not success:
 		EventBus.card_ui_play_rejected.emit(card_ui)
+
+
+func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> void:
+	var context := CardEffectContext.new()
+	context.battle = self
+	context.card = card
+	context.source = source
+	context.target = target
+	card_play_resolver.resolve(context)
 
 #func _on_round_ended() -> void:
 	#player.discard_hand()

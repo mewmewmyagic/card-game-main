@@ -21,7 +21,7 @@ var playable: bool = true:
 		playable = value
 		_update_playable_visuals()
 		
-func set_playable(value: bool) -> void:
+func set_interactable_ui(value: bool) -> void:
 	playable = value
 	
 func _update_playable_visuals() -> void:
