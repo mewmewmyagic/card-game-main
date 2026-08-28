@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	turn_manager.start_round([player, enemy])
 	
-	EventBus.card_play_requested.connect(_on_player_card_play_requested)
+	EventBus.card_play_requested.connect(card_play_resolver._on_player_card_play_requested)
 
 
 #func play_card(card: Card, source:Combatant, target: Combatant) -> bool:
@@ -36,18 +36,6 @@ func _ready() -> void:
 	#else:
 		#EventBus.card_play_rejected.emit(card, source)
 	#return success
-
-func _on_player_card_play_requested(card_ui: CardUI, target: Combatant) -> void:
-	var card_play_context = CardEffectContext.new()
-	card_play_context.battle = self
-	card_play_context.source = player
-	card_play_context.card = card_ui.card
-	card_play_context.target = target
-	
-	var success := card_play_resolver.resolve(card_play_context)
-	if not success:
-		EventBus.card_ui_play_rejected.emit(card_ui)
-
 
 func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> void:
 	var context := CardEffectContext.new()

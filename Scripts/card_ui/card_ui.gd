@@ -10,6 +10,7 @@ extends Control
 
 #temp
 @export var card: Card
+@export var owner_combatant: Combatant
 
 @onready var targets: Array[Node] = []
 @onready var drop_point_detector: Area2D = $DropPointDetector

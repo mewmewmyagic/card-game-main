@@ -12,6 +12,16 @@ func can_play(card: Card, source: Combatant, target: Combatant) -> bool:
 
 	return can_afford(card, source)
 	
+	
+func _on_player_card_play_requested(card: Card, source: Combatant, target: Combatant) -> void:
+	var card_play_context = CardEffectContext.new()
+	card_play_context.battle = battle
+	card_play_context.source = source
+	card_play_context.card = card
+	card_play_context.target = target
+	resolve(card_play_context)
+
+
 func resolve(context: CardEffectContext) -> bool:
 	if not can_play(context.card, context.source, context.target):
 		return false

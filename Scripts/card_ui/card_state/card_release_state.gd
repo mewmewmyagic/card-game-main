@@ -7,7 +7,7 @@ func enter() -> void: #you cant change state in an enter state
 	has_target = not card_ui.targets.is_empty()
 	if has_target:
 		var target := card_ui.targets[0].get_parent() as Combatant
-		EventBus.card_play_requested.emit(card_ui, target)
+		EventBus.card_play_requested.emit(card_ui.card, card_ui.owner_combatant, target)
 		
 	
 		
