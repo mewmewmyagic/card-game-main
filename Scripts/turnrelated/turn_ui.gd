@@ -7,6 +7,7 @@ var turn_manager: TurnManager
 func bind(turnManager: TurnManager):
 	turn_manager = turnManager
 	turn_manager.turn_started.connect(func(_c): _refresh())
+	turn_manager.turn_ended.connect(func(_c): _refresh())
 	_refresh()
 	
 	
@@ -17,9 +18,9 @@ func _refresh() -> void:
 	var i = 0
 	for combatant in turns:
 		if i == 0:
-			parts.append("[color=red]%s %s[/color]" % [combatant.myname, combatant.stats.recovery_time])
+			parts.append("[color=red]%s %s[/color]" % [combatant.name, combatant.stats.recovery_time])
 		else:
-			parts.append("%s %s" % [combatant.myname, combatant.stats.recovery_time])
+			parts.append("%s %s" % [combatant.name, combatant.stats.recovery_time])
 		i += 1
 		
 

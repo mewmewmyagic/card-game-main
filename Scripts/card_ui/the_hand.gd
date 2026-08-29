@@ -21,13 +21,25 @@ var card_play_resolver: CardPlayResolver
 var source_combatant: Combatant
 
 func bind(pile: CardPile, resolver: CardPlayResolver, source: Combatant) -> void:
+	if source == source_combatant:
+		return
+	_unbind()
+	
 	hand_pile = pile
 	card_play_resolver = resolver
 	source_combatant = source
 	hand_pile.card_pile_size_changed.connect(_on_pile_changed)
 	source.stats.stamina_changed.connect(_on_stamina_changed)
-	#print(hand_pile.cards.size())
 	_sync()
+	
+func _unbind() -> void:
+	if hand_pile and hand_pile.card_pile_size_changed.is_connected(_on_pile_changed):
+		hand_pile.card_pile_size_changed.disconnect(_on_pile_changed)
+	if source_combatant and source_combatant.stats.stamina_changed.is_connected(_on_stamina_changed):
+		source_combatant.stats.stamina_changed.disconnect(_on_stamina_changed)
+
+	for card in card_to_ui.keys().duplicate():
+		_despawn_card(card)
 
 func _on_stamina_changed(_new_stamina: int) -> void:
 	_update_interactability_ui()

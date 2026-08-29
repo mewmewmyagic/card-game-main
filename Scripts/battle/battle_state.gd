@@ -6,6 +6,8 @@ const OPENING_HAND_SIZE := 5
 
 @export var player: Combatant
 @export var enemy: Combatant
+
+@export var combatants_in_battle: Array[Combatant]
 var play_history: Array[Card] = []
 var card_play_resolver: CardPlayResolver
 var turn_manager: TurnManager
@@ -18,10 +20,12 @@ func _ready() -> void:
 	turn_manager.battle = self
 	#turn_manager.round_ended.connect(_on_round_ended)
 	
-	player.bind_turn_manager(turn_manager)
-	enemy.bind_turn_manager(turn_manager)
+	for c in combatants_in_battle:
+		c.bind_turn_manager(turn_manager)
+	#player.bind_turn_manager(turn_manager)
+	#enemy.bind_turn_manager(turn_manager)
 	
-	turn_manager.start_round([player, enemy])
+	turn_manager.start_round(combatants_in_battle)
 	
 	EventBus.card_play_requested.connect(card_play_resolver._on_player_card_play_requested)
 

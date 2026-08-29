@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://857pvun366vv"]
 
-[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/Card/card_effect.gd" id="1_vqi7q"]
-[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/Card/card.gd" id="2_c8n2o"]
-[ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/Effects/CardEffects/effect_deal_damage.gd" id="2_twwan"]
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_vqi7q"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_c8n2o"]
+[ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_twwan"]
 
 [sub_resource type="Resource" id="Resource_twwan"]
 script = ExtResource("2_twwan")
@@ -13,6 +13,5 @@ metadata/_custom_type_script = "uid://dmpv8844g3q0f"
 script = ExtResource("2_c8n2o")
 card_name = "kicking"
 stamina_cost = 2
-recovery_cost = 1
+recovery_cost = 10
 effects = Array[ExtResource("1_vqi7q")]([SubResource("Resource_twwan")])
-metadata/_custom_type_script = "uid://b4g0am8tdx6m7"

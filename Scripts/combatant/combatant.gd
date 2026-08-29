@@ -39,13 +39,10 @@ func can_act() -> bool:
 		return false
 	if not is_active_turn:
 		return false
-	#TODO change
 	return has_playable_card()
 
 func _ready() -> void:
 	build_deck()
-	for card in draw_pile.cards:
-		pass
 
 func build_deck() -> void:
 	for card in starting_deck.cards:
@@ -73,11 +70,14 @@ func build_hand() -> void:
 	discard_hand() #hand gets discarded and added back to discard pile
 	for i in stats.OPENING_HAND_SIZE:
 		draw_to_hand()
-		
-
+	
+func can_take_turn() -> bool:
+	if is_dead:
+		return false
+	return has_playable_card()
+	
 func has_playable_card() -> bool:
 	if hand_pile.cards.is_empty():
-		print("lol %s %s" % [myname, hand_pile.cards.size()])
 		return false
 		
 	for card in hand_pile.cards:
@@ -135,4 +135,5 @@ func gain_shield(shield: int) -> void:
 
 func _die() -> void:
 	is_dead = true
+	self.stats.recovery_time = 9999
 	im_dead.emit(self)

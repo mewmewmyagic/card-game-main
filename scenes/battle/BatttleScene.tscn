@@ -5,11 +5,13 @@
 [ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://Scripts/battle/battle_ui.gd" id="2_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://dqojtyf4in0y3" path="res://scenes/ui/character.tscn" id="4_0yjdt"]
 [ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/card_ui/the_hand.gd" id="4_ldu1p"]
+[ext_resource type="Resource" uid="uid://clmuifqf7nbd8" path="res://Scripts/combatant_characters/cat/cat_starting_deck.tres" id="5_17srr"]
 [ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://Scripts/combatant_characters/tourist/tourist.tres" id="6_hvhqn"]
 [ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_state.gd" id="6_q34gv"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="8_1u6w6"]
 [ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/combatant_enemy/default_enemy.gd" id="8_emfdx"]
-[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck.tres" id="9_hvhqn"]
+[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck - Copy.tres" id="10_e5few"]
+[ext_resource type="Resource" uid="uid://cfswdv2qxwe88" path="res://Scripts/combatant_characters/thug/thug_starting_deck.tres" id="10_t387n"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="11_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/turn_ui.tscn" id="14_th5m4"]
@@ -43,6 +45,18 @@ metadata/_custom_type_script = "uid://b7gxswfche1cy"
 script = ExtResource("11_4f3f8")
 metadata/_custom_type_script = "uid://b7gxswfche1cy"
 
+[sub_resource type="Resource" id="Resource_ek5c4"]
+script = ExtResource("11_4f3f8")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_yhavi"]
+script = ExtResource("11_4f3f8")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
+[sub_resource type="Resource" id="Resource_ckvm4"]
+script = ExtResource("11_4f3f8")
+metadata/_custom_type_script = "uid://b7gxswfche1cy"
+
 [node name="Battle" type="Node2D" unique_id=17023024]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1877770250]
@@ -59,33 +73,43 @@ scale = Vector2(1.0358334, 1.1753345)
 texture = ExtResource("1_q34gv")
 centered = false
 
-[node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("player", "enemy") groups=["battle_state"]]
+[node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("player", "combatants_in_battle") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
 player = NodePath("Character")
-enemy = NodePath("badGuy")
+combatants_in_battle = [NodePath("Character"), NodePath("badGuy"), NodePath("Baddest guy")]
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
 [node name="Character" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(235, 316)
+position = Vector2(246, 380)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 myname = "goodguy"
-starting_deck = ExtResource("9_hvhqn")
+starting_deck = ExtResource("5_17srr")
 draw_pile = SubResource("Resource_lf06l")
 discard_pile = SubResource("Resource_4f3f8")
 hand_pile = SubResource("Resource_c62f8")
 battle_state = NodePath("..")
 
 [node name="badGuy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(839, 366)
+position = Vector2(837, 382)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 myname = "badguy"
-starting_deck = ExtResource("9_hvhqn")
+starting_deck = ExtResource("10_e5few")
 draw_pile = SubResource("Resource_r7yem")
 discard_pile = SubResource("Resource_mv28p")
 hand_pile = SubResource("Resource_mgs5k")
+battle_state = NodePath("..")
+
+[node name="Baddest guy" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+position = Vector2(651, 348)
+scale = Vector2(0.5, 0.5)
+stats = ExtResource("6_hvhqn")
+starting_deck = ExtResource("10_t387n")
+draw_pile = SubResource("Resource_ek5c4")
+discard_pile = SubResource("Resource_yhavi")
+hand_pile = SubResource("Resource_ckvm4")
 battle_state = NodePath("..")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui") groups=["ui_layer"]]
