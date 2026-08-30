@@ -16,23 +16,16 @@ signal im_dead(combatant: Combatant)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-@onready var stats_ui: StatsUI = $StatsUI as StatsUI
+@onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
 
 var is_active_turn: bool = false
 var is_dead: bool = false
-
-func bind_turn_manager(turn_manager: TurnManager) -> void:
-	if not turn_manager.turn_started.is_connected(_on_self_turn_started) and not turn_manager.turn_ended.is_connected(_on_self_turn_ended):
-		turn_manager.turn_started.connect(_on_self_turn_started)
-		turn_manager.turn_ended.connect(_on_self_turn_ended)
 	
-func _on_self_turn_started(combatant: Combatant) -> void:
-	if combatant == self:
-		is_active_turn = true
+func _on_self_turn_started() -> void:
+	is_active_turn = true
 		
-func _on_self_turn_ended(combatant: Combatant) -> void:
-	if combatant == self:
-		is_active_turn = false
+func _on_self_turn_ended() -> void:
+	is_active_turn = false
 		
 func can_act() -> bool:
 	if is_dead:
@@ -97,27 +90,23 @@ func take_ai_turn(battle: BattleState) -> void:
 	var target := ai_behavior.choose_target(self, battle)
 	battle.resolve_ai_card_play(self, card, target)
 
+#called to make it so that whenever stats_changed signal is emited update stats is called
 func set_combatant_stats(value: CombatantStats) -> void:
 	stats = value.create_instance()
 	
-	if not stats.stats_changed.is_connected(update_stats):
-		stats.stats_changed.connect(update_stats)
-		
-	update_player()
+	if not stats.stats_changed.is_connected(update_state):
+		stats.stats_changed.connect(update_state)
 	
-func update_player() -> void:
 	if not stats is CombatantStats:
 		return
 	if not is_inside_tree():
 		await ready
 	
-	update_stats()
+	stats_ui.bind(stats)
 	
 
-func update_stats()->void:
-	stats_ui.update_stats(stats)
+func update_state()->void:
 	if stats.health <= 0:
-		print("yeah die")
 		_die()
 	
 func take_damage(damage: int) ->void:

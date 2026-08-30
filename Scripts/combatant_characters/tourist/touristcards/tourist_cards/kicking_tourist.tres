@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_twwan"]
 script = ExtResource("2_twwan")
-amount = 8
+amount = 30
 metadata/_custom_type_script = "uid://dmpv8844g3q0f"
 
 [resource]

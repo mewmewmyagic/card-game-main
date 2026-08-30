@@ -14,10 +14,10 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_bhuil")
 
 [node name="StatsUI" parent="." unique_id=43148091 instance=ExtResource("3_gqvtd")]
-offset_left = -295.0
-offset_top = 38.999985
-offset_right = -163.0
-offset_bottom = 87.999985
+offset_left = -139.0
+offset_top = 128.0
+offset_right = -81.8
+offset_bottom = 146.8
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1975118247]
 collision_layer = 2

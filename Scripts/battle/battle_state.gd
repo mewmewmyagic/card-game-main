@@ -1,13 +1,15 @@
 class_name BattleState
 extends Node
-const OPENING_HAND_SIZE := 5
 
 #_ready() must run before battle uis ready(), aka battle state is in higher order of the scene tree
 
-@export var player: Combatant
-@export var enemy: Combatant
+#@export var player: Combatant
+#@export var enemy: Combatant
 
-@export var combatants_in_battle: Array[Combatant]
+@export var allies: Array[Combatant]
+@export var enemies: Array[Combatant]
+@export var next_scene: PackedScene
+#@export var combatants_in_battle: Array[Combatant]
 var play_history: Array[Card] = []
 var card_play_resolver: CardPlayResolver
 var turn_manager: TurnManager
@@ -20,26 +22,30 @@ func _ready() -> void:
 	turn_manager.battle = self
 	#turn_manager.round_ended.connect(_on_round_ended)
 	
-	for c in combatants_in_battle:
-		c.bind_turn_manager(turn_manager)
-	#player.bind_turn_manager(turn_manager)
-	#enemy.bind_turn_manager(turn_manager)
+	turn_manager.start_round(all_combatants())
 	
-	turn_manager.start_round(combatants_in_battle)
-	
+	for c in all_combatants():
+		c.im_dead.connect(_on_combatant_died)
 	EventBus.card_play_requested.connect(card_play_resolver._on_player_card_play_requested)
+	
+func all_combatants() -> Array[Combatant]:
+	return allies + enemies
+	
+func opposing_team(c: Combatant) -> Array[Combatant]:
+	if c in allies:
+		return enemies
+	return allies
 
-
-#func play_card(card: Card, source:Combatant, target: Combatant) -> bool:
-	#var success := card_play_resolver.resolve(card, source, target)
-	#print("card_played")
-	#if success:
-		#play_history.append(card)
-		#EventBus.card_played.emit(card, source)
-		#turn_manager.end_turn()
-	#else:
-		#EventBus.card_play_rejected.emit(card, source)
-	#return success
+func _on_combatant_died(_combatant: Combatant) -> void:
+	var allies_alive := allies.any(func(c): return not c.is_dead)
+	var enemies_alive := enemies.any(func(c): return not c.is_dead)
+	
+	if allies_alive and enemies_alive:
+		return
+		
+	if next_scene != null:
+		print("poepepe")
+		get_tree().call_deferred("change_scene_to_packed", next_scene)
 
 func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> void:
 	var context := CardEffectContext.new()
@@ -48,7 +54,3 @@ func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> v
 	context.source = source
 	context.target = target
 	card_play_resolver.resolve(context)
-
-#func _on_round_ended() -> void:
-	#player.discard_hand()
-	#player.build_hand()

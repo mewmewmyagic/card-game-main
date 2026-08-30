@@ -28,6 +28,7 @@ func end_round() -> void:
 	start_round(combatants)
 
 func end_turn(recovery_cost: int) -> void:
+	current_turn._on_self_turn_ended()
 	current_turn.stats.set_recovery_time(recovery_cost)
 	turn_ended.emit(current_turn)
 	var tree := Engine.get_main_loop() as SceneTree
@@ -42,7 +43,8 @@ func end_turn(recovery_cost: int) -> void:
 
 func start_turn() -> void:
 	current_turn = _next_combatant()
-	print(current_turn.name)
+	current_turn._on_self_turn_started()
+	
 	#for c in _active_combatants():
 		#c.stats.recovery_time -= current_turn.stats.recovery_time #this stops the recov time from diverging
 	turn_started.emit(current_turn)

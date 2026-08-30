@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cfscdqj4yth4h"]
+
+[ext_resource type="Texture2D" uid="uid://c625u4qb3ffuy" path="res://Textures/blehhhhh.png" id="1_ntpey"]
+
+[node name="OverWorld" type="Node2D" unique_id=1715446316]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=982533919]
+position = Vector2(377, 143)
+scale = Vector2(12.424242, 4.575)
+texture = ExtResource("1_ntpey")

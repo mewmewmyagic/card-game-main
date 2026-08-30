@@ -1,34 +1,55 @@
 [gd_scene format=3 uid="uid://b1ryleahhgw4h"]
 
-[ext_resource type="Script" uid="uid://c35c0h4wv2h78" path="res://scenes/ui/stats_ui.gd" id="1_503uq"]
+[ext_resource type="Script" uid="uid://c35c0h4wv2h78" path="res://Scripts/combatant/combantUI/combatant_stats_ui.gd" id="1_503uq"]
 
-[node name="StatsUI" type="HBoxContainer" unique_id=43148091]
-offset_right = 40.0
-offset_bottom = 40.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7ftd"]
+bg_color = Color(0.15199637, 0.15199637, 0.15199631, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3y4n"]
+bg_color = Color(1, 0.22352941, 0.14901961, 1)
+
+[node name="StatsUI" type="Control" unique_id=162731480]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.199997
+offset_bottom = 19.8
 scale = Vector2(5, 5)
 script = ExtResource("1_503uq")
 
-[node name="health" type="HBoxContainer" parent="." unique_id=964171481]
-layout_mode = 2
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1158906970]
+layout_mode = 0
+offset_left = 0.2000122
+offset_right = 148.72942
+offset_bottom = 15.909091
+scale = Vector2(0.408, 0.44)
+theme_override_styles/background = SubResource("StyleBoxFlat_b7ftd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h3y4n")
+value = 50.0
+show_percentage = false
 
-[node name="HealthLabel2" type="Label" parent="health" unique_id=529724433]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Health"
+[node name="health" type="HBoxContainer" parent="ProgressBar" unique_id=964171481]
+layout_mode = 0
+offset_left = 47.058792
+offset_top = -12.272727
+offset_right = 100.490166
+offset_bottom = 27.727272
 
-[node name="HealthLabel" type="Label" parent="health" unique_id=143014647]
+[node name="HealthValue" type="Label" parent="ProgressBar/health" unique_id=143014647]
 unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 
-[node name="shield" type="HBoxContainer" parent="." unique_id=1082967201]
-layout_mode = 2
+[node name="shield" type="HBoxContainer" parent="ProgressBar" unique_id=1082967201]
+layout_mode = 0
+offset_top = 13.599998
+offset_right = 62.0
+offset_bottom = 36.6
 
-[node name="HealthLabel2" type="Label" parent="shield" unique_id=1311851436]
+[node name="ShieldLabel" type="Label" parent="ProgressBar/shield" unique_id=1311851436]
 layout_mode = 2
 text = "Shield"
 
-[node name="ShieldLabel" type="Label" parent="shield" unique_id=1975023421]
+[node name="ShieldValue" type="Label" parent="ProgressBar/shield" unique_id=1975023421]
 unique_name_in_owner = true
 layout_mode = 2
 text = "1"
