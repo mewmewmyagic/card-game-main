@@ -1,8 +1,0 @@
-[gd_resource type="Resource" format=3 uid="uid://jago2wtq4pju"]
-
-[ext_resource type="Script" uid="uid://dsf6k84gi6x34" path="res://combatant_characters/tourist/touristcards/tourst_puncing_effect.gd" id="1_wjnfj"]
-
-[resource]
-script = ExtResource("1_wjnfj")
-cost = 2
-metadata/_custom_type_script = "uid://b4g0am8tdx6m7"

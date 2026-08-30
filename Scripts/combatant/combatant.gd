@@ -3,7 +3,7 @@ class_name Combatant
 
 signal im_dead(combatant: Combatant)
 
-@export var stats: CombatantStats : set = set_combatant_stats
+@export var stats: CombatantStats #: set = set_combatant_stats
 @export var ai_behavior: EnemyAIBehavior
 @export var myname: String
 
@@ -21,21 +21,19 @@ signal im_dead(combatant: Combatant)
 var is_active_turn: bool = false
 var is_dead: bool = false
 	
+	
 func _on_self_turn_started() -> void:
 	is_active_turn = true
 		
 func _on_self_turn_ended() -> void:
 	is_active_turn = false
-		
-func can_act() -> bool:
-	if is_dead:
-		return false
-	if not is_active_turn:
-		return false
-	return has_playable_card()
 
 func _ready() -> void:
 	build_deck()
+	stats = stats.create_instance()
+	stats.stats_changed.connect(_on_stats_changed)
+	_bind_stats_ui()
+
 
 func build_deck() -> void:
 	for card in starting_deck.cards:
@@ -49,20 +47,29 @@ func discard_hand() -> void:
 		discard_pile.add_card(card)
 	hand_pile.clear()
 	
+#draws from draw_pile. draw_pile empty? fill it with discard pile then draw. discard empty? some stupid shit happened
 func draw_to_hand() -> void:
 	if draw_pile.empty(): 
 		if discard_pile.empty():
 			return
-		draw_pile.cards = discard_pile.cards.duplicate() #draw pile takes discard piles cards
-		discard_pile.clear() #discard pil
-		draw_pile.shuffle() #draw pile is shuffled for randomness
-	var card := draw_pile.draw_card() #card is the first in shuffled draw pile
-	hand_pile.add_card(card) #we add it to our deck
+		draw_pile.cards = discard_pile.cards.duplicate() 
+		discard_pile.clear() 
+		draw_pile.shuffle() 
+	var card := draw_pile.draw_card()
+	hand_pile.add_card(card)
 	
 func build_hand() -> void:
 	discard_hand() #hand gets discarded and added back to discard pile
 	for i in stats.OPENING_HAND_SIZE:
 		draw_to_hand()
+	
+	
+func can_act() -> bool:
+	if is_dead:
+		return false
+	if not is_active_turn:
+		return false
+	return has_playable_card()
 	
 func can_take_turn() -> bool:
 	if is_dead:
@@ -77,35 +84,14 @@ func has_playable_card() -> bool:
 		if stats.enough_stamina(card):
 			return true
 	return false
-
-#TODO i dont want this here bruh
-func take_ai_turn(battle: BattleState) -> void:
-	if ai_behavior == null:
-		return
-	var card := ai_behavior.choose_card(self, battle)
-	if card == null:
-		#TODO this wont work
-		#battle.turn_manager.end_turn(card.recovery_cost)
-		return
-	var target := ai_behavior.choose_target(self, battle)
-	battle.resolve_ai_card_play(self, card, target)
-
-#called to make it so that whenever stats_changed signal is emited update stats is called
-func set_combatant_stats(value: CombatantStats) -> void:
-	stats = value.create_instance()
 	
-	if not stats.stats_changed.is_connected(update_state):
-		stats.stats_changed.connect(update_state)
 	
-	if not stats is CombatantStats:
-		return
-	if not is_inside_tree():
-		await ready
-	
+func _bind_stats_ui() -> void:
 	stats_ui.bind(stats)
-	
+	_on_stats_changed()
 
-func update_state()->void:
+#why is this here? and why is it like this? no clue
+func _on_stats_changed() -> void:
 	if stats.health <= 0:
 		_die()
 	
@@ -126,3 +112,16 @@ func _die() -> void:
 	is_dead = true
 	self.stats.recovery_time = 9999
 	im_dead.emit(self)
+	
+	
+#TODO i dont want this here bruh
+func take_ai_turn(battle: BattleState) -> void:
+	if ai_behavior == null:
+		return
+	var card := ai_behavior.choose_card(self, battle)
+	if card == null:
+		#TODO this wont work
+		#battle.turn_manager.end_turn(card.recovery_cost)
+		return
+	var target := ai_behavior.choose_target(self, battle)
+	battle.resolve_ai_card_play(self, card, target)
