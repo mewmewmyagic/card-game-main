@@ -14,7 +14,8 @@ signal im_dead(combatant: Combatant)
 
 @export var battle_state: BattleState
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@export var appearance: CombatantSpriteResource
+@onready var sprite_2d: CombatantSpritePlayer = $AnimatedSprite2D
 
 @onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
 
@@ -29,6 +30,7 @@ func _on_self_turn_ended() -> void:
 	is_active_turn = false
 
 func _ready() -> void:
+	sprite_2d.bind(appearance)
 	build_deck()
 	stats = stats.create_instance()
 	stats.stats_changed.connect(_on_stats_changed)
@@ -113,6 +115,11 @@ func _die() -> void:
 	self.stats.recovery_time = 9999
 	im_dead.emit(self)
 	
+	
+func play_card_animation(card: Card) -> void:
+	if appearance == null or sprite_2d == null:
+		return
+	sprite_2d.play_animation(appearance.get_animation_for_card(card.card_name))
 	
 #TODO i dont want this here bruh
 func take_ai_turn(battle: BattleState) -> void:

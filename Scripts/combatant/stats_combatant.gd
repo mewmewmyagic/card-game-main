@@ -2,7 +2,7 @@ extends Stats
 class_name CombatantStats
 
 signal stamina_changed(new_stamina: int)
-
+signal recov_time_changed
 @export var cards_per_turn: int
 @export var max_stamina: int
 
@@ -23,6 +23,7 @@ func reset_stamina() -> void:
 	
 func set_recovery_time(value: int) -> void:
 	recovery_time += value
+	recov_time_changed.emit()
 	stats_changed.emit()
 	
 func reset_recovery_time() -> void:

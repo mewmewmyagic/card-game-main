@@ -29,7 +29,7 @@ func _ready() -> void:
 	EventBus.card_play_requested.connect(card_play_resolver._on_player_card_play_requested)
 	
 func all_combatants() -> Array[Combatant]:
-	return allies + enemies
+	return enemies + allies
 	
 func opposing_team(c: Combatant) -> Array[Combatant]:
 	if c in allies:

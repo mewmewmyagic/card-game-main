@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwsjgd3bmp76l"]
 
-[ext_resource type="Script" uid="uid://cjlocxsykvcko" path="res://turn_ui.gd" id="1_ktdfj"]
+[ext_resource type="Script" uid="uid://cjlocxsykvcko" path="res://Scripts/turnrelated/turn_ui.gd" id="1_ktdfj"]
+[ext_resource type="PackedScene" uid="uid://cy206irxku8cg" path="res://scenes/turn_order_icon.tscn" id="2_uwjn3"]
 
 [node name="turn_ui" type="Control" unique_id=1005858877]
 layout_mode = 3
@@ -10,8 +11,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ktdfj")
+combatant_turn_icon = ExtResource("2_uwjn3")
 
 [node name="Label" type="RichTextLabel" parent="." unique_id=1079749188]
 layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 26.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=629926639]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(10.843625, 1.6256468)

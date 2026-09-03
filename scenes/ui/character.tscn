@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqojtyf4in0y3"]
 
 [ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://Scripts/combatant/combatant.gd" id="1_ddi1i"]
-[ext_resource type="Texture2D" uid="uid://cv6rut0k2gi5s" path="res://Textures/The_Thumb_Nursefather_-_Valencina_Idle_Sprite.png" id="2_bhuil"]
+[ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://combatant_sprite_player.gd" id="2_ddi1i"]
 [ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_ui.tscn" id="3_gqvtd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
@@ -9,9 +9,9 @@
 [node name="Character" type="Node2D" unique_id=1903320986 groups=["character"]]
 script = ExtResource("1_ddi1i")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=292705466]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_bhuil")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1362894786]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_ddi1i")
 
 [node name="StatsUI" parent="." unique_id=43148091 instance=ExtResource("3_gqvtd")]
 offset_left = -139.0

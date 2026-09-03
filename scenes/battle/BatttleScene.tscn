@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_state.gd" id="6_q34gv"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="8_1u6w6"]
 [ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/combatant_enemy/first_playable_card.gd" id="8_emfdx"]
+[ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://bird_sprite_resource.tres" id="9_2jvsm"]
 [ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck.tres" id="10_e5few"]
 [ext_resource type="Resource" uid="uid://cfswdv2qxwe88" path="res://Scripts/combatant_characters/thug/thug_starting_deck.tres" id="10_t387n"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="11_4f3f8"]
@@ -76,14 +77,14 @@ centered = false
 
 [node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
-allies = [NodePath("Character"), NodePath("Baddest guy")]
-enemies = [NodePath("badGuy"), NodePath("badGuy2")]
+allies = [NodePath("AAA"), NodePath("BBB")]
+enemies = [NodePath("CCC"), NodePath("DDD")]
 next_scene = ExtResource("3_t387n")
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
-[node name="Character" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="AAA" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(124, 374)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(-0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 myname = "goodguy"
 starting_deck = ExtResource("5_17srr")
@@ -91,8 +92,9 @@ draw_pile = SubResource("Resource_lf06l")
 discard_pile = SubResource("Resource_4f3f8")
 hand_pile = SubResource("Resource_c62f8")
 battle_state = NodePath("..")
+appearance = ExtResource("9_2jvsm")
 
-[node name="badGuy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="CCC" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(958, 412)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
@@ -103,8 +105,9 @@ draw_pile = SubResource("Resource_r7yem")
 discard_pile = SubResource("Resource_mv28p")
 hand_pile = SubResource("Resource_mgs5k")
 battle_state = NodePath("..")
+appearance = ExtResource("9_2jvsm")
 
-[node name="badGuy2" parent="BattleState" unique_id=491446191 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="DDD" parent="BattleState" unique_id=491446191 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(771, 376)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
@@ -115,16 +118,18 @@ draw_pile = SubResource("Resource_r7yem")
 discard_pile = SubResource("Resource_mv28p")
 hand_pile = SubResource("Resource_mgs5k")
 battle_state = NodePath("..")
+appearance = ExtResource("9_2jvsm")
 
-[node name="Baddest guy" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="BBB" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(258, 414)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(-0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 starting_deck = ExtResource("10_t387n")
 draw_pile = SubResource("Resource_ek5c4")
 discard_pile = SubResource("Resource_yhavi")
 hand_pile = SubResource("Resource_ckvm4")
 battle_state = NodePath("..")
+appearance = ExtResource("9_2jvsm")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui") groups=["ui_layer"]]
 follow_viewport_enabled = true
@@ -159,16 +164,16 @@ scale = Vector2(2, 2)
 offset_bottom = -648.0
 
 [node name="DrawPile" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
-offset_left = 99.0
-offset_top = 585.0
-offset_right = -1026.0
-offset_bottom = -36.0
+offset_left = 72.0
+offset_top = 612.0
+offset_right = -1053.0
+offset_bottom = -9.0
 
 [node name="DiscardPile" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_4q0u5")]
-offset_left = 1085.0
-offset_top = 584.0
-offset_right = -40.0
-offset_bottom = -37.0
+offset_left = 1145.0
+offset_top = 614.0
+offset_right = 20.0
+offset_bottom = -7.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=234212178]
 anchor_mode = 0

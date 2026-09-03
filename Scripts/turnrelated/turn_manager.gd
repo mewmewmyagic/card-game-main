@@ -11,10 +11,12 @@ var battle: BattleState
 var combatants: Array[Combatant] = []
 var current_turn: Combatant
 
+#currently, since round sort round directly sorts the combatants array, 
 func start_round(new_combatants: Array[Combatant]) -> void:
 	combatants = new_combatants.duplicate()
-
+	combatants.shuffle()
 	for c in combatants:
+		print(c.name)
 		c.stats.reset_recovery_time()
 		c.stats.reset_stamina()
 		c.stats.reset_shield()
@@ -27,6 +29,18 @@ func end_round() -> void:
 	print("DONE")
 	start_round(combatants)
 
+func start_turn() -> void:
+	_sort_combatant()
+	current_turn = _next_combatant()
+	current_turn._on_self_turn_started()
+	
+	#for c in _active_combatants():
+		#c.stats.recovery_time -= current_turn.stats.recovery_time #this stops the recov time from diverging
+	turn_started.emit(current_turn)
+	
+	if current_turn.ai_behavior:
+		current_turn.take_ai_turn(battle)
+		
 func end_turn(recovery_cost: int) -> void:
 	current_turn._on_self_turn_ended()
 	current_turn.stats.set_recovery_time(recovery_cost)
@@ -41,26 +55,16 @@ func end_turn(recovery_cost: int) -> void:
 	
 	start_turn()
 
-func start_turn() -> void:
-	current_turn = _next_combatant()
-	current_turn._on_self_turn_started()
-	
-	#for c in _active_combatants():
-		#c.stats.recovery_time -= current_turn.stats.recovery_time #this stops the recov time from diverging
-	turn_started.emit(current_turn)
-	
-	if current_turn.ai_behavior:
-		current_turn.take_ai_turn(battle)
-
 func _active_combatants() -> Array[Combatant]:
 	return combatants.filter(func(c): return c.can_take_turn())
 
 func _next_combatant() -> Combatant:
-	var best: Combatant = null
-	for c in _active_combatants():
-		if best == null or c.stats.recovery_time < best.stats.recovery_time:
-			best = c
-	return best
+	return _active_combatants()[0]
 
+func _sort_combatant() -> void:
+	combatants.sort_custom(func(a, b): return a.stats.recovery_time < b.stats.recovery_time)
+#func _on_recov_time_changed() -> void:
+	#combatants.sort_custom(func(a, b): return a.stats.recovery_time < b.stats.recovery_time)
+	
 func _round_over() -> bool:
 	return _active_combatants().is_empty()

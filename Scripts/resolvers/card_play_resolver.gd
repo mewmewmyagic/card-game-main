@@ -27,7 +27,7 @@ func resolve(context: CardEffectContext) -> bool:
 		return false
 		
 	context.source.stats.stamina -= context.card.stamina_cost
-	
+	context.source.play_card_animation(context.card)
 	
 	for effect in context.card.effects:
 		effect.execute(context)
