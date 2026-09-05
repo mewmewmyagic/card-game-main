@@ -14,9 +14,8 @@ var current_turn: Combatant
 #currently, since round sort round directly sorts the combatants array, 
 func start_round(new_combatants: Array[Combatant]) -> void:
 	combatants = new_combatants.duplicate()
-	combatants.shuffle()
+	
 	for c in combatants:
-		print(c.name)
 		c.stats.reset_recovery_time()
 		c.stats.reset_stamina()
 		c.stats.reset_shield()
@@ -42,11 +41,13 @@ func start_turn() -> void:
 		current_turn.take_ai_turn(battle)
 		
 func end_turn(recovery_cost: int) -> void:
+	_sort_combatant()
 	current_turn._on_self_turn_ended()
 	current_turn.stats.set_recovery_time(recovery_cost)
 	turn_ended.emit(current_turn)
-	var tree := Engine.get_main_loop() as SceneTree
-	await tree.create_timer(0.5).timeout
+	
+	#on animation finish
+	await current_turn.anim_done
 	
 	if _round_over():
 		round_ended.emit()
@@ -56,15 +57,13 @@ func end_turn(recovery_cost: int) -> void:
 	start_turn()
 
 func _active_combatants() -> Array[Combatant]:
-	return combatants.filter(func(c): return c.can_take_turn())
+	return combatants.filter(func(c): return c.is_active_combatant())
 
 func _next_combatant() -> Combatant:
 	return _active_combatants()[0]
 
 func _sort_combatant() -> void:
 	combatants.sort_custom(func(a, b): return a.stats.recovery_time < b.stats.recovery_time)
-#func _on_recov_time_changed() -> void:
-	#combatants.sort_custom(func(a, b): return a.stats.recovery_time < b.stats.recovery_time)
 	
 func _round_over() -> bool:
 	return _active_combatants().is_empty()

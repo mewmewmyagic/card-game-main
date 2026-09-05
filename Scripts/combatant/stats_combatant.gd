@@ -3,7 +3,9 @@ class_name CombatantStats
 
 signal stamina_changed(new_stamina: int)
 signal recov_time_changed
-@export var cards_per_turn: int
+
+@export var OPENING_HAND_SIZE := 5
+@export var max_hand_size := 10
 @export var max_stamina: int
 
 var recovery_time: int
@@ -11,7 +13,6 @@ var stamina: int: set = set_stamina
 
 func reset_shield() -> void:
 	self.shield = 0
-
 
 func set_stamina(value: int) -> void:
 	stamina = value

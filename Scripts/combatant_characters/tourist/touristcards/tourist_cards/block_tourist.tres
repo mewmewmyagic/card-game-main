@@ -15,3 +15,4 @@ card_name = "block"
 stamina_cost = 1
 recovery_cost = 3
 effects = Array[ExtResource("1_qennh")]([SubResource("Resource_1u6w6")])
+target_type = 2

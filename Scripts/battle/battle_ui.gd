@@ -37,3 +37,5 @@ func _on_different_ally_turn_started(combatant: Combatant) -> void:
 		return
 	the_hand_ui.bind(combatant.hand_pile, battle_state.card_play_resolver, combatant)
 	stamina_ui.bind(combatant.stats)
+	draw_pile_ui.bind(combatant.draw_pile)
+	discard_pile_ui.bind(combatant.discard_pile)

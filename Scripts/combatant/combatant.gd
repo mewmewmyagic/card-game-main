@@ -2,6 +2,7 @@ extends Node2D
 class_name Combatant
 
 signal im_dead(combatant: Combatant)
+signal anim_done
 
 @export var stats: CombatantStats #: set = set_combatant_stats
 @export var ai_behavior: EnemyAIBehavior
@@ -19,15 +20,15 @@ signal im_dead(combatant: Combatant)
 
 @onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
 
-var is_active_turn: bool = false
+var is_current_turn: bool = false
 var is_dead: bool = false
 	
 	
 func _on_self_turn_started() -> void:
-	is_active_turn = true
+	is_current_turn = true
 		
 func _on_self_turn_ended() -> void:
-	is_active_turn = false
+	is_current_turn = false
 
 func _ready() -> void:
 	sprite_2d.bind(appearance)
@@ -58,28 +59,27 @@ func draw_to_hand() -> void:
 		discard_pile.clear() 
 		draw_pile.shuffle() 
 	var card := draw_pile.draw_card()
-	hand_pile.add_card(card)
+	add_to_hand(card)
+
+func add_to_hand(card: Card) -> void:
+	if hand_pile.cards.size() >= stats.max_hand_size:
+		discard_pile.add_card(card)
+	else:
+		hand_pile.add_card(card)
 	
 func build_hand() -> void:
 	discard_hand() #hand gets discarded and added back to discard pile
 	for i in stats.OPENING_HAND_SIZE:
 		draw_to_hand()
-	
-	
-func can_act() -> bool:
-	if is_dead:
-		return false
-	if not is_active_turn:
-		return false
-	return has_playable_card()
-	
-func can_take_turn() -> bool:
+			
+func is_active_combatant() -> bool:
 	if is_dead:
 		return false
 	return has_playable_card()
 	
 func has_playable_card() -> bool:
 	if hand_pile.cards.is_empty():
+		self.stats.recovery_time = 999
 		return false
 		
 	for card in hand_pile.cards:
@@ -112,14 +112,16 @@ func gain_shield(shield: int) -> void:
 
 func _die() -> void:
 	is_dead = true
-	self.stats.recovery_time = 9999
+	self.stats.recovery_time = 999
 	im_dead.emit(self)
 	
 	
-func play_card_animation(card: Card) -> void:
+func play_skill_animation(card: Card) -> void:
 	if appearance == null or sprite_2d == null:
 		return
 	sprite_2d.play_animation(appearance.get_animation_for_card(card.card_name))
+	await sprite_2d.animation_finished
+	emit_signal("anim_done")
 	
 #TODO i dont want this here bruh
 func take_ai_turn(battle: BattleState) -> void:

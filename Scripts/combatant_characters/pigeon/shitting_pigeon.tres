@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dxohpg0to1vuh"]
+
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_ke2yw"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_bdpg8"]
+[ext_resource type="Resource" uid="uid://dy8iifwwu4v0c" path="res://Scripts/combatant_characters/pigeon/turd_pigeon.tres" id="2_odlit"]
+[ext_resource type="Script" uid="uid://d3egueygytlxy" path="res://Scripts/effects/CardEffects/effect_add_card.gd" id="3_b5ss7"]
+
+[sub_resource type="Resource" id="Resource_x10el"]
+script = ExtResource("3_b5ss7")
+amount = 10
+card = ExtResource("2_odlit")
+metadata/_custom_type_script = "uid://d3egueygytlxy"
+
+[resource]
+script = ExtResource("2_bdpg8")
+card_name = "defecate"
+stamina_cost = 2
+recovery_cost = 7
+effects = Array[ExtResource("1_ke2yw")]([SubResource("Resource_x10el")])
+target_type = 1
+metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

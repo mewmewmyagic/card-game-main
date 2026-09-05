@@ -1,9 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://druu3xurtnyka"]
 
 [ext_resource type="Texture2D" uid="uid://cmcoc2wqk5dvl" path="res://Textures/skill2_2.png" id="2_lqe6o"]
-[ext_resource type="Texture2D" uid="uid://5yx5q4jfn62t" path="res://Textures/skill2_3-5.png" id="3_er707"]
-[ext_resource type="Texture2D" uid="uid://0o3py4pcew0w" path="res://Textures/skill2_4-6.png" id="4_fonut"]
-[ext_resource type="Texture2D" uid="uid://wdy37o2hpyro" path="res://Textures/skill2_7.png" id="5_osina"]
 [ext_resource type="Texture2D" uid="uid://b5m5ry1nfbna" path="res://Textures/skill2_8.png" id="6_0yn1f"]
 [ext_resource type="Texture2D" uid="uid://dr7w7j7nwdsvn" path="res://Textures/skill2_9.png" id="7_rq5b1"]
 [ext_resource type="Texture2D" uid="uid://c88umxyyirnvu" path="res://Textures/skill2_10.png" id="8_qk80h"]
@@ -15,22 +12,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_lqe6o")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_lqe6o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_er707")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_fonut")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_osina")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_0yn1f")

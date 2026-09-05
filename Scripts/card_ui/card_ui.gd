@@ -45,9 +45,9 @@ func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()	
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
-	if not targets.has(area):
+	if not targets.has(area): #if not targets already has that area
+		print(area.get_parent().name)
 		targets.append(area)
 		
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
 	targets.erase(area)
-	

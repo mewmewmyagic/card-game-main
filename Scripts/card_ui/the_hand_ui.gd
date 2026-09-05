@@ -92,12 +92,18 @@ func _update_layout() -> void:
 	var count := cards.size()
 	if count == 0:
 		return
+	
+	var spacing := CARD_SPACING
+	if count > 1:
+		spacing = min(CARD_SPACING, LAYOUT_WIDTH / (count - 1))
+	
 	var center_x := LAYOUT_WIDTH / 2.0
-	var total_width := (count - 1) * CARD_SPACING
+	var total_width := (count - 1) * spacing
 	var center_index: float = (float(count) - 1.0) / 2.0
+	
 	for i in count:
 		var card := cards[i]
-		var x := center_x + (i * CARD_SPACING - total_width / 2.0)
+		var x := center_x + (i * spacing - total_width / 2.0)
 		var normalized_offset: float = 0.0
 		if center_index != 0.0:
 			normalized_offset = (i - center_index) / center_index
@@ -109,4 +115,4 @@ func _update_layout() -> void:
 		_animate_card(card, target_position, target_rotation)
 # Hands.gd — replaces the old _animate_card body entirely
 func _animate_card(card: CardUI, target_position: Vector2, target_rotation: float) -> void:
-	card.animator.move_to(target_position, target_rotation, LAYOUT_TWEEN_DURATION)	
+	card.animator.move_to(target_position, target_rotation, LAYOUT_TWEEN_DURATION)

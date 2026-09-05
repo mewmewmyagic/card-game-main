@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="1_m6rp4"]
 [ext_resource type="Resource" uid="uid://cs1vxgii2b1ip" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/punching_tourist.tres" id="2_da8xi"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="2_i1si3"]
+[ext_resource type="Resource" uid="uid://ce4cu64fxrraf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/block_tourist.tres" id="3_da8xi"]
 
 [resource]
 script = ExtResource("2_i1si3")
-cards = Array[ExtResource("1_m6rp4")]([ExtResource("2_da8xi"), ExtResource("2_da8xi"), ExtResource("2_da8xi")])
+cards = Array[ExtResource("1_m6rp4")]([ExtResource("2_da8xi"), ExtResource("2_da8xi"), ExtResource("2_da8xi"), ExtResource("3_da8xi"), ExtResource("3_da8xi")])
 metadata/_custom_type_script = "uid://b7gxswfche1cy"

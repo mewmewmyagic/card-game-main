@@ -1,0 +1,81 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bogo731mfwlix"]
+
+[ext_resource type="Texture2D" uid="uid://b82reey63v0bj" path="res://Textures/RicardoSprites/skill2_1.png" id="1_fv35m"]
+[ext_resource type="Texture2D" uid="uid://xx07wxt847n1" path="res://Textures/RicardoSprites/skill2_2 (1).png" id="2_71ib5"]
+[ext_resource type="Texture2D" uid="uid://btqbp6qdta7fh" path="res://Textures/RicardoSprites/skill2_3.png" id="3_axeu7"]
+[ext_resource type="Texture2D" uid="uid://fbra7gq2u3so" path="res://Textures/RicardoSprites/skill2_4.png" id="4_l0nq3"]
+[ext_resource type="Texture2D" uid="uid://c6d6odj6j51qb" path="res://Textures/RicardoSprites/skill2_5.png" id="5_wv316"]
+[ext_resource type="Texture2D" uid="uid://dt8giae07yc6t" path="res://Textures/RicardoSprites/skill2_7 (1).png" id="7_fcrgm"]
+[ext_resource type="Texture2D" uid="uid://cddh3tr56afph" path="res://Textures/RicardoSprites/skill2_8 (1).png" id="8_2jtcx"]
+[ext_resource type="Texture2D" uid="uid://bnjun1ph4yit0" path="res://Textures/RicardoSprites/skill2_9 (1).png" id="9_h0d47"]
+[ext_resource type="Texture2D" uid="uid://cfkg0ygg42kc7" path="res://Textures/RicardoSprites/skill2_10 (1).png" id="10_1pke8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fv35m")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fv35m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_71ib5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_axeu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l0nq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wv316")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_axeu7")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_l0nq3")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_wv316")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_axeu7")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_wv316")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_l0nq3")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_axeu7")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_l0nq3")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_wv316")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fcrgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2jtcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_h0d47")
+}, {
+"duration": 1.5,
+"texture": ExtResource("10_1pke8")
+}],
+"loop": 0,
+"name": &"kicking_anim",
+"speed": 5.0
+}]

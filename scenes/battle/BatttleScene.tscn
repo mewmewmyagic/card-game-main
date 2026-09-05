@@ -5,15 +5,16 @@
 [ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://Scripts/battle/battle_ui.gd" id="2_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://cfscdqj4yth4h" path="res://scenes/over_world.tscn" id="3_t387n"]
 [ext_resource type="PackedScene" uid="uid://dqojtyf4in0y3" path="res://scenes/ui/character.tscn" id="4_0yjdt"]
-[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/card_ui/the_hand.gd" id="4_ldu1p"]
+[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/card_ui/the_hand_ui.gd" id="4_ldu1p"]
 [ext_resource type="Resource" uid="uid://clmuifqf7nbd8" path="res://Scripts/combatant_characters/cat/cat_starting_deck.tres" id="5_17srr"]
 [ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://Scripts/combatant_characters/tourist/tourist.tres" id="6_hvhqn"]
 [ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_state.gd" id="6_q34gv"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="8_1u6w6"]
 [ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/combatant_enemy/first_playable_card.gd" id="8_emfdx"]
+[ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://tourist_sprite_resource.tres" id="9_0t5w0"]
 [ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://bird_sprite_resource.tres" id="9_2jvsm"]
-[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck.tres" id="10_e5few"]
 [ext_resource type="Resource" uid="uid://cfswdv2qxwe88" path="res://Scripts/combatant_characters/thug/thug_starting_deck.tres" id="10_t387n"]
+[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck - Copy.tres" id="11_0t5w0"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="11_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/turn_ui.tscn" id="14_th5m4"]
@@ -59,6 +60,9 @@ metadata/_custom_type_script = "uid://b7gxswfche1cy"
 script = ExtResource("11_4f3f8")
 metadata/_custom_type_script = "uid://b7gxswfche1cy"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
+size = Vector2(1157.868, 680.4475)
+
 [node name="Battle" type="Node2D" unique_id=17023024]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1877770250]
@@ -77,12 +81,12 @@ centered = false
 
 [node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
-allies = [NodePath("AAA"), NodePath("BBB")]
-enemies = [NodePath("CCC"), NodePath("DDD")]
+allies = [NodePath("Alex"), NodePath("Bob")]
+enemies = [NodePath("Cindy"), NodePath("Deborah")]
 next_scene = ExtResource("3_t387n")
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
-[node name="AAA" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Alex" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(124, 374)
 scale = Vector2(-0.5, 0.5)
 stats = ExtResource("6_hvhqn")
@@ -92,35 +96,35 @@ draw_pile = SubResource("Resource_lf06l")
 discard_pile = SubResource("Resource_4f3f8")
 hand_pile = SubResource("Resource_c62f8")
 battle_state = NodePath("..")
-appearance = ExtResource("9_2jvsm")
+appearance = ExtResource("9_0t5w0")
 
-[node name="CCC" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Cindy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(958, 412)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 myname = "badguy"
-starting_deck = ExtResource("10_e5few")
+starting_deck = ExtResource("11_0t5w0")
 draw_pile = SubResource("Resource_r7yem")
 discard_pile = SubResource("Resource_mv28p")
 hand_pile = SubResource("Resource_mgs5k")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
-[node name="DDD" parent="BattleState" unique_id=491446191 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Deborah" parent="BattleState" unique_id=491446191 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(771, 376)
 scale = Vector2(0.5, 0.5)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 myname = "badguy"
-starting_deck = ExtResource("10_e5few")
+starting_deck = ExtResource("11_0t5w0")
 draw_pile = SubResource("Resource_r7yem")
 discard_pile = SubResource("Resource_mv28p")
 hand_pile = SubResource("Resource_mgs5k")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
-[node name="BBB" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Bob" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(258, 414)
 scale = Vector2(-0.5, 0.5)
 stats = ExtResource("6_hvhqn")
@@ -164,16 +168,24 @@ scale = Vector2(2, 2)
 offset_bottom = -648.0
 
 [node name="DrawPile" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
-offset_left = 72.0
-offset_top = 612.0
-offset_right = -1053.0
-offset_bottom = -9.0
+offset_left = 94.0
+offset_top = 607.0
+offset_right = -1031.0
+offset_bottom = -14.0
 
 [node name="DiscardPile" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_4q0u5")]
-offset_left = 1145.0
-offset_top = 614.0
-offset_right = 20.0
-offset_bottom = -7.0
+offset_left = 1080.0
+offset_top = 620.0
+offset_right = -45.0
+offset_bottom = -1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=234212178]
 anchor_mode = 0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1558808194 groups=["player_card_drop_area"]]
+position = Vector2(-8, -292)
+scale = Vector2(1.0358334, 1.1753345)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=256743362 groups=["player_card_drop_area"]]
+position = Vector2(568.9341, 330.22375)
+shape = SubResource("RectangleShape2D_crx7y")

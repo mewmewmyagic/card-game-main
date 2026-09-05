@@ -3,6 +3,7 @@ class_name CardPileUI
 
 @onready var label: Label  = $CardAmmount
 var pile: CardPile
+
 func bind(cardPile: CardPile) -> void:
 	unbind()
 	pile = cardPile

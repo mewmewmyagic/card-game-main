@@ -24,8 +24,6 @@ func clear() -> void:
 	cards.clear()
 	card_pile_size_changed.emit(cards.size())
 	
-	
-	
 func _to_string() -> String:
 	var _card_strings: PackedStringArray = []
 	for i in range(cards.size()):

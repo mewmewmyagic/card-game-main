@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/combatant_enemy/first_playable_card.gd" id="8_dd63g"]
 [ext_resource type="Resource" path="res://characters/tourist/touristcards/tourist_starting_deck2.tres" id="9_fpf3k"]
 [ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://Scripts/battle/battle_ui.gd" id="10_bi5l8"]
-[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/card_ui/the_hand.gd" id="11_jt4d8"]
+[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/card_ui/the_hand_ui.gd" id="11_jt4d8"]
 [ext_resource type="PackedScene" uid="uid://d0tus8eitn6fa" path="res://scenes/card_ui/card_ui.tscn" id="12_kl6ie"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="13_1m01a"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/turn_ui.tscn" id="14_lv4so"]

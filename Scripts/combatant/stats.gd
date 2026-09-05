@@ -4,7 +4,6 @@ class_name Stats
 signal stats_changed
 
 @export var max_health := 1
-@export var OPENING_HAND_SIZE := 5
 var health: int : set = set_health
 var shield: int: set = set_shield
 
