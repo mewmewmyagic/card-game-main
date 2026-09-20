@@ -5,3 +5,4 @@ signal card_play_requested(card: Card, source: Combatant, target: Combatant)
 signal card_played(card: Card, source: Combatant)
 signal card_play_rejected(card: Card, source: Combatant)
 signal card_ui_play_rejected(card_ui: CardUI)  # UI-specific, see below
+signal turn_end_request()

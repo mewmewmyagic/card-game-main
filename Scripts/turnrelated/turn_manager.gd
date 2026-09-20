@@ -33,8 +33,12 @@ func start_turn() -> void:
 	current_turn = _next_combatant()
 	current_turn._on_self_turn_started()
 	
-	#for c in _active_combatants():
-		#c.stats.recovery_time -= current_turn.stats.recovery_time #this stops the recov time from diverging
+	var combatants = _active_combatants()
+	
+	#for i in range(combatants.size() - 1, -1, -1):
+		#var c = combatants[i]
+		#c.stats.recovery_time -= current_turn.stats.recovery_time
+			
 	turn_started.emit(current_turn)
 	
 	if current_turn.ai_behavior:
@@ -46,14 +50,13 @@ func end_turn(recovery_cost: int) -> void:
 	current_turn.stats.set_recovery_time(recovery_cost)
 	turn_ended.emit(current_turn)
 	
-	#on animation finish
 	await current_turn.anim_done
 	
 	if _round_over():
 		round_ended.emit()
 		end_round()
 		return
-	
+
 	start_turn()
 
 func _active_combatants() -> Array[Combatant]:

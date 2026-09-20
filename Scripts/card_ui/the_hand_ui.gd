@@ -6,31 +6,34 @@ const CARD_SPACING: float = 110
 ## Width of the play area, used to center the hand horizontally
 const LAYOUT_WIDTH: float = 1152.0
 ## Max vertical arc height applied to the outermost cards
-const ARC_HEIGHT: float = 25.0
+const ARC_RADIUS: float = 600.0
 ## Rotation applied per card index, creating the fan effect
-const ROTATION_PER_CARD: float = 2.0
+const ROTATION_PER_CARD: float = 2.5
 ## Vertical offset subtracted so cards sit slightly above the anchor point
 const CARD_Y_OFFSET: float = 10.0
 const LAYOUT_TWEEN_DURATION: float = 0.5
+
 
 @export var card_ui_scene: PackedScene
 var cards: Array[CardUI] = []
 var card_to_ui: Dictionary = {}
 var hand_pile: CardPile
-var card_play_resolver: CardPlayResolver
+var card_play_manager: CardPlayManager
 var source_combatant: Combatant
 
-func bind(pile: CardPile, resolver: CardPlayResolver, source: Combatant) -> void:
+func bind(pile: CardPile, resolver: CardPlayManager, source: Combatant) -> void:
 	if source == source_combatant:
 		return
 	_unbind()
 	
 	hand_pile = pile
-	card_play_resolver = resolver
+	card_play_manager = resolver
 	source_combatant = source
 	hand_pile.card_pile_size_changed.connect(_on_pile_changed)
 	source.stats.stamina_changed.connect(_on_stamina_changed)
+	
 	_sync()
+	_update_interactability_ui()
 	
 func _unbind() -> void:
 	if hand_pile and hand_pile.card_pile_size_changed.is_connected(_on_pile_changed):
@@ -46,7 +49,7 @@ func _on_stamina_changed(_new_stamina: int) -> void:
 
 func _update_interactability_ui() -> void:
 	for card_ui in card_to_ui.values():
-		var playable := card_play_resolver.can_play(card_ui.card, source_combatant, null)
+		var playable := card_play_manager.can_play(card_ui.card, source_combatant, null)
 		card_ui.set_interactable_ui(playable)
 
 func _on_pile_changed(_count: int) -> void:
@@ -93,7 +96,7 @@ func _update_layout() -> void:
 	if count == 0:
 		return
 	
-	var spacing := CARD_SPACING
+	var spacing: float = CARD_SPACING * 1/count
 	if count > 1:
 		spacing = min(CARD_SPACING, LAYOUT_WIDTH / (count - 1))
 	
@@ -103,16 +106,17 @@ func _update_layout() -> void:
 	
 	for i in count:
 		var card := cards[i]
+		
+		var target_rotation := (i - count / 2.0) * ROTATION_PER_CARD
+		
 		var x := center_x + (i * spacing - total_width / 2.0)
 		var normalized_offset: float = 0.0
-		if center_index != 0.0:
-			normalized_offset = (i - center_index) / center_index
-		var y: float = normalized_offset * normalized_offset * ARC_HEIGHT
-		var target_position := Vector2(x, y) - Vector2(card.size.x, CARD_Y_OFFSET) / 2.0
-		var target_rotation := int(i - count / 2.0) * ROTATION_PER_CARD
-		#if card.card_state_machine.current_state.state != CardState.State.BASE:
-			#continue
+		
+		var theta: float = deg_to_rad(target_rotation)
+		var y: float = (ARC_RADIUS - ARC_RADIUS * cos(theta)) * 4
+		var target_position := Vector2(x, y) - Vector2(card.size.x, CARD_Y_OFFSET * count/3) / 2.0
+
 		_animate_card(card, target_position, target_rotation)
-# Hands.gd — replaces the old _animate_card body entirely
+
 func _animate_card(card: CardUI, target_position: Vector2, target_rotation: float) -> void:
 	card.animator.move_to(target_position, target_rotation, LAYOUT_TWEEN_DURATION)

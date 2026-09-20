@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_8hmf6")
 card_name = "turd"
-stamina_cost = 1
+stamina_cost = 99
 recovery_cost = 10
 target_type = 2
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

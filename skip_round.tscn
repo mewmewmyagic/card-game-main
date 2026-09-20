@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://df4gabwwtl1tb"]
+
+[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="1_mcpm0"]
+[ext_resource type="Script" uid="uid://cj5xwoug0jvex" path="res://skip_round.gd" id="2_neffg"]
+
+[node name="skip_round_button" type="Button" unique_id=2049350227]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.5
+offset_top = -4.5
+offset_right = -596.5
+offset_bottom = -344.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_mcpm0")
+theme_override_font_sizes/font_size = 12
+text = "skip round"
+script = ExtResource("2_neffg")
+
+[connection signal="pressed" from="." to="." method="_on_button_pressed"]

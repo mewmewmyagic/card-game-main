@@ -49,6 +49,7 @@ func discard_hand() -> void:
 	for card in hand_pile.cards.duplicate():
 		discard_pile.add_card(card)
 	hand_pile.clear()
+	hand_pile.card_pile_size_changed.emit(hand_pile.cards.size())
 	
 #draws from draw_pile. draw_pile empty? fill it with discard pile then draw. discard empty? some stupid shit happened
 func draw_to_hand() -> void:
@@ -79,7 +80,6 @@ func is_active_combatant() -> bool:
 	
 func has_playable_card() -> bool:
 	if hand_pile.cards.is_empty():
-		self.stats.recovery_time = 999
 		return false
 		
 	for card in hand_pile.cards:
@@ -112,7 +112,6 @@ func gain_shield(shield: int) -> void:
 
 func _die() -> void:
 	is_dead = true
-	self.stats.recovery_time = 999
 	im_dead.emit(self)
 	
 	

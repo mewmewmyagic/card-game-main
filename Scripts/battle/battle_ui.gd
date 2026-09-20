@@ -7,6 +7,7 @@ extends CanvasLayer
 @export var turn_ui: TurnUI
 @export var draw_pile_ui: CardPileUI
 @export var discard_pile_ui: CardPileUI
+@export var skip_round_ui: SkipRoundButton
 
 #change this shit so when its enemies turn (actually, more like when its playing
 #an animation it doesnt show the ui, ala limbus
@@ -22,11 +23,12 @@ func _ready() -> void:
 		# _on_different_ally_turn_started rebinds to whoever's really up.
 		starting_combatant = battle_state.allies[0]
 
-	the_hand_ui.bind(starting_combatant.hand_pile, battle_state.card_play_resolver, starting_combatant)
+	the_hand_ui.bind(starting_combatant.hand_pile, battle_state.card_play_manager, starting_combatant)
 	stamina_ui.bind(starting_combatant.stats)
 	turn_ui.bind(battle_state.turn_manager)
 	draw_pile_ui.bind(starting_combatant.draw_pile)
 	discard_pile_ui.bind(starting_combatant.discard_pile)
+	skip_round_ui.bind(starting_combatant)
 
 	battle_state.turn_manager.turn_started.connect(func(_c): the_hand_ui._update_interactability_ui())
 	battle_state.turn_manager.turn_ended.connect(func(_c): the_hand_ui._update_interactability_ui())
@@ -35,7 +37,8 @@ func _ready() -> void:
 func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	if combatant.ai_behavior != null:
 		return
-	the_hand_ui.bind(combatant.hand_pile, battle_state.card_play_resolver, combatant)
+	the_hand_ui.bind(combatant.hand_pile, battle_state.card_play_manager, combatant)
 	stamina_ui.bind(combatant.stats)
 	draw_pile_ui.bind(combatant.draw_pile)
 	discard_pile_ui.bind(combatant.discard_pile)
+	skip_round_ui.bind(combatant)

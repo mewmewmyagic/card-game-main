@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sewshbwxty6x"]
 
-[ext_resource type="Script" uid="uid://unuep7hwmmr7" path="res://card_piles_ui.gd" id="1_kfw6m"]
+[ext_resource type="Script" uid="uid://unuep7hwmmr7" path="res://Scripts/card/card_pile/card_piles_ui.gd" id="1_kfw6m"]
 [ext_resource type="Texture2D" uid="uid://c625u4qb3ffuy" path="res://Textures/blehhhhh.png" id="1_mgkhi"]
 
 [node name="CardPileUI" type="Control" unique_id=188438490]
@@ -20,5 +20,5 @@ text = "20
 "
 
 [node name="CardPile" type="Sprite2D" parent="." unique_id=1475599605]
-position = Vector2(-18, -16)
+position = Vector2(-8, -8)
 texture = ExtResource("1_mgkhi")

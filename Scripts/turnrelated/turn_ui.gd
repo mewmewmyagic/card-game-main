@@ -21,6 +21,8 @@ func _refresh() -> void:
 	
 	var i = 0
 	for combatant in ordered:
+		if not combatant.is_active_combatant():
+			continue
 		if i == 0:
 			parts.append("[color=red]%s %s[/color]" % [combatant.name, combatant.stats.recovery_time])
 		else:

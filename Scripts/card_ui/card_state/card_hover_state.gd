@@ -9,8 +9,7 @@ func enter() -> void:
 	card_ui.z_index = 10
 	card_ui.color.color = Color.GREEN_YELLOW
 	var lift_position := Vector2(card_ui.position.x, -22.0)
-	var rotation = 0
-	card_ui.animator.move_to(lift_position, rotation, 0.1)
+	card_ui.animator.move_to(lift_position, card_ui.rotation_degrees, 0.1)
 
 func exit() -> void:
 	pass

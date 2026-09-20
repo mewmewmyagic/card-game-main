@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvgn2ofcb603x"]
 
-[ext_resource type="Texture2D" uid="uid://debp215u608m0" path="res://Textures/1c6d43d3a7bf55f98461049c02b0c987.jpg" id="1_q34gv"]
+[ext_resource type="Texture2D" uid="uid://h2skwp06ey8c" path="res://Textures/Backgrounds/Background1.png" id="1_k6rj7"]
 [ext_resource type="PackedScene" uid="uid://d0tus8eitn6fa" path="res://scenes/card_ui/card_ui.tscn" id="1_ukcc5"]
 [ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://Scripts/battle/battle_ui.gd" id="2_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://cfscdqj4yth4h" path="res://scenes/over_world.tscn" id="3_t387n"]
@@ -14,11 +14,14 @@
 [ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://tourist_sprite_resource.tres" id="9_0t5w0"]
 [ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://bird_sprite_resource.tres" id="9_2jvsm"]
 [ext_resource type="Resource" uid="uid://cfswdv2qxwe88" path="res://Scripts/combatant_characters/thug/thug_starting_deck.tres" id="10_t387n"]
-[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck - Copy.tres" id="11_0t5w0"]
+[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck.tres" id="11_0t5w0"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="11_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/turn_ui.tscn" id="14_th5m4"]
 [ext_resource type="PackedScene" uid="uid://sewshbwxty6x" path="res://scenes/ui/card_piles_ui.tscn" id="15_4q0u5"]
+[ext_resource type="PackedScene" uid="uid://df4gabwwtl1tb" path="res://skip_round.tscn" id="21_2wrqn"]
+[ext_resource type="Texture2D" uid="uid://b4eagdjfjjaeq" path="res://Textures/RicardoSprites/Sprite-0001.png" id="21_4yuhd"]
+[ext_resource type="Shader" uid="uid://bs7lemhfqjxqc" path="res://scenes/BottomFade.gdshader" id="21_qiykf"]
 
 [sub_resource type="Resource" id="Resource_lf06l"]
 script = ExtResource("11_4f3f8")
@@ -60,24 +63,18 @@ metadata/_custom_type_script = "uid://b7gxswfche1cy"
 script = ExtResource("11_4f3f8")
 metadata/_custom_type_script = "uid://b7gxswfche1cy"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
-size = Vector2(1157.868, 680.4475)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crx7y"]
+shader = ExtResource("21_qiykf")
 
 [node name="Battle" type="Node2D" unique_id=17023024]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1877770250]
-offset_left = -13.0
-offset_top = 501.00003
-offset_right = 32.54971
-offset_bottom = 541.444
-scale = Vector2(28.803698, 4.505384)
-color = Color(0, 0, 0, 1)
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=848171344]
-position = Vector2(-8, -292)
-scale = Vector2(1.0358334, 1.1753345)
-texture = ExtResource("1_q34gv")
+texture = ExtResource("1_k6rj7")
 centered = false
+
+[node name="Sprite0001" type="Sprite2D" parent="." unique_id=413454038]
+position = Vector2(203, 202)
+texture = ExtResource("21_4yuhd")
 
 [node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
@@ -87,8 +84,8 @@ next_scene = ExtResource("3_t387n")
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
 [node name="Alex" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(124, 374)
-scale = Vector2(-0.5, 0.5)
+position = Vector2(99, 227)
+scale = Vector2(-0.312, 0.312)
 stats = ExtResource("6_hvhqn")
 myname = "goodguy"
 starting_deck = ExtResource("5_17srr")
@@ -99,8 +96,8 @@ battle_state = NodePath("..")
 appearance = ExtResource("9_0t5w0")
 
 [node name="Cindy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(958, 412)
-scale = Vector2(0.5, 0.5)
+position = Vector2(537.00006, 238.99998)
+scale = Vector2(0.313, 0.313)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 myname = "badguy"
@@ -112,8 +109,8 @@ battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Deborah" parent="BattleState" unique_id=491446191 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(771, 376)
-scale = Vector2(0.5, 0.5)
+position = Vector2(427.00003, 241)
+scale = Vector2(0.313, 0.313)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 myname = "badguy"
@@ -125,8 +122,8 @@ battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Bob" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(258, 414)
-scale = Vector2(-0.5, 0.5)
+position = Vector2(248.00002, 221)
+scale = Vector2(-0.312, 0.312)
 stats = ExtResource("6_hvhqn")
 starting_deck = ExtResource("10_t387n")
 draw_pile = SubResource("Resource_ek5c4")
@@ -135,57 +132,66 @@ hand_pile = SubResource("Resource_ckvm4")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
-[node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui") groups=["ui_layer"]]
-follow_viewport_enabled = true
+[node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui", "skip_round_ui") groups=["ui_layer"]]
 script = ExtResource("2_4f3f8")
 battle_state = NodePath("../BattleState")
 the_hand_ui = NodePath("Hand")
 stamina_ui = NodePath("StaminaUI")
-turn_ui = NodePath("turn_ui")
-draw_pile_ui = NodePath("DrawPile")
-discard_pile_ui = NodePath("DiscardPile")
+turn_ui = NodePath("TurnUI")
+draw_pile_ui = NodePath("DrawPileUI")
+discard_pile_ui = NodePath("DiscardPileUI")
+skip_round_ui = NodePath("skip_round_button")
 
-[node name="Hand" type="Control" parent="BattleUI" unique_id=1430552393]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 508.0
-offset_right = 1152.0
-offset_bottom = 648.0
-script = ExtResource("4_ldu1p")
-card_ui_scene = ExtResource("1_ukcc5")
+[node name="ColorRect" type="ColorRect" parent="BattleUI" unique_id=1620618948]
+material = SubResource("ShaderMaterial_crx7y")
+anchors_preset = -1
+anchor_right = 1.0020001
+anchor_bottom = 1.125
+offset_left = -6.0
+offset_top = 310.0
+offset_right = 0.7199707
+offset_bottom = 17.0
 
 [node name="StaminaUI" parent="BattleUI" unique_id=1157727669 instance=ExtResource("11_emfdx")]
 anchors_preset = -1
-anchor_left = -0.040798612
-anchor_right = 0.97960067
-offset_left = 58.0
-offset_top = 511.0
-offset_right = -1093.0
-offset_bottom = -136.0
+offset_left = 6.0
+offset_top = 278.0
+offset_right = -634.0
+offset_bottom = -82.0
 scale = Vector2(2, 2)
 
-[node name="turn_ui" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
-offset_bottom = -648.0
+[node name="TurnUI" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -451.0
+offset_bottom = -336.0
 
-[node name="DrawPile" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
-offset_left = 94.0
-offset_top = 607.0
-offset_right = -1031.0
-offset_bottom = -14.0
+[node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
+offset_left = 28.0
+offset_top = 340.0
+offset_right = -612.0
+offset_bottom = -20.0
 
-[node name="DiscardPile" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_4q0u5")]
-offset_left = 1080.0
-offset_top = 620.0
-offset_right = -45.0
-offset_bottom = -1.0
+[node name="DiscardPileUI" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_4q0u5")]
+offset_left = 62.0
+offset_top = 340.0
+offset_right = -578.0
+offset_bottom = -20.0
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=234212178]
-anchor_mode = 0
+[node name="Hand" type="Control" parent="BattleUI" unique_id=1430552393]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.99200004
+offset_left = 39.0
+offset_top = 287.0
+offset_right = 551.0
+offset_bottom = 286.99997
+scale = Vector2(0.5, 0.5)
+script = ExtResource("4_ldu1p")
+card_ui_scene = ExtResource("1_ukcc5")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1558808194 groups=["player_card_drop_area"]]
-position = Vector2(-8, -292)
-scale = Vector2(1.0358334, 1.1753345)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=256743362 groups=["player_card_drop_area"]]
-position = Vector2(568.9341, 330.22375)
-shape = SubResource("RectangleShape2D_crx7y")
+[node name="skip_round_button" parent="BattleUI" unique_id=2049350227 instance=ExtResource("21_2wrqn")]
+offset_left = 557.0
+offset_top = 283.0
+offset_right = -14.0
+offset_bottom = -57.0

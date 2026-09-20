@@ -5,6 +5,14 @@
 [node name="OverWorld" type="Node2D" unique_id=1715446316]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=982533919]
-position = Vector2(377, 143)
-scale = Vector2(12.424242, 4.575)
+position = Vector2(104, 106.99999)
+scale = Vector2(1.9393935, 3.5375)
 texture = ExtResource("1_ntpey")
+
+[node name="Label" type="Label" parent="." unique_id=1315161901]
+offset_left = 146.0
+offset_top = 54.0
+offset_right = 482.0
+offset_bottom = 176.0
+text = "You lost/win idkk
+ i havent implemented yet"

@@ -6,24 +6,25 @@ extends Node
 @export var enemies: Array[Combatant]
 @export var next_scene: PackedScene
 var play_history: Array[Card] = []
-var card_play_resolver: CardPlayResolver
+var card_play_manager: CardPlayManager
 var turn_manager: TurnManager
 
 func _ready() -> void:
-	card_play_resolver = CardPlayResolver.new()
-	card_play_resolver.battle = self
+	card_play_manager = CardPlayManager.new()
+	card_play_manager.battle = self
 	
 	turn_manager = TurnManager.new()
 	turn_manager.battle = self
 	#turn_manager.round_ended.connect(_on_round_ended)
 	
-	await get_tree().process_frame
-	turn_manager.start_round(all_combatants())
-	
 	for c in all_combatants():
 		c.im_dead.connect(_on_combatant_died)
 		
-	EventBus.card_play_requested.connect(card_play_resolver._on_player_card_play_requested)
+	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
+	EventBus.turn_end_request.connect(turn_manager.end_turn)
+	
+	await get_tree().process_frame
+	turn_manager.start_round(all_combatants())
 	
 func all_combatants() -> Array[Combatant]:
 	return enemies + allies
@@ -55,4 +56,4 @@ func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> v
 	context.card = card
 	context.source = source
 	context.target = target
-	card_play_resolver.resolve(context)
+	card_play_manager.resolve(context)

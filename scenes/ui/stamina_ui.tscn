@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1uaqytmxr4de"]
 
-[ext_resource type="Script" uid="uid://dk218p44x33hu" path="res://scenes/stamina_ui.gd" id="1_16rw6"]
+[ext_resource type="Script" uid="uid://dk218p44x33hu" path="res://Scripts/combatant/combantUI/stamina_ui.gd" id="1_16rw6"]
+[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="2_po0wo"]
 
 [node name="StaminaUI" type="Control" unique_id=1157727669]
 layout_mode = 3
@@ -18,4 +19,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_fonts/font = ExtResource("2_po0wo")
+theme_override_font_sizes/font_size = 10
 text = "0"
