@@ -11,8 +11,8 @@ func enter() -> void:
 	card_ui.pivot_offset = Vector2.ZERO
 
 	var hand := card_ui.get_parent() as TheHand
-	if hand:
-		hand._update_layout()
+	#if hand:
+		#hand._update_layout()
 
 		
 func on_mouse_entered() -> void:

@@ -15,13 +15,16 @@ func _on_player_card_play_requested(card: Card, source: Combatant, target: Comba
 func can_afford(card: Card, source: Combatant) -> bool:
 	return source.stats.enough_stamina(card)
 
-func can_play(card: Card, source: Combatant, target: Combatant) -> bool:
+func can_play(card: Card, source: Combatant) -> bool:
 	if not source.is_current_turn:
 		return false
 
 	return can_afford(card, source)
 	
-func is_valid_target_type(context: CardEffectContext) -> bool:
+func is_valid_target(context: CardEffectContext) -> bool:
+	if context.target.is_dead:
+		return false
+	
 	match context.card.target_type:
 		Card.TargetType.ENEMY:
 			return context.target in battle.opposing_team(context.source)
@@ -33,10 +36,10 @@ func is_valid_target_type(context: CardEffectContext) -> bool:
 			return true
 
 func resolve(context: CardEffectContext) -> bool:
-	if not can_play(context.card, context.source, context.target):
+	if not can_play(context.card, context.source):
 		return false
 		
-	if not is_valid_target_type(context):
+	if not is_valid_target(context):
 		return false
 	
 	context.source.stats.stamina -= context.card.stamina_cost
@@ -49,7 +52,6 @@ func resolve(context: CardEffectContext) -> bool:
 	context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
 	context.source.discard_pile.add_card(context.card)
 	
-
 	battle.turn_manager.end_turn(context.card.recovery_cost)
 	
 	return true

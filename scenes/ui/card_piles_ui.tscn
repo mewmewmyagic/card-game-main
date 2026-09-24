@@ -20,5 +20,6 @@ text = "20
 "
 
 [node name="CardPile" type="Sprite2D" parent="." unique_id=1475599605]
-position = Vector2(-8, -8)
+position = Vector2(-6.0000005, -2)
+scale = Vector2(0.6818182, 0.675)
 texture = ExtResource("1_mgkhi")

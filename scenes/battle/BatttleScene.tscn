@@ -69,6 +69,8 @@ shader = ExtResource("21_qiykf")
 [node name="Battle" type="Node2D" unique_id=17023024]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=848171344]
+position = Vector2(2, 55)
+scale = Vector2(1, 0.6611111)
 texture = ExtResource("1_k6rj7")
 centered = false
 
@@ -154,11 +156,10 @@ offset_bottom = 17.0
 
 [node name="StaminaUI" parent="BattleUI" unique_id=1157727669 instance=ExtResource("11_emfdx")]
 anchors_preset = -1
-offset_left = 6.0
-offset_top = 278.0
-offset_right = -634.0
-offset_bottom = -82.0
-scale = Vector2(2, 2)
+offset_left = 4.0
+offset_top = 296.0
+offset_right = -636.0
+offset_bottom = -64.0
 
 [node name="TurnUI" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
 offset_left = 1.0
@@ -167,16 +168,16 @@ offset_right = -451.0
 offset_bottom = -336.0
 
 [node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
-offset_left = 28.0
-offset_top = 340.0
-offset_right = -612.0
-offset_bottom = -20.0
+offset_left = 19.0
+offset_top = 336.0
+offset_right = -621.0
+offset_bottom = -24.0
 
 [node name="DiscardPileUI" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_4q0u5")]
-offset_left = 62.0
-offset_top = 340.0
-offset_right = -578.0
-offset_bottom = -20.0
+offset_left = 55.0
+offset_top = 335.0
+offset_right = -585.0
+offset_bottom = -25.0
 
 [node name="Hand" type="Control" parent="BattleUI" unique_id=1430552393]
 layout_mode = 3
@@ -191,7 +192,7 @@ script = ExtResource("4_ldu1p")
 card_ui_scene = ExtResource("1_ukcc5")
 
 [node name="skip_round_button" parent="BattleUI" unique_id=2049350227 instance=ExtResource("21_2wrqn")]
-offset_left = 557.0
-offset_top = 283.0
-offset_right = -14.0
-offset_bottom = -57.0
+offset_left = 563.0
+offset_top = 298.0
+offset_right = -8.0
+offset_bottom = -42.0

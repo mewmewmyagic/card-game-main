@@ -34,7 +34,7 @@ func _ready() -> void:
 	sprite_2d.bind(appearance)
 	build_deck()
 	stats = stats.create_instance()
-	stats.stats_changed.connect(_on_stats_changed)
+	stats.stats_changed.connect(check_if_dead)
 	_bind_stats_ui()
 
 
@@ -90,10 +90,9 @@ func has_playable_card() -> bool:
 	
 func _bind_stats_ui() -> void:
 	stats_ui.bind(stats)
-	_on_stats_changed()
 
 #why is this here? and why is it like this? no clue
-func _on_stats_changed() -> void:
+func check_if_dead() -> void:
 	if stats.health <= 0:
 		_die()
 	
@@ -121,6 +120,13 @@ func play_skill_animation(card: Card) -> void:
 	sprite_2d.play_animation(appearance.get_animation_for_card(card.card_name))
 	await sprite_2d.animation_finished
 	emit_signal("anim_done")
+
+func play_other_animation() -> void:
+	if appearance == null or sprite_2d == null:
+		return
+	sprite_2d.play_animation("idle")
+	emit_signal("anim_done")
+	
 	
 #TODO i dont want this here bruh
 func take_ai_turn(battle: BattleState) -> void:
@@ -128,8 +134,6 @@ func take_ai_turn(battle: BattleState) -> void:
 		return
 	var card := ai_behavior.choose_card(self, battle)
 	if card == null:
-		#TODO this wont work
-		#battle.turn_manager.end_turn(card.recovery_cost)
 		return
 	var target := ai_behavior.choose_target(self, battle)
 	battle.resolve_ai_card_play(self, card, target)

@@ -6,5 +6,5 @@
 
 [resource]
 script = ExtResource("2_tqhtp")
-cards = Array[ExtResource("1_osp16")]([ExtResource("2_xpepw"), ExtResource("2_xpepw"), ExtResource("2_xpepw")])
+cards = Array[ExtResource("1_osp16")]([ExtResource("2_xpepw"), ExtResource("2_xpepw")])
 metadata/_custom_type_script = "uid://b7gxswfche1cy"

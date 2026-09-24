@@ -21,16 +21,18 @@ var hand_pile: CardPile
 var card_play_manager: CardPlayManager
 var source_combatant: Combatant
 
-func bind(pile: CardPile, resolver: CardPlayManager, source: Combatant) -> void:
+func bind(resolver: CardPlayManager, source: Combatant) -> void:
+	#dont bind if already binded
 	if source == source_combatant:
 		return
+		
 	_unbind()
 	
-	hand_pile = pile
+	hand_pile = source.hand_pile
 	card_play_manager = resolver
 	source_combatant = source
 	hand_pile.card_pile_size_changed.connect(_on_pile_changed)
-	source.stats.stamina_changed.connect(_on_stamina_changed)
+	source_combatant.stats.stamina_changed.connect(_on_stamina_changed)
 	
 	_sync()
 	_update_interactability_ui()
@@ -40,7 +42,8 @@ func _unbind() -> void:
 		hand_pile.card_pile_size_changed.disconnect(_on_pile_changed)
 	if source_combatant and source_combatant.stats.stamina_changed.is_connected(_on_stamina_changed):
 		source_combatant.stats.stamina_changed.disconnect(_on_stamina_changed)
-
+	
+	source_combatant = null
 	for card in card_to_ui.keys().duplicate():
 		_despawn_card(card)
 
@@ -49,7 +52,7 @@ func _on_stamina_changed(_new_stamina: int) -> void:
 
 func _update_interactability_ui() -> void:
 	for card_ui in card_to_ui.values():
-		var playable := card_play_manager.can_play(card_ui.card, source_combatant, null)
+		var playable := card_play_manager.can_play(card_ui.card, source_combatant)
 		card_ui.set_interactable_ui(playable)
 
 func _on_pile_changed(_count: int) -> void:

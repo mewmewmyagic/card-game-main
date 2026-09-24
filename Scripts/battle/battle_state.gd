@@ -27,7 +27,7 @@ func _ready() -> void:
 	turn_manager.start_round(all_combatants())
 	
 func all_combatants() -> Array[Combatant]:
-	return enemies + allies
+	return allies + enemies
 	
 func opposing_team(c: Combatant) -> Array[Combatant]:
 	if c in allies:

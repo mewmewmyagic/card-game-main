@@ -5,6 +5,7 @@ signal round_started(combatants: Array[Combatant])
 signal round_ended
 
 signal turn_started(combatant: Combatant)
+signal ally_turn_started(combatant: Combatant)
 signal turn_ended(combatant: Combatant)
 
 var battle: BattleState
@@ -25,7 +26,7 @@ func start_round(new_combatants: Array[Combatant]) -> void:
 	start_turn()
 
 func end_round() -> void:
-	print("DONE")
+	#battle.battle_ui.unbind_all() #TODO
 	start_round(combatants)
 
 func start_turn() -> void:
@@ -43,6 +44,8 @@ func start_turn() -> void:
 	
 	if current_turn.ai_behavior:
 		current_turn.take_ai_turn(battle)
+	else:
+		ally_turn_started.emit(current_turn)
 		
 func end_turn(recovery_cost: int) -> void:
 	_sort_combatant()
@@ -51,7 +54,7 @@ func end_turn(recovery_cost: int) -> void:
 	turn_ended.emit(current_turn)
 	
 	await current_turn.anim_done
-	
+
 	if _round_over():
 		round_ended.emit()
 		end_round()

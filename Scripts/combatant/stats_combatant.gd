@@ -17,7 +17,7 @@ func reset_shield() -> void:
 func set_stamina(value: int) -> void:
 	stamina = value
 	stamina_changed.emit(stamina)
-	stats_changed.emit()
+	
 	
 func reset_stamina() -> void:
 	self.stamina = max_stamina
@@ -25,7 +25,6 @@ func reset_stamina() -> void:
 func set_recovery_time(value: int) -> void:
 	recovery_time += value
 	recov_time_changed.emit()
-	stats_changed.emit()
 	
 func reset_recovery_time() -> void:
 	recovery_time = 0
