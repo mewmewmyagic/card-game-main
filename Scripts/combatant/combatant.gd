@@ -111,6 +111,7 @@ func gain_shield(shield: int) -> void:
 
 func _die() -> void:
 	is_dead = true
+	stats_ui.visible = false
 	im_dead.emit(self)
 	
 	

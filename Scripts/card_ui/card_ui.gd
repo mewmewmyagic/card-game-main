@@ -1,7 +1,7 @@
 class_name CardUI
 extends Control
 
-# Called when the node enters the scene tree for the first time.
+signal request_snap_back
 
 #TODO change this later
 @onready var color: ColorRect = $Visuals/Color

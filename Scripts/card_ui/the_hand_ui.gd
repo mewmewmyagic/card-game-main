@@ -11,7 +11,8 @@ const ARC_RADIUS: float = 600.0
 const ROTATION_PER_CARD: float = 2.5
 ## Vertical offset subtracted so cards sit slightly above the anchor point
 const CARD_Y_OFFSET: float = 10.0
-const LAYOUT_TWEEN_DURATION: float = 0.5
+const SPEED: float = 1500
+const TWEEN_DURATION: float = 0.25
 
 
 @export var card_ui_scene: PackedScene
@@ -74,6 +75,7 @@ func _spawn_card(card: Card) -> void:
 	var card_ui := card_ui_scene.instantiate() as CardUI
 	card_ui.card = card
 	card_ui.owner_combatant = source_combatant
+	card_ui.request_snap_back.connect(request_relayout)
 	add_child(card_ui)
 	card_to_ui[card] = card_ui
 
@@ -122,4 +124,5 @@ func _update_layout() -> void:
 		_animate_card(card, target_position, target_rotation)
 
 func _animate_card(card: CardUI, target_position: Vector2, target_rotation: float) -> void:
-	card.animator.move_to(target_position, target_rotation, LAYOUT_TWEEN_DURATION)
+	var distance: Vector2 =  target_position - card.position
+	card.animator.move_to(target_position, target_rotation, TWEEN_DURATION)

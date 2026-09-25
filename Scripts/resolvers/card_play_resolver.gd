@@ -37,9 +37,11 @@ func is_valid_target(context: CardEffectContext) -> bool:
 
 func resolve(context: CardEffectContext) -> bool:
 	if not can_play(context.card, context.source):
+		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
 		return false
 		
 	if not is_valid_target(context):
+		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
 		return false
 	
 	context.source.stats.stamina -= context.card.stamina_cost
