@@ -1,0 +1,29 @@
+extends Node
+#SceneLoader
+
+var loaded_resource: PackedScene
+var scene_path: String
+var progress: Array = []
+var use_sub_thread: bool = false
+
+func _ready() -> void:
+	set_process(false)
+	
+func load_scene(_scene_path: String) -> void:
+	scene_path = _scene_path
+	start_load()
+	
+func start_load() -> void:
+	var state = ResourceLoader.load_threaded_request(scene_path, "", use_sub_thread)
+	if state == OK:
+		set_process(true)
+
+func _process(delta: float) -> void:
+	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
+	match load_status:
+		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
+			set_process(false)
+		ResourceLoader.THREAD_LOAD_LOADED:
+			loaded_resource = ResourceLoader.load_threaded_get(scene_path)
+			get_tree().change_scene_to_packed(loaded_resource)
+	

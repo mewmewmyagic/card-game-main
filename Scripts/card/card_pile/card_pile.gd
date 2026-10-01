@@ -8,13 +8,17 @@ signal card_pile_size_changed(cards_amount)
 func empty() -> bool:
 	return cards.is_empty()
 	
-func draw_card() -> Card:
+func draw_card() -> Card: #only for draw/discard pile
 	var card = cards.pop_front()
 	card_pile_size_changed.emit(cards.size())
 	return card
 	
 func add_card(card:Card):
 	cards.append(card)
+	card_pile_size_changed.emit(cards.size())
+
+func remove_card(card: Card) -> void:
+	cards.erase(card)
 	card_pile_size_changed.emit(cards.size())
 	
 func shuffle() -> void:

@@ -44,7 +44,7 @@ func _on_mouse_entered() -> void:
 	card_state_machine.on_mouse_entered()
 
 func _on_mouse_exited() -> void:
-	card_state_machine.on_mouse_exited()	
+	card_state_machine.on_mouse_exited()
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not targets.has(area):

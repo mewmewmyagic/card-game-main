@@ -6,7 +6,7 @@ signal anim_done
 
 @export var stats: CombatantStats #: set = set_combatant_stats
 @export var ai_behavior: EnemyAIBehavior
-@export var myname: String
+@export var combatant_name: String
 
 @export var starting_deck: CardPile
 @export var draw_pile: CardPile

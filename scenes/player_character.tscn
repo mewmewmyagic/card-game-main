@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cccii5uivi4fi"]
+
+[ext_resource type="Script" uid="uid://ophdqdy2qlxh" path="res://Scripts/Player Character/player_character.gd" id="1_dp8ca"]
+[ext_resource type="Texture2D" uid="uid://y3uqbfpt74de" path="res://Textures/Backgrounds/Sprite-0003.png" id="2_rkhd4"]
+[ext_resource type="Script" uid="uid://c03rjnabas8o4" path="res://Scripts/Player Character/player_character_state_machine.gd" id="3_my7n2"]
+[ext_resource type="Script" uid="uid://be4pxcnuh6qxj" path="res://Scripts/Player Character/player character state/player_idle_state.gd" id="4_dp8ca"]
+[ext_resource type="Script" uid="uid://x6exjpsjt47w" path="res://Scripts/Player Character/player character state/player_walk_state.gd" id="6_0lw5n"]
+[ext_resource type="Script" uid="uid://dxeysnejwhi1j" path="res://Scripts/Player Character/player character state/player_running_state.gd" id="6_2cgup"]
+[ext_resource type="Script" uid="uid://c718c1grsu6jv" path="res://scenes/camera_2d.gd" id="7_6unfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
+size = Vector2(24, 20)
+
+[node name="Player" type="Node2D" unique_id=1121403808]
+y_sort_enabled = true
+script = ExtResource("1_dp8ca")
+
+[node name="PlayerMovementController" type="CharacterBody2D" parent="." unique_id=1648128159 groups=["player_overworld"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerMovementController" unique_id=152934349]
+texture = ExtResource("2_rkhd4")
+offset = Vector2(0, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementController" unique_id=220996403]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_crx7y")
+
+[node name="PlayerCharacterStateMachine" type="Node" parent="." unique_id=1527185680 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_my7n2")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="PlayerCharacterStateMachine" unique_id=2042883724]
+script = ExtResource("4_dp8ca")
+
+[node name="WalkState" type="Node" parent="PlayerCharacterStateMachine" unique_id=2090801023]
+script = ExtResource("6_0lw5n")
+state = 1
+
+[node name="RunState" type="Node" parent="PlayerCharacterStateMachine" unique_id=2077372575]
+script = ExtResource("6_2cgup")
+state = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=609608876 node_paths=PackedStringArray("player")]
+script = ExtResource("7_6unfe")
+player = NodePath("../PlayerMovementController")

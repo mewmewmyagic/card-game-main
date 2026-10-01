@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://qpqkb081pr1m"]
+
+[ext_resource type="Script" uid="uid://c0qp458spkt0j" path="res://scenes/OverWorld.gd" id="1_g8o4n"]
+[ext_resource type="PackedScene" uid="uid://cccii5uivi4fi" path="res://scenes/player_character.tscn" id="1_mk5rj"]
+[ext_resource type="Script" uid="uid://bdndugt6hkyvs" path="res://scenes/CombatTriggerArea.gd" id="2_knp7x"]
+[ext_resource type="Texture2D" uid="uid://dne4ti104n0a1" path="res://Textures/Screenshot 2026-09-27 120525.png" id="4_vsipq"]
+[ext_resource type="Texture2D" uid="uid://b82reey63v0bj" path="res://Textures/RicardoSprites/skill2_1.png" id="5_vsipq"]
+[ext_resource type="Texture2D" uid="uid://dmff8w32asch2" path="res://Textures/Backgrounds/ffff.png" id="6_wr2b7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
+size = Vector2(125, 197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqsym"]
+size = Vector2(114.5, 65)
+
+[node name="OverWorld" type="Node2D" unique_id=930591070]
+script = ExtResource("1_g8o4n")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1572067303]
+position = Vector2(434, 134)
+script = ExtResource("2_knp7x")
+battle_scene_path = "uid://bvgn2ofcb603x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1516683549]
+position = Vector2(134, 97)
+shape = SubResource("RectangleShape2D_crx7y")
+
+[node name="Level" type="Node2D" parent="." unique_id=1049235331]
+y_sort_enabled = true
+
+[node name="Player" parent="Level" unique_id=1121403808 instance=ExtResource("1_mk5rj")]
+position = Vector2(390, 59)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level" unique_id=1216922084]
+z_index = -2
+scale = Vector2(0.33524805, 0.33926898)
+texture = ExtResource("4_vsipq")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level" unique_id=1357952644]
+position = Vector2(510, 126)
+scale = Vector2(0.3478261, 0.3505338)
+texture = ExtResource("5_vsipq")
+centered = false
+
+[node name="Ffff" type="Sprite2D" parent="Level" unique_id=416870066]
+position = Vector2(363, 272)
+texture = ExtResource("6_wr2b7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Ffff" unique_id=1209952718]
+position = Vector2(32, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ffff/StaticBody2D" unique_id=1608235015]
+position = Vector2(135, -6.5)
+shape = SubResource("RectangleShape2D_rqsym")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

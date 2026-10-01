@@ -4,7 +4,7 @@ extends Node
 #_ready() must run before battle uis ready(), aka battle state is in higher order of the scene tree
 @export var allies: Array[Combatant]
 @export var enemies: Array[Combatant]
-@export var next_scene: PackedScene
+@export_file("*.tscn") var next_scene: String
 var play_history: Array[Card] = []
 var card_play_manager: CardPlayManager
 var turn_manager: TurnManager
@@ -17,9 +17,8 @@ func _ready() -> void:
 	turn_manager.battle = self
 	#turn_manager.round_ended.connect(_on_round_ended)
 	
-	for c in all_combatants():
-		c.im_dead.connect(_on_combatant_died)
 		
+	EventBus.turn_ended.connect(_on_combatant_died)
 	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
 	EventBus.turn_end_request.connect(turn_manager.end_turn)
 	
@@ -39,7 +38,7 @@ func same_team(c: Combatant) -> Array[Combatant]:
 		return allies
 	return enemies
 	
-func _on_combatant_died(_combatant: Combatant) -> void:
+func _on_combatant_died() -> void:
 	var allies_alive := allies.any(func(c): return not c.is_dead)
 	var enemies_alive := enemies.any(func(c): return not c.is_dead)
 	
@@ -47,8 +46,7 @@ func _on_combatant_died(_combatant: Combatant) -> void:
 		return
 		
 	if next_scene != null:
-		print("poepepe")
-		get_tree().call_deferred("change_scene_to_packed", next_scene)
+		SceneLoader.load_scene(next_scene)
 
 func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> void:
 	var context := CardEffectContext.new()

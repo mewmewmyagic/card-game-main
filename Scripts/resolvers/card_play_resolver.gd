@@ -38,10 +38,12 @@ func is_valid_target(context: CardEffectContext) -> bool:
 func resolve(context: CardEffectContext) -> bool:
 	if not can_play(context.card, context.source):
 		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
+		EventBus.card_play_rejected.emit()
 		return false
 		
 	if not is_valid_target(context):
 		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
+		EventBus.card_play_rejected.emit()
 		return false
 	
 	context.source.stats.stamina -= context.card.stamina_cost
@@ -50,8 +52,7 @@ func resolve(context: CardEffectContext) -> bool:
 	for effect in context.card.effects:
 		effect.execute(context)
 	
-	context.source.hand_pile.cards.erase(context.card)
-	context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
+	context.source.hand_pile.remove_card(context.card)
 	context.source.discard_pile.add_card(context.card)
 	
 	battle.turn_manager.end_turn(context.card.recovery_cost)
