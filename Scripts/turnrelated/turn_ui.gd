@@ -11,8 +11,7 @@ var turn_manager: TurnManager
 
 func bind(turnManager: TurnManager) -> void:
 	turn_manager = turnManager
-	turn_manager.turn_started.connect(func(_c): sync())
-	turn_manager.turn_ended.connect(func(_c): sync())
+	turn_manager.turn_order_changed.connect(sync)
 	
 func spawn_icon(c: Combatant) -> void:
 	var turn_icon := turn_icon_scene.instantiate() as TurnOrderIcon

@@ -47,6 +47,7 @@ func resolve(context: CardEffectContext) -> bool:
 		return false
 	
 	context.source.stats.stamina -= context.card.stamina_cost
+	context.source.stats.set_recovery_time(context.card.recovery_cost)
 	context.source.play_skill_animation(context.card)
 	
 	for effect in context.card.effects:

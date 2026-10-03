@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusEffects" format=3 uid="uid://cpyekuu60jjb0"]
+
+[ext_resource type="Script" uid="uid://d0krudtp04qht" path="res://Scripts/Status Effects/status_effect.gd" id="1_obrtw"]
+
+[resource]
+script = ExtResource("1_obrtw")
+id = "poise"
+tooltip = "Increases damage done by stack. attacking reduces count"
+max_stack = 10
+max_count = 99

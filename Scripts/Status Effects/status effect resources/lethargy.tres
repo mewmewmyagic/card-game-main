@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://b3g826bfh05eq"]
+
+[ext_resource type="Script" uid="uid://d0krudtp04qht" path="res://Scripts/Status Effects/status_effect.gd" id="1_7tnmt"]
+
+[resource]
+script = ExtResource("1_7tnmt")
+id = "lethargy"
+tooltip = "increases stamina usage by stack for this round"
+max_stack = 3

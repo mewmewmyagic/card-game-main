@@ -8,6 +8,8 @@ signal anim_done
 @export var ai_behavior: EnemyAIBehavior
 @export var combatant_name: String
 
+@export var status_manager: StatusEffectManager
+
 @export var starting_deck: CardPile
 @export var draw_pile: CardPile
 @export var discard_pile: CardPile
@@ -35,7 +37,7 @@ func _ready() -> void:
 	build_deck()
 	stats = stats.create_instance()
 	stats.stats_changed.connect(check_if_dead)
-	_bind_stats_ui()
+	bind()
 
 
 func build_deck() -> void:
@@ -88,8 +90,9 @@ func has_playable_card() -> bool:
 	return false
 	
 	
-func _bind_stats_ui() -> void:
+func bind() -> void:
 	stats_ui.bind(stats)
+	status_manager.parent = self
 
 #why is this here? and why is it like this? no clue
 func check_if_dead() -> void:

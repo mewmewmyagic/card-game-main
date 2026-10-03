@@ -8,6 +8,8 @@ signal turn_started(combatant: Combatant)
 signal ally_turn_started(combatant: Combatant)
 signal turn_ended(combatant: Combatant)
 
+signal turn_order_changed
+
 var battle: BattleState
 #all combatants currently in battle. some combatants arent active combatants (cant take turns) while others are
 var combatants: Array[Combatant] = []
@@ -46,9 +48,7 @@ func start_turn() -> void:
 		ally_turn_started.emit(current_turn)
 		
 func end_turn(recovery_cost: int) -> void:
-	_sort_combatant()
 	current_turn._on_self_turn_ended()
-	current_turn.stats.set_recovery_time(recovery_cost)
 	turn_ended.emit(current_turn)
 	
 	await current_turn.anim_done
@@ -68,6 +68,7 @@ func _next_active_combatant() -> Combatant:
 
 func _sort_combatant() -> void:
 	combatants.sort_custom(func(a, b): return a.stats.recovery_time < b.stats.recovery_time)
+	turn_order_changed.emit()
 	
 func _round_over() -> bool:
 	return _active_combatants().is_empty()

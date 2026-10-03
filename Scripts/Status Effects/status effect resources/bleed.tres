@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BleedStatusEffect" format=3 uid="uid://hrg5sh4161o7"]
+
+[ext_resource type="Script" uid="uid://ccuysvlx3ma70" path="res://Scripts/Status Effects/status effect scripts/bleed.gd" id="1_q6pbo"]
+
+[resource]
+script = ExtResource("1_q6pbo")
+id = "bleed"
+tooltip = "does damage based on stack and reduces count each turn "
+max_stack = 99
+max_count = 99

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://biilmqfvjksm5"]
+
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_fc1ck"]
+[ext_resource type="Texture2D" uid="uid://bx00lm5efg52v" path="res://Textures/cardArt/punching-export.png" id="1_sy3rk"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_mgfx4"]
+[ext_resource type="Script" uid="uid://d214ayipywbee" path="res://Scripts/effects/CardEffects/effect_add_status.gd" id="2_sy3rk"]
+[ext_resource type="Resource" uid="uid://hrg5sh4161o7" path="res://Scripts/Status Effects/status effect resources/bleed.tres" id="4_qvtkk"]
+
+[sub_resource type="Resource" id="Resource_sy3rk"]
+script = ExtResource("2_sy3rk")
+status = ExtResource("4_qvtkk")
+stack = 9
+count = 10
+metadata/_custom_type_script = "uid://d214ayipywbee"
+
+[resource]
+script = ExtResource("2_mgfx4")
+card_name = "kicking"
+stamina_cost = 3
+recovery_cost = 5
+effects = Array[ExtResource("1_fc1ck")]([SubResource("Resource_sy3rk")])
+card_art = ExtResource("1_sy3rk")
+metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"
