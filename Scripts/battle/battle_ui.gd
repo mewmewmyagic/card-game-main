@@ -14,8 +14,8 @@ func _ready() -> void:
 	turn_ui.bind(battle_state.turn_manager)
 
 	#signals to make hand not playable in between turns
-	battle_state.turn_manager.turn_started.connect(func(_c): the_hand_ui._update_interactability_ui())
-	battle_state.turn_manager.turn_ended.connect(func(_c): the_hand_ui._update_interactability_ui())
+	EventBus.turn_started.connect(the_hand_ui._update_interactability_ui)
+	EventBus.turn_ended.connect(the_hand_ui._update_interactability_ui)
 	
 	battle_state.turn_manager.turn_started.connect(_on_different_ally_turn_started)
 

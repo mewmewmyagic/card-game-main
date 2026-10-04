@@ -1,0 +1,16 @@
+extends StatusEffect
+class_name HasteStatusEffect
+
+func init(_target: Combatant, _manager: StatusEffectManager) -> void:
+	target = _target
+	manager = _manager
+	EventBus.turn_ended.connect(trigger_status_effect)
+
+func on_remove() -> void:
+	EventBus.turn_ended.disconnect(trigger_status_effect)
+
+func trigger_status_effect() -> void:
+	target.stats.set_recovery_time(-stack)
+	count -= 1
+	if count <= 0:
+		manager.remove_status(id)

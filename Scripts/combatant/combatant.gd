@@ -9,6 +9,7 @@ signal anim_done
 @export var combatant_name: String
 
 @export var status_manager: StatusEffectManager
+@export var modifer_manager: ModifierHandler
 
 @export var starting_deck: CardPile
 @export var draw_pile: CardPile
@@ -99,10 +100,11 @@ func check_if_dead() -> void:
 	if stats.health <= 0:
 		_die()
 	
-func take_damage(damage: int) ->void:
+func take_damage(base_damage: int) ->void:
 	if (stats.health <= 0):
 		return
-		
+	
+	var damage := modifer_manager.get_modified_value(base_damage, Modifier.Type.dmg_taken)
 	var damage_to_shield := int(min(damage, stats.shield))
 	var damage_to_health := damage - damage_to_shield
 

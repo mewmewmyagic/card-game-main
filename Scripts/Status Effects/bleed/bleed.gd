@@ -2,15 +2,15 @@ extends StatusEffect
 class_name BleedStatusEffect
 
 func init(_target: Combatant, _manager: StatusEffectManager) -> void:
-	super.init(_target, _manager)
-	target.anim_done.connect(_on_anim_done)
+	target = _target
+	manager = _manager
+	EventBus.turn_ended.connect(trigger_status_effect)
 
 func on_remove() -> void:
-	target.anim_done.disconnect(_on_anim_done)
+	EventBus.turn_ended.disconnect(trigger_status_effect)
 
-func _on_anim_done() -> void:
+func trigger_status_effect() -> void:
 	target.take_damage(stack)
 	count -= 1
-	print(count)
 	if count <= 0:
 		manager.remove_status(id)

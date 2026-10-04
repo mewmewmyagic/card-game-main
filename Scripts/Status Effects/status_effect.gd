@@ -9,19 +9,23 @@ class_name StatusEffect
 
 var target: Combatant
 var manager: StatusEffectManager
-
-@export var stack: int = 0
-@export var count: int = 0
+var stack: int = 0
+var count: int = 0
 
 func init(c: Combatant, s: StatusEffectManager) -> void:
-	target = c
-	manager = s
+	pass
 
-func trigger_status_effect(c: Combatant) -> void:
+func trigger_status_effect() -> void:
+	pass
+	
+func on_effect_applied() -> void:
+	pass
+
+func on_effect_removed() -> void:
 	pass
 	
 func add_count(n: int) -> void:
-	count += n
+	count = clamp(count + n, 0, max_count)
 	
 func add_stack(n: int) -> void:
-	stack += n
+	stack = clamp(stack + n, 0, max_stack)

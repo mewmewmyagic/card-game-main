@@ -36,6 +36,8 @@ func start_turn() -> void:
 	_sort_combatant()
 	current_turn = _next_active_combatant()
 	current_turn._on_self_turn_started()
+	
+	EventBus.turn_started.emit()
 	#for i in range(combatants.size() - 1, -1, -1):
 		#var c = combatants[i]
 		#c.stats.recovery_time -= current_turn.stats.recovery_time
@@ -49,6 +51,7 @@ func start_turn() -> void:
 		
 func end_turn(recovery_cost: int) -> void:
 	current_turn._on_self_turn_ended()
+	EventBus.turn_ended.emit()
 	turn_ended.emit(current_turn)
 	
 	await current_turn.anim_done
@@ -57,7 +60,6 @@ func end_turn(recovery_cost: int) -> void:
 		end_round()
 		return
 	
-	EventBus.turn_ended.emit()
 	start_turn()
 
 func _active_combatants() -> Array[Combatant]:

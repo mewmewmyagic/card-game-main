@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HasteStatusEffect" format=3 uid="uid://bttap6yvuj2p8"]
+
+[ext_resource type="Script" uid="uid://cytuwye6pepst" path="res://Scripts/Status Effects/haste/haste.gd" id="1_dpvqe"]
+
+[resource]
+script = ExtResource("1_dpvqe")
+id = "haste"
+tooltip = "reduces recovery cost every turn by stack every turn for this round"
+max_stack = 10
+max_count = 3
