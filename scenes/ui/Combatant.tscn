@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_ui.tscn" id="3_gqvtd"]
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
 [ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_handler.gd" id="6_sga3o"]
-[ext_resource type="Script" uid="uid://dwmvyisgdhpyd" path="res://Scripts/Modifiers/modifier.gd" id="7_fsa1f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
@@ -41,12 +40,3 @@ parent = NodePath("..")
 [node name="ModifierHandler" type="Node" parent="." unique_id=1067453016]
 script = ExtResource("6_sga3o")
 metadata/_custom_type_script = "uid://ca7xr68felq2v"
-
-[node name="Modifier" type="Node" parent="ModifierHandler" unique_id=1474362022]
-script = ExtResource("7_fsa1f")
-metadata/_custom_type_script = "uid://dwmvyisgdhpyd"
-
-[node name="Modifier2" type="Node" parent="ModifierHandler" unique_id=1255196947]
-script = ExtResource("7_fsa1f")
-type = 1
-metadata/_custom_type_script = "uid://dwmvyisgdhpyd"
