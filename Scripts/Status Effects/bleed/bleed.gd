@@ -4,13 +4,13 @@ class_name BleedStatusEffect
 func init(_target: Combatant, _manager: StatusEffectManager) -> void:
 	target = _target
 	manager = _manager
-	EventBus.turn_ended.connect(trigger_status_effect)
+	target.anim_done.connect(trigger_status_effect)
 
 func on_remove() -> void:
-	EventBus.turn_ended.disconnect(trigger_status_effect)
+	target.anim_done.disconnect(trigger_status_effect)
 
 func trigger_status_effect() -> void:
 	target.take_damage(stack)
-	count -= 1
+	add_count(-1)
 	if count <= 0:
 		manager.remove_status(id)

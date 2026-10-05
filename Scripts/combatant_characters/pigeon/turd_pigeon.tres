@@ -2,11 +2,21 @@
 
 [ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_2kyj0"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_8hmf6"]
+[ext_resource type="Script" uid="uid://d214ayipywbee" path="res://Scripts/effects/CardEffects/effect_add_status.gd" id="2_asw2v"]
+[ext_resource type="Resource" uid="uid://cpyekuu60jjb0" path="res://Scripts/Status Effects/focus/focus.tres" id="3_asw2v"]
+
+[sub_resource type="Resource" id="Resource_n176n"]
+script = ExtResource("2_asw2v")
+status = ExtResource("3_asw2v")
+stack = 6
+count = 6
+metadata/_custom_type_script = "uid://d214ayipywbee"
 
 [resource]
 script = ExtResource("2_8hmf6")
 card_name = "turd"
-stamina_cost = 99
-recovery_cost = 10
+stamina_cost = 4
+recovery_cost = 2
+effects = Array[ExtResource("1_2kyj0")]([SubResource("Resource_n176n")])
 target_type = 2
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

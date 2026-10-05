@@ -5,6 +5,8 @@ class_name StatusEffectManager
 #the way status' work in this is that theres a resource for shit like id and max count etc and a .gd for logic
 #each status connects to what event triggers it
 @export var parent: Combatant
+@export var status_effect_icon: PackedScene
+@export var status_effect_area: GridContainer
 @export var status_effects: Dictionary = {}
 
 func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
@@ -13,8 +15,13 @@ func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 		status_effects[instance.id] = instance
 		
 		instance.init(parent, self)
+		
 		instance.add_count(count)
 		instance.add_stack(stack)
+		
+		var icon := status_effect_icon.instantiate() as StatusEffectIcon
+		icon.status = instance
+		status_effect_area.add_child(icon)
 	else:
 		var existing := status_effects[status.id] as StatusEffect
 

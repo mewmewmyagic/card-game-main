@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://cpyekuu60jjb0"]
+[gd_resource type="Resource" script_class="FocusStatusEffect" format=3 uid="uid://cpyekuu60jjb0"]
 
-[ext_resource type="Script" uid="uid://d0krudtp04qht" path="res://Scripts/Status Effects/status_effect.gd" id="1_0jfuc"]
+[ext_resource type="Script" uid="uid://bthu0aj1m02oh" path="res://Scripts/Status Effects/focus/focus.gd" id="1_0jfuc"]
+[ext_resource type="Texture2D" uid="uid://4pmokgaofyin" path="res://Textures/39px-LCB_Sinner_Don_Quixote_Idle_Sprite.png" id="1_gwjop"]
 
 [resource]
 script = ExtResource("1_0jfuc")
 id = "focus"
+icon = ExtResource("1_gwjop")
 tooltip = "Increases damage done by stack. attacking reduces count"
-max_stack = 10
-max_count = 99
+max_stack = 26
+max_count = 10

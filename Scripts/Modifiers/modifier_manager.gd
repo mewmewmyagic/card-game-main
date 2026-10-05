@@ -1,5 +1,5 @@
 extends Node
-class_name ModifierHandler
+class_name ModifierManager
 
 var _modifiers: Dictionary = {}
 

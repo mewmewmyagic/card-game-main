@@ -16,7 +16,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_fv35m")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {

@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://d214ayipywbee"
 
 [resource]
 script = ExtResource("2_mgfx4")
-card_name = "kicking"
+card_name = "gut punch"
 stamina_cost = 3
 recovery_cost = 5
 effects = Array[ExtResource("1_fc1ck")]([SubResource("Resource_sy3rk"), SubResource("Resource_b7ftd")])

@@ -11,6 +11,6 @@ func on_remove() -> void:
 
 func trigger_status_effect() -> void:
 	target.stats.set_recovery_time(-stack)
-	count -= 1
+	add_count(-1)
 	if count <= 0:
 		manager.remove_status(id)
