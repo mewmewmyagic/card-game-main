@@ -1,4 +1,4 @@
-class_name CardUI
+class_name HandCardUI
 extends Control
 
 signal request_snap_back

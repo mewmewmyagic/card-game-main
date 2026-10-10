@@ -96,6 +96,7 @@ func has_playable_card() -> bool:
 func bind() -> void:
 	stats_ui.bind(stats)
 	status_manager.parent = self
+	hand_pile.card_pile_size_changed.connect(skill_container.refresh_display)
 
 #why is this here? and why is it like this? no clue
 func check_if_dead() -> void:
@@ -123,7 +124,6 @@ func _die() -> void:
 	
 	
 func play_skill_animation(card: Card) -> void:
-	skill_container.refresh()
 	if appearance == null or sprite_2d == null:
 		return
 	sprite_2d.play_animation(appearance.get_animation_for_card(card.card_name))

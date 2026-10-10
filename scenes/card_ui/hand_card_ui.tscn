@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://d0tus8eitn6fa"]
 
-[ext_resource type="Script" uid="uid://csdh4sp6yjchw" path="res://Scripts/card_ui/card_ui.gd" id="1_di10o"]
-[ext_resource type="Script" uid="uid://yfo6bt7rj4or" path="res://Scripts/card_ui/card_state_machine.gd" id="2_di10o"]
-[ext_resource type="Script" uid="uid://b181menethe4x" path="res://Scripts/card_ui/card_state/card_base_state.gd" id="3_psaan"]
-[ext_resource type="Script" uid="uid://citt6rm7fwm6i" path="res://Scripts/card_ui/card_state/card_hover_state.gd" id="4_orrkt"]
-[ext_resource type="Script" uid="uid://chs3r60sxhfb2" path="res://Scripts/card_ui/card_state/card_clicked_state.gd" id="4_p3btc"]
-[ext_resource type="Script" uid="uid://47ngu2grsubq" path="res://Scripts/card_ui/card_state/card_dragging_state.gd" id="5_s72om"]
-[ext_resource type="Script" uid="uid://dy04m73ovkqv2" path="res://Scripts/card_ui/card_state/card_release_state.gd" id="6_orrkt"]
-[ext_resource type="Texture2D" uid="uid://ccno6whirqfvt" path="res://Textures/cardArt/punching.png" id="8_ci03s"]
-[ext_resource type="Script" uid="uid://bgnnuplhtpaax" path="res://Scripts/card_ui/card_animator.gd" id="8_yxx8x"]
-[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="9_js3ux"]
-[ext_resource type="Texture2D" uid="uid://bx00lm5efg52v" path="res://Textures/cardArt/punching-export.png" id="9_qeblu"]
+[ext_resource type="Script" uid="uid://csdh4sp6yjchw" path="res://Scripts/card_ui/card_ui.gd" id="1_i2wwq"]
+[ext_resource type="Script" uid="uid://yfo6bt7rj4or" path="res://Scripts/card_ui/card_state_machine.gd" id="2_wrych"]
+[ext_resource type="Script" uid="uid://b181menethe4x" path="res://Scripts/card_ui/card_state/card_base_state.gd" id="3_lmj0m"]
+[ext_resource type="Script" uid="uid://citt6rm7fwm6i" path="res://Scripts/card_ui/card_state/card_hover_state.gd" id="4_yq2hr"]
+[ext_resource type="Script" uid="uid://chs3r60sxhfb2" path="res://Scripts/card_ui/card_state/card_clicked_state.gd" id="5_pcje7"]
+[ext_resource type="Script" uid="uid://47ngu2grsubq" path="res://Scripts/card_ui/card_state/card_dragging_state.gd" id="6_cmaid"]
+[ext_resource type="Script" uid="uid://dy04m73ovkqv2" path="res://Scripts/card_ui/card_state/card_release_state.gd" id="7_vcvy6"]
+[ext_resource type="Texture2D" uid="uid://ccno6whirqfvt" path="res://Textures/cardArt/punching.png" id="8_bqffo"]
+[ext_resource type="Texture2D" uid="uid://bx00lm5efg52v" path="res://Textures/cardArt/punching-export.png" id="9_72m76"]
+[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="10_l35cs"]
+[ext_resource type="Script" uid="uid://bgnnuplhtpaax" path="res://Scripts/card_ui/card_animator.gd" id="11_cb4sq"]
 
 [sub_resource type="Theme" id="Theme_xm8em"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 size = Vector2(120, 167)
 
-[node name="CardUI" type="Control" unique_id=1788474916]
+[node name="HandCardUI" type="Control" unique_id=1788474916]
 custom_minimum_size = Vector2(120, 168)
 custom_maximum_size = Vector2(120, 168)
 layout_mode = 3
@@ -26,7 +26,7 @@ anchor_bottom = 0.21604939
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_xm8em")
-script = ExtResource("1_di10o")
+script = ExtResource("1_i2wwq")
 metadata/_edit_use_anchors_ = true
 
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1984929670]
@@ -38,26 +38,26 @@ position = Vector2(60, 83.5)
 shape = SubResource("RectangleShape2D_crx7y")
 
 [node name="CardStateMachine" type="Node" parent="." unique_id=923949166 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_di10o")
+script = ExtResource("2_wrych")
 initial_state = NodePath("CardBaseState")
 
 [node name="CardBaseState" type="Node" parent="CardStateMachine" unique_id=1062342077]
-script = ExtResource("3_psaan")
+script = ExtResource("3_lmj0m")
 
 [node name="CardHoverState" type="Node" parent="CardStateMachine" unique_id=282881937]
-script = ExtResource("4_orrkt")
+script = ExtResource("4_yq2hr")
 state = 5
 
 [node name="CardClickedState" type="Node" parent="CardStateMachine" unique_id=1985181582]
-script = ExtResource("4_p3btc")
+script = ExtResource("5_pcje7")
 state = 1
 
 [node name="CardDraggingState" type="Node" parent="CardStateMachine" unique_id=1165242366]
-script = ExtResource("5_s72om")
+script = ExtResource("6_cmaid")
 state = 2
 
 [node name="CardReleaseState" type="Node" parent="CardStateMachine" unique_id=606803915]
-script = ExtResource("6_orrkt")
+script = ExtResource("7_vcvy6")
 state = 4
 
 [node name="Visuals" type="Control" parent="." unique_id=351003693]
@@ -91,14 +91,14 @@ anchor_right = 3.0000002
 anchor_bottom = 4.2000003
 offset_bottom = -1.5258789e-05
 mouse_filter = 2
-texture = ExtResource("8_ci03s")
+texture = ExtResource("8_bqffo")
 expand_mode = 1
 
 [node name="Punching" type="Sprite2D" parent="Visuals" unique_id=146765506]
 texture_filter = 2
 position = Vector2(59.22222, 84.111115)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("9_qeblu")
+texture = ExtResource("9_72m76")
 
 [node name="Rc" type="Label" parent="Visuals" unique_id=1785261573]
 layout_mode = 0
@@ -107,7 +107,7 @@ offset_top = 25.11111
 offset_right = 21.222221
 offset_bottom = 44.11111
 theme_override_colors/font_color = Color(0.972549, 0, 0, 1)
-theme_override_fonts/font = ExtResource("9_js3ux")
+theme_override_fonts/font = ExtResource("10_l35cs")
 theme_override_font_sizes/font_size = 20
 text = "Y"
 
@@ -118,7 +118,7 @@ offset_top = 8.111111
 offset_right = 22.222221
 offset_bottom = 27.11111
 theme_override_colors/font_color = Color(0.18136448, 0.4125657, 1, 1)
-theme_override_fonts/font = ExtResource("9_js3ux")
+theme_override_fonts/font = ExtResource("10_l35cs")
 theme_override_font_sizes/font_size = 20
 text = "X"
 
@@ -128,12 +128,12 @@ offset_left = 24.222221
 offset_top = 6.1111107
 offset_right = 107.22222
 offset_bottom = 29.11111
-theme_override_fonts/font = ExtResource("9_js3ux")
+theme_override_fonts/font = ExtResource("10_l35cs")
 text = "church"
 horizontal_alignment = 2
 
 [node name="CardAnimator" type="Node" parent="." unique_id=1071735589]
-script = ExtResource("8_yxx8x")
+script = ExtResource("11_cb4sq")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

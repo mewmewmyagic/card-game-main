@@ -1,5 +1,5 @@
 extends Control
-class_name TheHand
+class_name PlayerHand
 
 ## Base spacing between cards divided down from a reference value
 const CARD_SPACING: float = 110
@@ -16,7 +16,7 @@ const TWEEN_DURATION: float = 0.25
 
 
 @export var card_ui_scene: PackedScene
-var cards: Array[CardUI] = []
+var cards: Array[HandCardUI] = []
 var card_to_ui: Dictionary = {}
 var hand_pile: CardPile
 var card_play_manager: CardPlayManager
@@ -72,7 +72,7 @@ func _sync() -> void:
 	_update_layout()
 
 func _spawn_card(card: Card) -> void:
-	var card_ui := card_ui_scene.instantiate() as CardUI
+	var card_ui := card_ui_scene.instantiate() as HandCardUI
 	card_ui.card = card
 	card_ui.owner_combatant = source_combatant
 	card_ui.request_snap_back.connect(request_relayout)
@@ -80,7 +80,7 @@ func _spawn_card(card: Card) -> void:
 	card_to_ui[card] = card_ui
 
 func _despawn_card(card: Card) -> void:
-	var card_ui: CardUI = card_to_ui[card]
+	var card_ui: HandCardUI = card_to_ui[card]
 	card_to_ui.erase(card)
 	card_ui.queue_free()
 
@@ -123,6 +123,6 @@ func _update_layout() -> void:
 
 		_animate_card(card, target_position, target_rotation)
 
-func _animate_card(card: CardUI, target_position: Vector2, target_rotation: float) -> void:
+func _animate_card(card: HandCardUI, target_position: Vector2, target_rotation: float) -> void:
 	#var distance: Vector2 =  target_position - card.position
 	card.animator.move_to(target_position, target_rotation, TWEEN_DURATION)

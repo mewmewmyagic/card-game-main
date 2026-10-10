@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @export var battle_state: BattleState
-@export var the_hand_ui: TheHand
+@export var the_hand_ui: PlayerHand
 @export var stamina_ui: StaminaUI
 @export var turn_ui: TurnUI
 @export var draw_pile_ui: CardPileUI
