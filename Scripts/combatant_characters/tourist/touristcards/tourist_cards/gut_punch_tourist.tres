@@ -18,7 +18,7 @@ metadata/_custom_type_script = "uid://d214ayipywbee"
 script = ExtResource("2_sy3rk")
 status = ExtResource("5_38ns7")
 stack = 3
-count = 5
+count = 10
 metadata/_custom_type_script = "uid://d214ayipywbee"
 
 [resource]

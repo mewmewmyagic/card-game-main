@@ -124,5 +124,5 @@ func _update_layout() -> void:
 		_animate_card(card, target_position, target_rotation)
 
 func _animate_card(card: CardUI, target_position: Vector2, target_rotation: float) -> void:
-	var distance: Vector2 =  target_position - card.position
+	#var distance: Vector2 =  target_position - card.position
 	card.animator.move_to(target_position, target_rotation, TWEEN_DURATION)

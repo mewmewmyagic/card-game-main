@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_1u6w6"]
 script = ExtResource("2_0a2h7")
-amount = 5
+amount = 25
 metadata/_custom_type_script = "uid://boboxx07om47g"
 
 [resource]

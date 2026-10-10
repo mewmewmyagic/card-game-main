@@ -1,15 +1,45 @@
 extends Button
 class_name SkipRoundButton
 
+@export var hold_time: float = 0.75
+
 var parent: Combatant
+@onready var hold_timer: Timer = $HoldTimer
+@onready var prog_bar: TextureProgressBar = $HoldProgressBar
 
 func bind(c: Combatant) -> void:
 	parent = c
+
+func _ready() -> void:
+	hold_timer.wait_time = hold_time
+	prog_bar.hide()
+
+	button_down.connect(_on_button_down)
+	button_up.connect(_on_button_up)
+	hold_timer.timeout.connect(_on_hold_complete)
 	
-func _on_button_pressed() -> void:
-	if parent.is_current_turn:
-		parent.discard_hand()
+func _process(delta: float) -> void:
+	if not hold_timer.is_stopped():
+		prog_bar.global_position = get_global_mouse_position() - prog_bar.size/2.0
+		var progress = 1.0 - hold_timer.time_left/hold_timer.wait_time
+		prog_bar.value = progress * 100
+
+func _on_button_down() -> void:
+	if parent and parent.is_current_turn:
 		
-		#make the parent play a non looping animation when skipping a turn
+		prog_bar.value = 0;
+		prog_bar.show()
+		hold_timer.start()
+
+
+func _on_button_up() -> void:
+	hold_timer.stop()
+	prog_bar.hide()
+
+
+func _on_hold_complete() -> void:
+	prog_bar.hide()
+	if parent and parent.is_current_turn:
+		parent.discard_hand()
 		parent.battle_state.turn_manager.end_turn(0)
 		parent.play_other_animation()

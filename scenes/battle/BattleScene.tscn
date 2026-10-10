@@ -77,6 +77,7 @@ texture = ExtResource("1_k6rj7")
 centered = false
 
 [node name="Sprite0001" type="Sprite2D" parent="." unique_id=413454038]
+visible = false
 position = Vector2(203, 202)
 texture = ExtResource("3_lk1r3")
 
@@ -88,8 +89,8 @@ next_scene = "uid://qpqkb081pr1m"
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
 [node name="Alex" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(99, 227)
-scale = Vector2(-0.312, 0.312)
+position = Vector2(102, 206.00002)
+scale = Vector2(0.312, 0.312)
 stats = ExtResource("6_hvhqn")
 starting_deck = ExtResource("5_17srr")
 draw_pile = SubResource("Resource_lf06l")
@@ -99,7 +100,7 @@ battle_state = NodePath("..")
 appearance = ExtResource("9_0t5w0")
 
 [node name="Cindy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(537.00006, 238.99998)
+position = Vector2(540.00006, 219)
 scale = Vector2(0.313, 0.313)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
@@ -111,8 +112,8 @@ battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Bob" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(248.00002, 221)
-scale = Vector2(-0.312, 0.312)
+position = Vector2(255, 206.00002)
+scale = Vector2(0.312, 0.312)
 stats = ExtResource("6_hvhqn")
 starting_deck = ExtResource("10_t387n")
 draw_pile = SubResource("Resource_ek5c4")

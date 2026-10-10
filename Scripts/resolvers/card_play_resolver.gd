@@ -2,7 +2,6 @@ class_name CardPlayManager
 extends RefCounted
 
 var battle: BattleState
-signal card_resolved
 
 func _on_player_card_play_requested(card: Card, source: Combatant, target: Combatant) -> void:
 	var card_play_context = CardEffectContext.new()
@@ -52,6 +51,8 @@ func resolve(context: CardEffectContext) -> bool:
 	
 	for effect in context.card.effects:
 		effect.execute(context)
+	
+	context.source.card_played.emit(context.card)
 	
 	context.source.hand_pile.remove_card(context.card)
 	context.source.discard_pile.add_card(context.card)

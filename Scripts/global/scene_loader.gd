@@ -18,7 +18,7 @@ func start_load() -> void:
 	if state == OK:
 		set_process(true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
 	match load_status:
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:

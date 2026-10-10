@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://Scripts/combatant/combatant.gd" id="1_ddi1i"]
 [ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="2_bhuil"]
 [ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://Scripts/Sprite/combatant_sprite_player.gd" id="2_ddi1i"]
-[ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_ui.tscn" id="3_gqvtd"]
+[ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_bar_ui.tscn" id="3_gqvtd"]
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
-[ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_icon.tscn" id="6_fsa1f"]
+[ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_effect_icon.tscn" id="6_fsa1f"]
 [ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_manager.gd" id="6_sga3o"]
+[ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://skill_container.tscn" id="8_4uuik"]
+[ext_resource type="PackedScene" uid="uid://d0tus8eitn6fa" path="res://scenes/card_ui/card_ui.tscn" id="9_insgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
@@ -23,10 +25,10 @@ animation = &"idle"
 script = ExtResource("2_ddi1i")
 
 [node name="StatsUI" parent="." unique_id=43148091 instance=ExtResource("3_gqvtd")]
-offset_left = -141.00002
-offset_top = 117.000015
-offset_right = -83.80002
-offset_bottom = 135.80002
+offset_left = -140.0
+offset_top = 138.0
+offset_right = -82.8
+offset_bottom = 156.8
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1975118247]
 collision_layer = 2
@@ -34,19 +36,26 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1604127139]
 shape = SubResource("RectangleShape2D_crx7y")
 
+[node name="StatusContainer" type="GridContainer" parent="." unique_id=1358199471]
+offset_left = -142.0
+offset_top = 175.0
+offset_right = 149.0
+offset_bottom = 351.0
+columns = 10
+
+[node name="SkillContainer" parent="." unique_id=888406017 node_paths=PackedStringArray("parent") instance=ExtResource("8_4uuik")]
+offset_top = -230.0
+offset_bottom = -230.0
+scale = Vector2(0.5, 0.5)
+parent = NodePath("..")
+card_ui_scene = ExtResource("9_insgk")
+
 [node name="StatusManager" type="Node" parent="." unique_id=810462496 node_paths=PackedStringArray("parent", "status_effect_area")]
 script = ExtResource("5_88lpd")
 parent = NodePath("..")
 status_effect_icon = ExtResource("6_fsa1f")
-status_effect_area = NodePath("../GridContainer")
+status_effect_area = NodePath("../StatusContainer")
 
 [node name="ModifierManager" type="Node" parent="." unique_id=1067453016]
 script = ExtResource("6_sga3o")
 metadata/_custom_type_script = "uid://ca7xr68felq2v"
-
-[node name="GridContainer" type="GridContainer" parent="." unique_id=1358199471]
-offset_left = -142.0
-offset_top = 175.0
-offset_right = -102.0
-offset_bottom = 351.0
-columns = 10

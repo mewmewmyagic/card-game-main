@@ -49,7 +49,7 @@ func start_turn() -> void:
 	else:
 		ally_turn_started.emit(current_turn)
 		
-func end_turn(recovery_cost: int) -> void:
+func end_turn(_recovery_cost: int) -> void: #TODO remove recov cost maybe
 	current_turn._on_self_turn_ended()
 	EventBus.turn_ended.emit()
 	turn_ended.emit(current_turn)

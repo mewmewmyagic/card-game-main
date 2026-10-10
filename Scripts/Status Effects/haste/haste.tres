@@ -9,4 +9,4 @@ id = "haste"
 icon = ExtResource("1_1xqtl")
 tooltip = "reduces recovery cost every turn by stack every turn for this round"
 max_stack = 10
-max_count = 3
+max_count = 4

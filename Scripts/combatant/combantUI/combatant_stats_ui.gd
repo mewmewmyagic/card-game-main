@@ -25,7 +25,7 @@ func _refresh(shouldnt_tween: bool) -> void:
 	health_bar.max_value = stats.max_health
 	shield_bar.max_value = stats.max_health
 	health_value.text = "%d / %d" % [stats.health, stats.max_health]
-	shield_value.text = str(stats.shield)
+	shield_value.text = "Shield %d" % stats.shield
 	shield.visible = stats.shield > 0
 
 	if shouldnt_tween:

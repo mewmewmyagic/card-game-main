@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1ryleahhgw4h"]
 
-[ext_resource type="Script" uid="uid://c35c0h4wv2h78" path="res://Scripts/combatant/combantUI/combatant_stats_ui.gd" id="1_503uq"]
+[ext_resource type="Script" uid="uid://c35c0h4wv2h78" path="res://Scripts/combatant/combantUI/combatant_stats_ui.gd" id="1_6yrv3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7ftd"]
 bg_color = Color(0.15199637, 0.15199637, 0.15199631, 1)
@@ -20,7 +20,7 @@ anchors_preset = 0
 offset_right = 60.199997
 offset_bottom = 19.8
 scale = Vector2(5, 5)
-script = ExtResource("1_503uq")
+script = ExtResource("1_6yrv3")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1158906970]
 z_index = 2
@@ -35,10 +35,11 @@ show_percentage = false
 
 [node name="health" type="HBoxContainer" parent="HealthBar" unique_id=964171481]
 layout_mode = 0
-offset_left = 76.666664
+offset_left = -3.333332
 offset_top = -3.7037039
-offset_right = 130.09805
+offset_right = 192.66667
 offset_bottom = 19.296295
+alignment = 1
 
 [node name="HealthValue" type="Label" parent="HealthBar/health" unique_id=143014647]
 unique_name_in_owner = true
@@ -52,10 +53,6 @@ layout_mode = 0
 offset_top = 13.599998
 offset_right = 62.0
 offset_bottom = 36.6
-
-[node name="ShieldLabel" type="Label" parent="HealthBar/shield" unique_id=1311851436]
-layout_mode = 2
-text = "Shield"
 
 [node name="ShieldValue" type="Label" parent="HealthBar/shield" unique_id=1975023421]
 unique_name_in_owner = true

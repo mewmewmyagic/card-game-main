@@ -5,6 +5,7 @@ extends Node
 @export var allies: Array[Combatant]
 @export var enemies: Array[Combatant]
 @export_file("*.tscn") var next_scene: String
+
 var play_history: Array[Card] = []
 var card_play_manager: CardPlayManager
 var turn_manager: TurnManager
@@ -17,12 +18,16 @@ func _ready() -> void:
 	turn_manager.battle = self
 	#turn_manager.round_ended.connect(_on_round_ended)
 	
-		
-	EventBus.turn_ended.connect(_on_combatant_died)
 	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
 	EventBus.turn_end_request.connect(turn_manager.end_turn)
 	
 	await get_tree().process_frame
+	
+	for c in allies:
+		c.sprite_2d.scale.x *= -1
+		
+	for c in all_combatants():
+		c.im_dead.connect(_on_combatant_died)
 	turn_manager.start_round(all_combatants())
 	
 func all_combatants() -> Array[Combatant]:
@@ -38,7 +43,7 @@ func same_team(c: Combatant) -> Array[Combatant]:
 		return allies
 	return enemies
 	
-func _on_combatant_died() -> void:
+func _on_combatant_died(_c: Combatant) -> void:
 	var allies_alive := allies.any(func(c): return not c.is_dead)
 	var enemies_alive := enemies.any(func(c): return not c.is_dead)
 	

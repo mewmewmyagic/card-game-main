@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://csbn5q80nu6vw"]
+
+[ext_resource type="Script" uid="uid://ljpbwpcxxpe5" path="res://skill_container.gd" id="1_7ai60"]
+
+[node name="SkillContainer" type="GridContainer" unique_id=888406017]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+script = ExtResource("1_7ai60")

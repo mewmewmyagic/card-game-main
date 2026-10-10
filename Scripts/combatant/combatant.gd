@@ -2,6 +2,7 @@ extends Node2D
 class_name Combatant
 
 signal im_dead(combatant: Combatant)
+signal card_played(card: Card)
 signal anim_done
 
 @export var stats: CombatantStats #: set = set_combatant_stats
@@ -21,6 +22,7 @@ signal anim_done
 @export var appearance: CombatantSpriteResource
 @onready var sprite_2d: CombatantSpritePlayer = $AnimatedSprite2D
 
+@onready var skill_container: SkillContainer = $SkillContainer as SkillContainer
 @onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
 
 var is_current_turn: bool = false
@@ -121,6 +123,7 @@ func _die() -> void:
 	
 	
 func play_skill_animation(card: Card) -> void:
+	skill_container.refresh()
 	if appearance == null or sprite_2d == null:
 		return
 	sprite_2d.play_animation(appearance.get_animation_for_card(card.card_name))
