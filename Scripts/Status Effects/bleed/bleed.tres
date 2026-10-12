@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BleedStatusEffect" format=3 uid="uid://hrg5sh4161o7"]
 
-[ext_resource type="Texture2D" uid="uid://c625u4qb3ffuy" path="res://Textures/blehhhhh.png" id="1_5sjd4"]
+[ext_resource type="Texture2D" uid="uid://1qb1xdv0orgu" path="res://Textures/StatusEffectIcons/Bleed.png" id="1_5sjd4"]
 [ext_resource type="Script" uid="uid://ccuysvlx3ma70" path="res://Scripts/Status Effects/bleed/bleed.gd" id="1_q6pbo"]
 
 [resource]
@@ -8,5 +8,5 @@ script = ExtResource("1_q6pbo")
 id = "bleed"
 icon = ExtResource("1_5sjd4")
 tooltip = "does damage based on stack and reduces count each turn "
-max_stack = 10
-max_count = 10
+max_stack = 99
+max_count = 99

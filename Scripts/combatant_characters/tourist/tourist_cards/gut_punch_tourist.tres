@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_mgfx4"]
 [ext_resource type="Script" uid="uid://d214ayipywbee" path="res://Scripts/effects/CardEffects/effect_add_status.gd" id="2_sy3rk"]
 [ext_resource type="Resource" uid="uid://hrg5sh4161o7" path="res://Scripts/Status Effects/bleed/bleed.tres" id="4_nt0rl"]
-[ext_resource type="Resource" uid="uid://bttap6yvuj2p8" path="res://Scripts/Status Effects/haste/haste.tres" id="5_38ns7"]
 
 [sub_resource type="Resource" id="Resource_sy3rk"]
 script = ExtResource("2_sy3rk")
@@ -14,18 +13,11 @@ stack = 9
 count = 10
 metadata/_custom_type_script = "uid://d214ayipywbee"
 
-[sub_resource type="Resource" id="Resource_b7ftd"]
-script = ExtResource("2_sy3rk")
-status = ExtResource("5_38ns7")
-stack = 3
-count = 10
-metadata/_custom_type_script = "uid://d214ayipywbee"
-
 [resource]
 script = ExtResource("2_mgfx4")
 card_name = "gut punch"
 stamina_cost = 3
 recovery_cost = 5
-effects = Array[ExtResource("1_fc1ck")]([SubResource("Resource_sy3rk"), SubResource("Resource_b7ftd")])
+effects = Array[ExtResource("1_fc1ck")]([SubResource("Resource_sy3rk")])
 card_art = ExtResource("1_sy3rk")
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

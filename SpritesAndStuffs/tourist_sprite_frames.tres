@@ -15,14 +15,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_fv35m")
-}],
-"loop": 0,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_fv35m")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_71ib5")
@@ -76,6 +68,14 @@ animations = [{
 "texture": ExtResource("10_1pke8")
 }],
 "loop": 0,
-"name": &"kicking_anim",
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fv35m")
+}],
+"loop": 0,
+"name": &"idle",
 "speed": 5.0
 }]

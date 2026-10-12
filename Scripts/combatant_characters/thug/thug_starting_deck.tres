@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="CardPile" format=3 uid="uid://cfswdv2qxwe88"]
 
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="1_m6rp4"]
-[ext_resource type="Resource" uid="uid://cs1vxgii2b1ip" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/punching_tourist.tres" id="2_da8xi"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="2_i1si3"]
-[ext_resource type="Resource" uid="uid://ce4cu64fxrraf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/block_tourist.tres" id="3_cbx3a"]
-[ext_resource type="Resource" uid="uid://dy8iifwwu4v0c" path="res://Scripts/combatant_characters/pigeon/turd_pigeon.tres" id="3_da8xi"]
+[ext_resource type="Resource" uid="uid://ce4cu64fxrraf" path="res://Scripts/combatant_characters/tourist/tourist_cards/block_tourist.tres" id="3_cbx3a"]
+[ext_resource type="Resource" uid="uid://hq601ap02g4y" path="res://Resources/Cards/KnifeCards/slash_knife.tres" id="3_om2tn"]
+[ext_resource type="Resource" uid="uid://bqngtcj32tu07" path="res://Resources/Cards/KnifeCards/stab_knife.tres" id="4_g83lu"]
+[ext_resource type="Resource" uid="uid://cxicq2cpwdso4" path="res://Resources/Cards/KnifeCards/lacerating_knife.tres" id="5_rnhkx"]
 
 [resource]
 script = ExtResource("2_i1si3")
-cards = Array[ExtResource("1_m6rp4")]([ExtResource("2_da8xi"), ExtResource("2_da8xi"), ExtResource("3_cbx3a"), ExtResource("3_da8xi"), ExtResource("3_da8xi")])
+cards = Array[ExtResource("1_m6rp4")]([ExtResource("3_cbx3a"), ExtResource("3_cbx3a"), ExtResource("3_om2tn"), ExtResource("3_om2tn"), ExtResource("4_g83lu"), ExtResource("4_g83lu"), ExtResource("3_om2tn"), ExtResource("5_rnhkx")])
 metadata/_custom_type_script = "uid://b7gxswfche1cy"

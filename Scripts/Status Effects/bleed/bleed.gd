@@ -10,7 +10,8 @@ func on_remove() -> void:
 	target.anim_done.disconnect(trigger_status_effect)
 
 func trigger_status_effect() -> void:
-	target.take_damage(stack)
+	var damage := DamagePacket.create(stack, null, target, DamageType.Type.BLEED)
+	target.battle_state.damage_resolver.resolve(damage)
 	add_count(-1)
 	if count <= 0:
 		manager.remove_status(id)

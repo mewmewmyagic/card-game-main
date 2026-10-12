@@ -2,8 +2,9 @@ class_name DealDamageEffect
 extends CardEffect
 
 @export var base_amount: int = 1
+@export var damage_type: DamageType.Type
 
 func execute(context: CardEffectContext) -> void:
+	var damage := DamagePacket.create(base_amount, context.source, context.target, damage_type)
 	if context.target:
-		var amount := context.source.modifier_manager.get_modified_value(base_amount, Modifier.Type.dmg_dealt)
-		context.target.take_damage(amount)
+		context.battle.damage_resolver.resolve(damage)

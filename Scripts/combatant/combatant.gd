@@ -103,11 +103,10 @@ func check_if_dead() -> void:
 	if stats.health <= 0:
 		_die()
 	
-func take_damage(base_damage: int) ->void:
+func take_damage(damage: int) ->void:
 	if (stats.health <= 0):
 		return
 	
-	var damage := modifier_manager.get_modified_value(base_damage, Modifier.Type.dmg_taken)
 	var damage_to_shield := int(min(damage, stats.shield))
 	var damage_to_health := damage - damage_to_shield
 
@@ -124,16 +123,15 @@ func _die() -> void:
 	
 	
 func play_skill_animation(card: Card) -> void:
-	if appearance == null or sprite_2d == null:
-		return
-	sprite_2d.play_animation(appearance.get_animation_for_card(card.card_name))
+	sprite_2d.play_card_animation(appearance.get_animation_for_card(card.card_name))
 	await sprite_2d.animation_finished
+	
 	emit_signal("anim_done")
 
 func play_other_animation() -> void:
 	if appearance == null or sprite_2d == null:
 		return
-	sprite_2d.play_animation("idle")
+	sprite_2d.play_card_animation("idle")
 	emit_signal("anim_done")
 	
 	

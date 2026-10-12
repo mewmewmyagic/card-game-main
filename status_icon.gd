@@ -13,7 +13,7 @@ func set_status(new_status: StatusEffect) -> void:
 		
 	status = new_status
 	icon.texture = status.icon
-	custom_minimum_size = icon.size
+	custom_minimum_size = icon.size * 2
 	
 	if not status.stack_changed.is_connected(_on_status_changed):
 		status.stack_changed.connect(_on_status_changed)
@@ -31,4 +31,6 @@ func _on_status_changed() -> void:
 		queue_free()
 		
 	stack.text = str(status.stack)
+	if status.stack == 0:
+		stack.hide()
 	count.text = str(status.count)

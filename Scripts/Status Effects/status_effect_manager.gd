@@ -1,7 +1,6 @@
 extends Node
 class_name StatusEffectManager
 
-#Manages status effects of a combatant. for now it just has the logic for applying a status and removing them
 #the way status' work in this is that theres a resource for shit like id and max count etc and a .gd for logic
 #each status connects to what event triggers it
 @export var parent: Combatant
@@ -14,6 +13,11 @@ func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 		var instance := status.duplicate() as StatusEffect
 		status_effects[instance.id] = instance
 		
+		if count == 0:
+			count = 1
+		if stack == 0:
+			stack = 1
+
 		instance.init(parent, self)
 		
 		instance.add_count(count)

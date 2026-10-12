@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://yfo6bt7rj4or" path="res://Scripts/card_ui/card_state_machine.gd" id="5_ugam8"]
 [ext_resource type="Script" uid="uid://b181menethe4x" path="res://Scripts/card_ui/card_state/card_base_state.gd" id="6_e5gjr"]
 
-[node name="CombatantHandDisplay" type="Control" unique_id=287759262]
+[node name="hand_display" type="Control" unique_id=287759262]
 custom_minimum_size = Vector2(120, 168)
 layout_mode = 3
 anchors_preset = 15

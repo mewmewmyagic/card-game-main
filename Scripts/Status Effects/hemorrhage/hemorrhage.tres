@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HemorrhageStatusEffect" format=3 uid="uid://btfjdan603w5h"]
+
+[ext_resource type="Texture2D" uid="uid://bpog5jmqwabh6" path="res://Textures/StatusEffectIcons/Hemorrhage.png" id="1_45pki"]
+[ext_resource type="Script" uid="uid://hemq7qr4xfr4" path="res://Scripts/Status Effects/hemorrhage/hemorrhage.gd" id="2_6oa0x"]
+
+[resource]
+script = ExtResource("2_6oa0x")
+id = "hemorrhage"
+icon = ExtResource("1_45pki")
+tooltip = "you take +stack amount of damage from attacks"
+max_stack = 10
+max_count = 99
+metadata/_custom_type_script = "uid://hemq7qr4xfr4"

@@ -21,7 +21,7 @@ modifier_manager = NodePath("ModifierManager")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1362894786]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bhuil")
-animation = &"idle"
+animation = &"attack"
 script = ExtResource("2_ddi1i")
 
 [node name="StatsUI" parent="." unique_id=43148091 instance=ExtResource("3_gqvtd")]

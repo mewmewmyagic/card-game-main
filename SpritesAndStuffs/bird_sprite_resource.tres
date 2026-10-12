@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CombatantSpriteResource" format=3 uid="uid://cycsu5deravq5"]
 
-[ext_resource type="Script" uid="uid://b16ta6atwgotx" path="res://combatant_sprite_resource.gd" id="1_5wkxq"]
-[ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://bird_sprite_frames.tres" id="2_5wkxq"]
+[ext_resource type="Script" uid="uid://b16ta6atwgotx" path="res://Scripts/Sprite/combatant_sprite_resource.gd" id="1_5wkxq"]
+[ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="2_5wkxq"]
 
 [resource]
 script = ExtResource("1_5wkxq")

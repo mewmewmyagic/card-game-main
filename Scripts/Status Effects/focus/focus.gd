@@ -17,7 +17,7 @@ func trigger_status_effect() -> void:
 	var modifier := target.modifier_manager.get_modifier(Modifier.Type.dmg_dealt) as Modifier
 	var value := modifier.get_value("focus")
 	if not value:
-		value = ModifierValue.create_new_modifier("focus", ModifierValue.Type.FLAT)
+		value = ModifierValue.create_new_modifier("focus", ModifierValue.ModifierType.FLAT)
 
 	value.flat_value = stack
 	modifier.add_new_value(value)

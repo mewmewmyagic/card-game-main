@@ -8,6 +8,7 @@ extends Node
 
 var play_history: Array[Card] = []
 var card_play_manager: CardPlayManager
+var damage_resolver: DamageResolver
 var turn_manager: TurnManager
 
 func _ready() -> void:
@@ -16,6 +17,9 @@ func _ready() -> void:
 	
 	turn_manager = TurnManager.new()
 	turn_manager.battle = self
+	
+	damage_resolver = DamageResolver.new()
+	damage_resolver.battle = self
 	#turn_manager.round_ended.connect(_on_round_ended)
 	
 	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)

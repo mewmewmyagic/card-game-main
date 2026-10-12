@@ -11,14 +11,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_lqe6o")
-}],
-"loop": 0,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_lqe6o")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_0yn1f")
@@ -33,6 +25,14 @@ animations = [{
 "texture": ExtResource("9_8qevs")
 }],
 "loop": 0,
-"name": &"punching_anim",
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lqe6o")
+}],
+"loop": 0,
+"name": &"idle",
 "speed": 5.0
 }]

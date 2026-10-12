@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://Scripts/battle/battle_ui.gd" id="2_4f3f8"]
 [ext_resource type="Texture2D" uid="uid://y3uqbfpt74de" path="res://Textures/Backgrounds/Sprite-0003.png" id="3_lk1r3"]
 [ext_resource type="PackedScene" uid="uid://dqojtyf4in0y3" path="res://scenes/ui/Combatant.tscn" id="4_0yjdt"]
-[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/battle_ui/the_hand_ui.gd" id="4_ldu1p"]
-[ext_resource type="Resource" uid="uid://clmuifqf7nbd8" path="res://Scripts/combatant_characters/cat/cat_starting_deck.tres" id="5_17srr"]
+[ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/battle_ui/player_hand_ui.gd" id="4_ldu1p"]
 [ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://Scripts/combatant_characters/tourist/tourist.tres" id="6_hvhqn"]
 [ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_state.gd" id="6_q34gv"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="8_1u6w6"]
@@ -15,7 +14,7 @@
 [ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://SpritesAndStuffs/tourist_sprite_resource.tres" id="9_0t5w0"]
 [ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://SpritesAndStuffs/bird_sprite_resource.tres" id="9_2jvsm"]
 [ext_resource type="Resource" uid="uid://cfswdv2qxwe88" path="res://Scripts/combatant_characters/thug/thug_starting_deck.tres" id="10_t387n"]
-[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/touristcards/tourist_cards/tourist_starting_deck.tres" id="11_0t5w0"]
+[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/tourist_cards/tourist_starting_deck.tres" id="11_0t5w0"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="11_4f3f8"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/turn_ui.tscn" id="14_th5m4"]
@@ -92,7 +91,7 @@ metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 position = Vector2(102, 206.00002)
 scale = Vector2(0.312, 0.312)
 stats = ExtResource("6_hvhqn")
-starting_deck = ExtResource("5_17srr")
+starting_deck = ExtResource("10_t387n")
 draw_pile = SubResource("Resource_lf06l")
 discard_pile = SubResource("Resource_4f3f8")
 hand_pile = SubResource("Resource_c62f8")
