@@ -4,13 +4,12 @@ extends Control
 signal request_snap_back
 
 #TODO change this later
-@onready var color: ColorRect = $Visuals/Color
-@onready var stam_label: Label = $Visuals/Stam
-@onready var rc_label: Label = $Visuals/Rc
-@onready var name_label: Label = $Visuals/Name
-@onready var visuals: Node = $Visuals
+@export var color: ColorRect
+@export var stam_label: Label
+@export var rc_label: Label
+@export var name_label: Label
+@export var card_art: Sprite2D
 
-#temp
 @export var card: Card
 @export var owner_combatant: Combatant
 
@@ -33,6 +32,10 @@ func _update_playable_visuals() -> void:
 func _ready() -> void:
 	card_state_machine.init(self)
 	animator.init(self)
+	stam_label.text = "%s" % [card.stamina_cost]
+	rc_label.text = "%s" % [card.recovery_cost]
+	name_label.text = "%s" % [card.card_name]
+	card_art.texture = card.card_art
 	
 func _input(event: InputEvent) -> void:
 	card_state_machine.on_input(event)

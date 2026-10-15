@@ -20,7 +20,6 @@ func _ready() -> void:
 	
 	damage_resolver = DamageResolver.new()
 	damage_resolver.battle = self
-	#turn_manager.round_ended.connect(_on_round_ended)
 	
 	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
 	EventBus.turn_end_request.connect(turn_manager.end_turn)
@@ -32,6 +31,7 @@ func _ready() -> void:
 		
 	for c in all_combatants():
 		c.im_dead.connect(_on_combatant_died)
+		
 	turn_manager.start_round(all_combatants())
 	
 func all_combatants() -> Array[Combatant]:

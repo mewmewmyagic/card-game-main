@@ -3,39 +3,136 @@
 [ext_resource type="Script" uid="uid://csdh4sp6yjchw" path="res://Scripts/card_ui/card_ui.gd" id="1_i2wwq"]
 [ext_resource type="Script" uid="uid://yfo6bt7rj4or" path="res://Scripts/card_ui/card_state_machine.gd" id="2_wrych"]
 [ext_resource type="Script" uid="uid://b181menethe4x" path="res://Scripts/card_ui/card_state/card_base_state.gd" id="3_lmj0m"]
+[ext_resource type="Texture2D" uid="uid://6dt1qrclkhjk" path="res://Textures/CardArts/CardFrame.png" id="3_wrych"]
 [ext_resource type="Script" uid="uid://citt6rm7fwm6i" path="res://Scripts/card_ui/card_state/card_hover_state.gd" id="4_yq2hr"]
+[ext_resource type="Texture2D" uid="uid://dotwx4rlldf2u" path="res://Textures/CardArts/Slash.png" id="5_lmj0m"]
 [ext_resource type="Script" uid="uid://chs3r60sxhfb2" path="res://Scripts/card_ui/card_state/card_clicked_state.gd" id="5_pcje7"]
 [ext_resource type="Script" uid="uid://47ngu2grsubq" path="res://Scripts/card_ui/card_state/card_dragging_state.gd" id="6_cmaid"]
+[ext_resource type="Texture2D" uid="uid://k7ll7a178nsf" path="res://Textures/CardArts/CardBackground.png" id="6_lmj0m"]
 [ext_resource type="Script" uid="uid://dy04m73ovkqv2" path="res://Scripts/card_ui/card_state/card_release_state.gd" id="7_vcvy6"]
 [ext_resource type="Texture2D" uid="uid://ccno6whirqfvt" path="res://Textures/cardArt/punching.png" id="8_bqffo"]
-[ext_resource type="Texture2D" uid="uid://bx00lm5efg52v" path="res://Textures/cardArt/punching-export.png" id="9_72m76"]
 [ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="10_l35cs"]
 [ext_resource type="Script" uid="uid://bgnnuplhtpaax" path="res://Scripts/card_ui/card_animator.gd" id="11_cb4sq"]
 
 [sub_resource type="Theme" id="Theme_xm8em"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
-size = Vector2(120, 167)
+size = Vector2(105, 147)
 
-[node name="HandCardUI" type="Control" unique_id=1788474916]
-custom_minimum_size = Vector2(120, 168)
-custom_maximum_size = Vector2(120, 168)
+[node name="HandCardUI" type="Control" unique_id=1788474916 node_paths=PackedStringArray("color", "stam_label", "rc_label", "name_label", "card_art")]
+z_as_relative = false
+custom_minimum_size = Vector2(105, 147)
+custom_maximum_size = Vector2(105, 147)
 layout_mode = 3
 anchor_right = 0.08680555
 anchor_bottom = 0.21604939
+offset_right = 49.444447
+offset_bottom = 69.22222
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_xm8em")
 script = ExtResource("1_i2wwq")
-metadata/_edit_use_anchors_ = true
+color = NodePath("Visuals/Color")
+stam_label = NodePath("Visuals/Background/Art/Frame/Stam")
+rc_label = NodePath("Visuals/Background/Art/Frame/Rc")
+name_label = NodePath("Visuals/Background/Art/Frame/Name")
+card_art = NodePath("Visuals/Background/Art")
 
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1984929670]
 z_index = 1
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector" unique_id=2132197218]
-position = Vector2(60, 83.5)
+position = Vector2(54, 75)
 shape = SubResource("RectangleShape2D_crx7y")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="Visuals" type="Control" parent="." unique_id=351003693]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -80.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Color" type="ColorRect" parent="Visuals" unique_id=1843810442]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 3.0000002
+anchor_bottom = 4.2000003
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0.23921569, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Visuals" unique_id=1448744232]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 3.0000002
+anchor_bottom = 4.2000003
+offset_bottom = -1.5258789e-05
+mouse_filter = 2
+texture = ExtResource("8_bqffo")
+expand_mode = 1
+
+[node name="Background" type="Sprite2D" parent="Visuals" unique_id=1799899056]
+texture_filter = 2
+scale = Vector2(0.6812501, 0.67410725)
+texture = ExtResource("6_lmj0m")
+centered = false
+
+[node name="Art" type="Sprite2D" parent="Visuals/Background" unique_id=413370470]
+texture_filter = 2
+scale = Vector2(0.9999999, 0.99999994)
+texture = ExtResource("5_lmj0m")
+centered = false
+offset = Vector2(0, 7)
+
+[node name="Frame" type="Sprite2D" parent="Visuals/Background/Art" unique_id=146765506]
+texture_filter = 2
+scale = Vector2(0.99999994, 1)
+texture = ExtResource("3_wrych")
+centered = false
+
+[node name="Name" type="Label" parent="Visuals/Background/Art/Frame" unique_id=1445796093]
+offset_left = 38.666668
+offset_top = 8.0
+offset_right = 151.33333
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("10_l35cs")
+theme_override_font_sizes/font_size = 22
+text = "church"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Rc" type="Label" parent="Visuals/Background/Art/Frame" unique_id=1785261573]
+offset_left = 13.333334
+offset_top = 34.666668
+offset_right = 31.333334
+offset_bottom = 61.666668
+theme_override_colors/font_color = Color(0.972549, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_l35cs")
+theme_override_font_sizes/font_size = 28
+text = "Y"
+
+[node name="Stam" type="Label" parent="Visuals/Background/Art/Frame" unique_id=1024157302]
+offset_left = 13.333333
+offset_top = 9.333334
+offset_right = 31.333332
+offset_bottom = 36.333336
+theme_override_colors/font_color = Color(0.18136448, 0.4125657, 1, 1)
+theme_override_fonts/font = ExtResource("10_l35cs")
+theme_override_font_sizes/font_size = 28
+text = "X"
+
+[node name="CardAnimator" type="Node" parent="." unique_id=1071735589]
+script = ExtResource("11_cb4sq")
 
 [node name="CardStateMachine" type="Node" parent="." unique_id=923949166 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_wrych")
@@ -59,81 +156,6 @@ state = 2
 [node name="CardReleaseState" type="Node" parent="CardStateMachine" unique_id=606803915]
 script = ExtResource("7_vcvy6")
 state = 4
-
-[node name="Visuals" type="Control" parent="." unique_id=351003693]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -80.0
-offset_bottom = -128.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Color" type="ColorRect" parent="Visuals" unique_id=1843810442]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 3.0000002
-anchor_bottom = 4.2000003
-offset_bottom = -1.5258789e-05
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 1, 0.23921569, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="Visuals" unique_id=1448744232]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 3.0000002
-anchor_bottom = 4.2000003
-offset_bottom = -1.5258789e-05
-mouse_filter = 2
-texture = ExtResource("8_bqffo")
-expand_mode = 1
-
-[node name="Punching" type="Sprite2D" parent="Visuals" unique_id=146765506]
-texture_filter = 2
-position = Vector2(59.22222, 84.111115)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("9_72m76")
-
-[node name="Rc" type="Label" parent="Visuals" unique_id=1785261573]
-layout_mode = 0
-offset_left = 8.222221
-offset_top = 25.11111
-offset_right = 21.222221
-offset_bottom = 44.11111
-theme_override_colors/font_color = Color(0.972549, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_l35cs")
-theme_override_font_sizes/font_size = 20
-text = "Y"
-
-[node name="Stam" type="Label" parent="Visuals" unique_id=1024157302]
-layout_mode = 0
-offset_left = 9.222221
-offset_top = 8.111111
-offset_right = 22.222221
-offset_bottom = 27.11111
-theme_override_colors/font_color = Color(0.18136448, 0.4125657, 1, 1)
-theme_override_fonts/font = ExtResource("10_l35cs")
-theme_override_font_sizes/font_size = 20
-text = "X"
-
-[node name="Name" type="Label" parent="Visuals" unique_id=1445796093]
-layout_mode = 0
-offset_left = 24.222221
-offset_top = 6.1111107
-offset_right = 107.22222
-offset_bottom = 29.11111
-theme_override_fonts/font = ExtResource("10_l35cs")
-text = "church"
-horizontal_alignment = 2
-
-[node name="CardAnimator" type="Node" parent="." unique_id=1071735589]
-script = ExtResource("11_cb4sq")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

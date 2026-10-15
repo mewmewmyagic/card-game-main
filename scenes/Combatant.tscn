@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://Scripts/combatant/combatant.gd" id="1_ddi1i"]
 [ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="2_bhuil"]
-[ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://Scripts/Sprite/combatant_sprite_player.gd" id="2_ddi1i"]
+[ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://Scripts/SpriteAnimation/combatant_sprite_player.gd" id="2_ddi1i"]
 [ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_bar_ui.tscn" id="3_gqvtd"]
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
 [ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_effect_icon.tscn" id="6_fsa1f"]
@@ -21,7 +21,7 @@ modifier_manager = NodePath("ModifierManager")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1362894786]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bhuil")
-animation = &"attack"
+animation = &"default_enemy"
 script = ExtResource("2_ddi1i")
 
 [node name="StatsUI" parent="." unique_id=43148091 instance=ExtResource("3_gqvtd")]

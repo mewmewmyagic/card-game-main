@@ -6,7 +6,6 @@ class_name HandDisplay
 @onready var rc_label: Label = $Visuals/Rc
 @onready var name_label: Label = $Visuals/Name
 @onready var visuals: Node = $Visuals
-@onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 
 #temp
 @export var card: Card

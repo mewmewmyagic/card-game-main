@@ -57,6 +57,6 @@ func resolve(context: CardEffectContext) -> bool:
 	context.source.hand_pile.remove_card(context.card)
 	context.source.discard_pile.add_card(context.card)
 	
-	battle.turn_manager.end_turn(context.card.recovery_cost)
+	battle.turn_manager.end_turn()
 	
 	return true

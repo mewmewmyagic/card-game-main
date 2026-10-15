@@ -6,9 +6,6 @@ func enter() -> void:
 	
 	CardState.any_card_dragging = false
 	card_ui.color.color = Color.SEA_GREEN
-	card_ui.stam_label.text = "%s" % [card_ui.card.stamina_cost]
-	card_ui.rc_label.text = "%s" % [card_ui.card.recovery_cost]
-	card_ui.name_label.text = "%s" % [card_ui.card.card_name]
 	card_ui.pivot_offset = Vector2.ZERO
 		
 func on_mouse_entered() -> void:

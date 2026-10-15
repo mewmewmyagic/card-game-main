@@ -1,5 +1,5 @@
 extends AnimatedSprite2D
-class_name CombatantSpritePlayer
+class_name CombatantAnimationPlayer
 
 var _idle_animation: String = "idle"
 var _default_attack_animation: String = "attack"
@@ -11,7 +11,7 @@ func bind(appearance: CombatantSpriteResource) -> void:
 	animation_finished.connect(_on_animation_finished)
 	play(_idle_animation)
 
-func play_card_animation(anim_name: String, anim_type: Card.TargetType = Card.TargetType.ENEMY) -> void:
+func play_card_animation(anim_name: String) -> void:
 	if sprite_frames and sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else:

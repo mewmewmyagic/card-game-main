@@ -11,6 +11,4 @@ func resolve(damage: DamagePacket) -> int:
 		damage.amount = damage.target.modifier_manager.get_modified_value(damage, Modifier.Type.dmg_taken)
 		damage.target.take_damage(damage.amount)
 	
-
-	print(damage.source, damage.amount)
 	return damage.amount

@@ -7,6 +7,7 @@ signal recov_time_changed
 @export var OPENING_HAND_SIZE := 5
 @export var max_hand_size := 10
 @export var max_stamina: int
+@export var starting_pile: CardPile
 
 var recovery_time: int
 var stamina: int: set = set_stamina
@@ -25,6 +26,15 @@ func reset_stamina() -> void:
 func set_recovery_time(value: int) -> void:
 	recovery_time += value
 	recov_time_changed.emit()
+
+func drain(elapsed: float) -> void:
+	recovery_time -= agility * elapsed
+	if absf(recovery_time) < 0.0001:
+		recovery_time = 0.0
+	recov_time_changed.emit()
+	
+func time_to_ready() -> float:
+	return recovery_time / maxf(agility, 0.01)
 	
 func reset_recovery_time() -> void:
 	recovery_time = 0

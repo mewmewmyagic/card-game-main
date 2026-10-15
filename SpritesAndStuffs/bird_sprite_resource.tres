@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="CombatantSpriteResource" format=3 uid="uid://cycsu5deravq5"]
 
-[ext_resource type="Script" uid="uid://b16ta6atwgotx" path="res://Scripts/Sprite/combatant_sprite_resource.gd" id="1_5wkxq"]
+[ext_resource type="Script" uid="uid://b16ta6atwgotx" path="res://Scripts/SpriteAnimation/combatant_sprite_resource.gd" id="1_5wkxq"]
+[ext_resource type="Texture2D" uid="uid://itbrncoj85x0" path="res://Textures/The_Thumb_Nursefather_-_Valencina_Evade_Sprite.png" id="1_ikgxo"]
 [ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="2_5wkxq"]
 
 [resource]
 script = ExtResource("1_5wkxq")
 sprite_frames = ExtResource("2_5wkxq")
-card_animations = {
-"punching": "punching_anim"
-}
+combatant_icon = ExtResource("1_ikgxo")
 metadata/_custom_type_script = "uid://b16ta6atwgotx"

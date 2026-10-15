@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://hq601ap02g4y"]
 
+[ext_resource type="Texture2D" uid="uid://dotwx4rlldf2u" path="res://Textures/CardArts/Slash.png" id="1_epklh"]
 [ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_nseut"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_8jrqw"]
 [ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_hyd8b"]
@@ -15,4 +16,5 @@ card_name = "Slash"
 stamina_cost = 1
 recovery_cost = 5
 effects = Array[ExtResource("1_nseut")]([SubResource("Resource_hyd8b")])
+card_art = ExtResource("1_epklh")
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

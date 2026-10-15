@@ -5,6 +5,7 @@ var combatant: Combatant
 
 @export var combatant_name: Label
 @export var amount: Label
+@export var combatant_icon: TextureRect
 @export var animator: TurnOrderIconAnimator
 
 func _ready() -> void:
@@ -14,6 +15,7 @@ func init(c: Combatant) -> void:
 	combatant = c
 	combatant_name.text = c.name
 	amount.text = str(c.stats.recovery_time)
+	combatant_icon.texture = combatant.appearance.combatant_icon
 	
 func _on_recovery_time_changed() -> void:
 	amount.text = str(combatant.stats.recovery_time)

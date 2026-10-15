@@ -43,5 +43,4 @@ func apply_modifiers(damage: DamagePacket) -> int:
 			ModifierValue.ModifierType.PERCENT:
 				percentage += value.percent_value
 	
-	print("percent %.2f ", percentage)
 	return floori(flat_result * percentage)

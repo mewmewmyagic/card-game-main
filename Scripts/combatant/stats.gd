@@ -3,7 +3,9 @@ class_name Stats
 
 signal stats_changed
 
-@export var max_health := 1
+@export var max_health: int = 1
+@export var agility: float = 1.0
+
 var health: int : set = set_health
 var shield: int: set = set_shield
 

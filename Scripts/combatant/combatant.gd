@@ -12,18 +12,17 @@ signal anim_done
 @export var status_manager: StatusEffectManager
 @export var modifier_manager: ModifierManager
 
-@export var starting_deck: CardPile
-@export var draw_pile: CardPile
-@export var discard_pile: CardPile
-@export var hand_pile: CardPile
-
 @export var battle_state: BattleState
 
 @export var appearance: CombatantSpriteResource
-@onready var sprite_2d: CombatantSpritePlayer = $AnimatedSprite2D
+@onready var sprite_2d: CombatantAnimationPlayer = $AnimatedSprite2D
 
 @onready var skill_container: SkillContainer = $SkillContainer as SkillContainer
 @onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
+
+var draw_pile: CardPile = CardPile.new()
+var discard_pile: CardPile = CardPile.new()
+var hand_pile: CardPile = CardPile.new()
 
 var is_current_turn: bool = false
 var is_dead: bool = false
@@ -44,7 +43,7 @@ func _ready() -> void:
 
 
 func build_deck() -> void:
-	for card in starting_deck.cards:
+	for card in stats.starting_pile.cards:
 		draw_pile.add_card(card.duplicate())
 	draw_pile.shuffle()
 
@@ -123,7 +122,7 @@ func _die() -> void:
 	
 	
 func play_skill_animation(card: Card) -> void:
-	sprite_2d.play_card_animation(appearance.get_animation_for_card(card.card_name))
+	sprite_2d.play_card_animation(appearance.get_animation_for_card(card))
 	await sprite_2d.animation_finished
 	
 	emit_signal("anim_done")

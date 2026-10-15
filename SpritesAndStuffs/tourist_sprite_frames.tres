@@ -68,7 +68,7 @@ animations = [{
 "texture": ExtResource("10_1pke8")
 }],
 "loop": 0,
-"name": &"attack",
+"name": &"default_enemy",
 "speed": 5.0
 }, {
 "frames": [{

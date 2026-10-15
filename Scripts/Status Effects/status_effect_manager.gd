@@ -6,7 +6,7 @@ class_name StatusEffectManager
 @export var parent: Combatant
 @export var status_effect_icon: PackedScene
 @export var status_effect_area: GridContainer
-@export var status_effects: Dictionary = {}
+@export var status_effects: Dictionary = {} #{id: string, status_effect: status}
 
 func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 	if not status_effects.has(status.id):
@@ -26,6 +26,7 @@ func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 		var icon := status_effect_icon.instantiate() as StatusEffectIcon
 		icon.status = instance
 		status_effect_area.add_child(icon)
+		
 	else:
 		var existing := status_effects[status.id] as StatusEffect
 

@@ -1,11 +1,14 @@
 [gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://8s8fasvcdm5k"]
 
-[ext_resource type="Script" uid="uid://nbbhc701n0jf" path="res://Scripts/combatant/stats_combatant.gd" id="1_r7yem"]
+[ext_resource type="Script" uid="uid://nbbhc701n0jf" path="res://Scripts/combatant/combatant_stats.gd" id="1_ek5c4"]
+[ext_resource type="Resource" uid="uid://bwe20136aixtf" path="res://Scripts/combatant_characters/tourist/tourist_cards/tourist_starting_deck.tres" id="2_yhavi"]
 
 [resource]
-script = ExtResource("1_r7yem")
+script = ExtResource("1_ek5c4")
 OPENING_HAND_SIZE = 10
 max_hand_size = 5
-max_stamina = 9
-max_health = 100
+max_stamina = 5
+starting_pile = ExtResource("2_yhavi")
+max_health = 1000
+agility = 1.5
 metadata/_custom_type_script = "uid://nbbhc701n0jf"

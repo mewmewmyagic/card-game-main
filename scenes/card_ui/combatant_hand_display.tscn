@@ -4,8 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://ccno6whirqfvt" path="res://Textures/cardArt/punching.png" id="2_4mysy"]
 [ext_resource type="Texture2D" uid="uid://bx00lm5efg52v" path="res://Textures/cardArt/punching-export.png" id="3_aedbf"]
 [ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="4_eskp0"]
-[ext_resource type="Script" uid="uid://yfo6bt7rj4or" path="res://Scripts/card_ui/card_state_machine.gd" id="5_ugam8"]
-[ext_resource type="Script" uid="uid://b181menethe4x" path="res://Scripts/card_ui/card_state/card_base_state.gd" id="6_e5gjr"]
 
 [node name="hand_display" type="Control" unique_id=287759262]
 custom_minimum_size = Vector2(120, 168)
@@ -87,10 +85,3 @@ offset_bottom = 29.11111
 theme_override_fonts/font = ExtResource("4_eskp0")
 text = "church"
 horizontal_alignment = 2
-
-[node name="CardStateMachine" type="Node" parent="." unique_id=1534837865 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("5_ugam8")
-initial_state = NodePath("CardBaseState")
-
-[node name="CardBaseState" type="Node" parent="CardStateMachine" unique_id=35498501]
-script = ExtResource("6_e5gjr")
