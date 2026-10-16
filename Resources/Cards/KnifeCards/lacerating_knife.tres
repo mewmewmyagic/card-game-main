@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://cxicq2cpwdso4"]
 
 [ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_dmq55"]
+[ext_resource type="Texture2D" uid="uid://cgelnv8480xo1" path="res://Textures/CardArts/Lacerating.png" id="1_wdwki"]
 [ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_n1nta"]
 [ext_resource type="Script" uid="uid://d214ayipywbee" path="res://Scripts/effects/CardEffects/effect_add_status.gd" id="3_nuac1"]
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="3_tj0li"]
@@ -31,4 +32,5 @@ card_name = "Lacerating"
 stamina_cost = 3
 recovery_cost = 10
 effects = Array[ExtResource("1_dmq55")]([SubResource("Resource_hyd8b"), SubResource("Resource_5sjd4"), SubResource("Resource_y1fgs")])
+card_art = ExtResource("1_wdwki")
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

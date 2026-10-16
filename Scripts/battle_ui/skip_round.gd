@@ -18,7 +18,7 @@ func _ready() -> void:
 	button_up.connect(_on_button_up)
 	hold_timer.timeout.connect(_on_hold_complete)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not hold_timer.is_stopped():
 		prog_bar.global_position = get_global_mouse_position() - prog_bar.size/2.0
 		var progress = 1.0 - hold_timer.time_left/hold_timer.wait_time
@@ -41,5 +41,5 @@ func _on_hold_complete() -> void:
 	prog_bar.hide()
 	if parent and parent.is_current_turn:
 		parent.discard_hand()
-		parent.battle_state.turn_manager.end_turn()
+		parent.battle_state.turn_manager.end_turn(0)
 		parent.play_other_animation()

@@ -1,7 +1,7 @@
 extends Control
 class_name  TurnOrderIcon
 
-var combatant: Combatant
+var turn: CombatantTurn   
 
 @export var combatant_name: Label
 @export var amount: Label
@@ -11,12 +11,12 @@ var combatant: Combatant
 func _ready() -> void:
 	animator.init(self)
 	
-func init(c: Combatant) -> void:
-	combatant = c
-	combatant_name.text = c.name
-	amount.text = str(c.stats.recovery_time)
-	combatant_icon.texture = combatant.appearance.combatant_icon
+func init(c: CombatantTurn) -> void:
+	turn = c
+	combatant_name.text = turn.combatant.name
+	amount.text = str(turn.recovery_time)
+	combatant_icon.texture = turn.combatant.appearance.combatant_icon
 	
 func _on_recovery_time_changed() -> void:
-	amount.text = str(combatant.stats.recovery_time)
+	amount.text = str(turn.recovery_time)
 	

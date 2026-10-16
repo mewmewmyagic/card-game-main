@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_effect_icon.tscn" id="6_fsa1f"]
 [ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_manager.gd" id="6_sga3o"]
 [ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://skill_container.tscn" id="8_4uuik"]
-[ext_resource type="PackedScene" uid="uid://g2ck1q1mk7dt" path="res://scenes/card_ui/combatant_hand_display.tscn" id="9_4uuik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
@@ -53,11 +52,9 @@ status_effect_area = NodePath("../StatusContainer")
 script = ExtResource("6_sga3o")
 metadata/_custom_type_script = "uid://ca7xr68felq2v"
 
-[node name="SkillContainer" parent="." unique_id=888406017 node_paths=PackedStringArray("parent") instance=ExtResource("8_4uuik")]
-offset_left = -152.0
-offset_top = -231.0
-offset_right = 464.0
-offset_bottom = -63.0
-scale = Vector2(0.5, 0.5)
+[node name="SkillContainer" parent="." unique_id=809158978 node_paths=PackedStringArray("parent") instance=ExtResource("8_4uuik")]
+offset_left = -309.0
+offset_top = -221.0
+offset_right = 307.0
+offset_bottom = -139.0
 parent = NodePath("..")
-card_ui_scene = ExtResource("9_4uuik")

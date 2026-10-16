@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Card" format=3 uid="uid://bqngtcj32tu07"]
 
+[ext_resource type="Texture2D" uid="uid://cwiugp5vkemr6" path="res://Textures/CardArts/Stab.png" id="1_4dgue"]
 [ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_mcvat"]
 [ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_4dgue"]
 [ext_resource type="Script" uid="uid://d214ayipywbee" path="res://Scripts/effects/CardEffects/effect_add_status.gd" id="3_ejic2"]
@@ -24,4 +25,5 @@ card_name = "Stab"
 stamina_cost = 2
 recovery_cost = 7
 effects = Array[ExtResource("1_mcvat")]([SubResource("Resource_hyd8b"), SubResource("Resource_5mi8n")])
+card_art = ExtResource("1_4dgue")
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

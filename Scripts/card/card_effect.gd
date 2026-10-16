@@ -1,5 +1,5 @@
 class_name CardEffect
 extends Resource
 
-func execute(context: CardEffectContext) -> void:
+func execute(_context: CardEffectContext) -> void:
 	pass

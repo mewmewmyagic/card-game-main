@@ -14,44 +14,44 @@ func bind(turnManager: TurnManager) -> void:
 	turn_manager = turnManager
 	turn_manager.turn_order_changed.connect(sync)
 	
-func spawn_icon(c: Combatant) -> void:
+func spawn_icon(t: CombatantTurn) -> void:
 	var turn_icon := turn_icon_scene.instantiate() as TurnOrderIcon
-	turn_icon.init(c)
+	turn_icon.init(t)
 	add_child(turn_icon)
 	turn_icon.global_position = Vector2(self.size.x, self.size.y/2 - ICON_SPACING/2)
-	turn_to_ui[c] = turn_icon
+	turn_to_ui[t] = turn_icon
 	
 func sync() -> void:
-	var combatants := turn_manager._active_combatants().duplicate()
+	var turns := turn_manager._active_turns().duplicate()
 	
-	#loops through dict, despawn icon not in combatants and unassigning it to the dict
-	for c in turn_to_ui.keys().duplicate():
-		if not combatants.has(c):
-			_despawn_icon(c)
+	#loops through dict, despawn icon not in turns and unassigning it to the dict
+	for t in turn_to_ui.keys().duplicate():
+		if not turns.has(t):
+			_despawn_icon(t)
 	
-	#loops through combatants, spawn icon not in dict and assigning it to the dict
-	for c in combatants:
-		if not turn_to_ui.has(c):
-			spawn_icon(c)
+	#loops through turns, spawn icon not in dict and assigning it to the dict
+	for t in turns:
+		if not turn_to_ui.has(t):
+			spawn_icon(t)
 
 	_refresh_turn_icons()
 	_update_layout()
 	
-func _despawn_icon(c: Combatant) -> void:
-	var turn_icon: TurnOrderIcon = turn_to_ui[c]
-	turn_to_ui.erase(c)
+func _despawn_icon(t: CombatantTurn) -> void:
+	var turn_icon: TurnOrderIcon = turn_to_ui[t]
+	turn_to_ui.erase(t)
 	turn_icon.animator.move_to(Vector2(turn_icon.position.x, -100), 0.0, 0.25)
 	await get_tree().create_timer(0.25).timeout
 	turn_icon.queue_free()
 	
 func _refresh_turn_icons() -> void:
 	turn_icons.clear()
-	for c in turn_manager.combatants: #has to be sorted
-		if turn_to_ui.has(c):
-			turn_icons.append(turn_to_ui[c])
+	for t in turn_manager.turn_order: #has to be sorted
+		if turn_to_ui.has(t):
+			turn_icons.append(turn_to_ui[t])
 		
 func _update_layout() -> void:
 	var spacing = ICON_SPACING
 	for i in turn_icons.size():
 		turn_icons[i].animator.move_to(Vector2(i * spacing, self.size.y/2 - ICON_SPACING/2), 0.0, 0.25) #
-		turn_icons[i].amount.text = str(turn_icons[i].combatant.stats.recovery_time)
+		turn_icons[i].amount.text = str(turn_icons[i].turn.recovery_time)

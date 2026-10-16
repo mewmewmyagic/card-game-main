@@ -107,7 +107,7 @@ func _update_layout() -> void:
 	
 	var center_x := LAYOUT_WIDTH / 2.0
 	var total_width := (count - 1) * spacing
-	var center_index: float = (float(count) - 1.0) / 2.0
+	#var center_index: float = (float(count) - 1.0) / 2.0
 	
 	for i in count:
 		var card := cards[i]
@@ -115,7 +115,7 @@ func _update_layout() -> void:
 		var target_rotation := (i - count / 2.0) * ROTATION_PER_CARD
 		
 		var x := center_x + (i * spacing - total_width / 2.0)
-		var normalized_offset: float = 0.0
+		#var normalized_offset: float = 0.0
 		
 		var theta: float = deg_to_rad(target_rotation)
 		var y: float = (ARC_RADIUS - ARC_RADIUS * cos(theta)) * 4

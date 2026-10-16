@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y5rkf21gouns" path="res://Scripts/battle_ui/turn_order_icon.gd" id="1_6nfnu"]
 [ext_resource type="Script" uid="uid://cpoq2tmgivn0w" path="res://scenes/TurnOrderIconAnimator.gd" id="2_evmjy"]
-[ext_resource type="Shader" uid="uid://usqya5wj6cd" path="res://scenes/diamond.gdshader" id="3_v5iqs"]
+[ext_resource type="Shader" uid="uid://dyiyteybi41dm" path="res://Shaders/diamond.gdshader" id="3_v5iqs"]
 [ext_resource type="Texture2D" uid="uid://cn13oj7iem8nu" path="res://Textures/The_Index_Nursefather_-_Rien_Mirrored_Idle_Sprite.png" id="4_e7qlc"]
 
 [sub_resource type="Theme" id="Theme_crx7y"]
@@ -26,7 +26,6 @@ combatant_icon = NodePath("TextureRect2/TextureRect")
 animator = NodePath("Animator")
 
 [node name="Name" type="Label" parent="." unique_id=246694431]
-visible = false
 layout_mode = 0
 offset_top = 30.0
 offset_right = 32.0
@@ -35,7 +34,6 @@ theme_override_font_sizes/font_size = 8
 text = "Bobbert"
 
 [node name="Amount" type="Label" parent="." unique_id=1178613960]
-visible = false
 layout_mode = 0
 offset_top = 39.0
 offset_right = 14.0

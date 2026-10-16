@@ -2,7 +2,6 @@ extends AnimatedSprite2D
 class_name CombatantAnimationPlayer
 
 var _idle_animation: String = "idle"
-var _default_attack_animation: String = "attack"
 
 func bind(appearance: CombatantSpriteResource) -> void:
 	sprite_frames = appearance.sprite_frames

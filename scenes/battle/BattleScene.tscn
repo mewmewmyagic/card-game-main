@@ -49,45 +49,45 @@ metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
 [node name="Alex" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(102, 206.00002)
-scale = Vector2(0.312, 0.312)
+scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 battle_state = NodePath("..")
 appearance = ExtResource("9_0t5w0")
 
 [node name="Bob" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(255, 206.00002)
-scale = Vector2(0.312, 0.312)
+position = Vector2(195, 223)
+scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Cindy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(540.00006, 219)
-scale = Vector2(0.313, 0.313)
+scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Cindy2" parent="BattleState" unique_id=1460989674 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(435, 213)
-scale = Vector2(0.313, 0.313)
+position = Vector2(378.00003, 189.00002)
+scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Cindy3" parent="BattleState" unique_id=872598056 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(595, 214)
-scale = Vector2(0.313, 0.313)
+position = Vector2(599, 193)
+scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="Cindy4" parent="BattleState" unique_id=237619642 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
-position = Vector2(494, 214)
-scale = Vector2(0.313, 0.313)
+position = Vector2(458, 236)
+scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
 battle_state = NodePath("..")
@@ -121,7 +121,6 @@ offset_right = -636.0
 offset_bottom = -64.0
 
 [node name="TurnUI" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
-offset_bottom = -312.0
 turn_icon_scene = ExtResource("19_i1ovl")
 
 [node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]

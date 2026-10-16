@@ -16,7 +16,7 @@ var manager: StatusEffectManager
 var stack: int = 0
 var count: int = 0
 
-func init(c: Combatant, s: StatusEffectManager) -> void:
+func init(_c: Combatant, _s: StatusEffectManager) -> void:
 	pass
 
 func trigger_status_effect() -> void:

@@ -7,8 +7,7 @@
 script = ExtResource("1_ek5c4")
 OPENING_HAND_SIZE = 10
 max_hand_size = 5
-max_stamina = 5
+max_stamina = 10
 starting_pile = ExtResource("2_yhavi")
 max_health = 1000
-agility = 1.5
 metadata/_custom_type_script = "uid://nbbhc701n0jf"

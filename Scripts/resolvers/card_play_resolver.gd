@@ -9,6 +9,7 @@ func _on_player_card_play_requested(card: Card, source: Combatant, target: Comba
 	card_play_context.source = source
 	card_play_context.card = card
 	card_play_context.target = target
+	
 	resolve(card_play_context)
 	
 func can_afford(card: Card, source: Combatant) -> bool:
@@ -21,6 +22,8 @@ func can_play(card: Card, source: Combatant) -> bool:
 	return can_afford(card, source)
 	
 func is_valid_target(context: CardEffectContext) -> bool:
+	if context.target == null:
+		return false
 	if context.target.is_dead:
 		return false
 	
@@ -46,7 +49,6 @@ func resolve(context: CardEffectContext) -> bool:
 		return false
 	
 	context.source.stats.stamina -= context.card.stamina_cost
-	context.source.stats.set_recovery_time(context.card.recovery_cost)
 	context.source.play_skill_animation(context.card)
 	
 	for effect in context.card.effects:
@@ -57,6 +59,6 @@ func resolve(context: CardEffectContext) -> bool:
 	context.source.hand_pile.remove_card(context.card)
 	context.source.discard_pile.add_card(context.card)
 	
-	battle.turn_manager.end_turn()
+	battle.turn_manager.end_turn(context.card.recovery_cost)
 	
 	return true

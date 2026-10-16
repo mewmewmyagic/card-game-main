@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csbn5q80nu6vw"]
 
 [ext_resource type="Script" uid="uid://ljpbwpcxxpe5" path="res://skill_container.gd" id="1_7ai60"]
-[ext_resource type="PackedScene" uid="uid://d0tus8eitn6fa" path="res://scenes/card_ui/hand_card_ui.tscn" id="2_4qrm2"]
+[ext_resource type="PackedScene" uid="uid://g2ck1q1mk7dt" path="res://scenes/card_ui/combatant_hand_display.tscn" id="2_4qrm2"]
 
 [node name="SkillContainer" type="GridContainer" unique_id=888406017]
 anchors_preset = 15

@@ -8,6 +8,7 @@ class_name SkillContainer
 func refresh_display(_amount: int) -> void:
 	for child in get_children():
 		child.queue_free()
+	
 	for card in parent.hand_pile.cards:
 		var card_ui := card_ui_scene.instantiate() as HandDisplay
 		card_ui.card = card

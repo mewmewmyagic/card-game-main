@@ -33,9 +33,9 @@ grow_vertical = 2
 theme = SubResource("Theme_xm8em")
 script = ExtResource("1_i2wwq")
 color = NodePath("Visuals/Color")
-stam_label = NodePath("Visuals/Background/Art/Frame/Stam")
-rc_label = NodePath("Visuals/Background/Art/Frame/Rc")
-name_label = NodePath("Visuals/Background/Art/Frame/Name")
+stam_label = NodePath("Visuals/Background/Frame/Stam")
+rc_label = NodePath("Visuals/Background/Frame/Rc")
+name_label = NodePath("Visuals/Background/Frame/Name")
 card_art = NodePath("Visuals/Background/Art")
 
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1984929670]
@@ -89,18 +89,19 @@ centered = false
 
 [node name="Art" type="Sprite2D" parent="Visuals/Background" unique_id=413370470]
 texture_filter = 2
+position = Vector2(20, 40)
 scale = Vector2(0.9999999, 0.99999994)
 texture = ExtResource("5_lmj0m")
 centered = false
 offset = Vector2(0, 7)
 
-[node name="Frame" type="Sprite2D" parent="Visuals/Background/Art" unique_id=146765506]
+[node name="Frame" type="Sprite2D" parent="Visuals/Background" unique_id=146765506]
 texture_filter = 2
-scale = Vector2(0.99999994, 1)
+scale = Vector2(0.9999997, 0.9999999)
 texture = ExtResource("3_wrych")
 centered = false
 
-[node name="Name" type="Label" parent="Visuals/Background/Art/Frame" unique_id=1445796093]
+[node name="Name" type="Label" parent="Visuals/Background/Frame" unique_id=1445796093]
 offset_left = 38.666668
 offset_top = 8.0
 offset_right = 151.33333
@@ -111,7 +112,7 @@ text = "church"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Rc" type="Label" parent="Visuals/Background/Art/Frame" unique_id=1785261573]
+[node name="Rc" type="Label" parent="Visuals/Background/Frame" unique_id=1785261573]
 offset_left = 13.333334
 offset_top = 34.666668
 offset_right = 31.333334
@@ -121,7 +122,7 @@ theme_override_fonts/font = ExtResource("10_l35cs")
 theme_override_font_sizes/font_size = 28
 text = "Y"
 
-[node name="Stam" type="Label" parent="Visuals/Background/Art/Frame" unique_id=1024157302]
+[node name="Stam" type="Label" parent="Visuals/Background/Frame" unique_id=1024157302]
 offset_left = 13.333333
 offset_top = 9.333334
 offset_right = 31.333332
