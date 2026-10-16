@@ -7,17 +7,19 @@
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
 [ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_effect_icon.tscn" id="6_fsa1f"]
 [ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_manager.gd" id="6_sga3o"]
-[ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://skill_container.tscn" id="8_4uuik"]
+[ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://hand_display.tscn" id="8_4uuik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
 [node name="Combatant" type="Node2D" unique_id=1903320986 node_paths=PackedStringArray("status_manager", "modifier_manager") groups=["character"]]
 y_sort_enabled = true
 script = ExtResource("1_ddi1i")
+combatant_name = null
 status_manager = NodePath("StatusManager")
 modifier_manager = NodePath("ModifierManager")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1362894786]
+y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bhuil")
 animation = &"default_enemy"
@@ -42,6 +44,13 @@ offset_right = 149.0
 offset_bottom = 351.0
 columns = 10
 
+[node name="HandDisplay" parent="." unique_id=809158978 node_paths=PackedStringArray("parent") instance=ExtResource("8_4uuik")]
+offset_left = -309.0
+offset_top = -221.0
+offset_right = 307.0
+offset_bottom = -139.0
+parent = NodePath("..")
+
 [node name="StatusManager" type="Node" parent="." unique_id=810462496 node_paths=PackedStringArray("parent", "status_effect_area")]
 script = ExtResource("5_88lpd")
 parent = NodePath("..")
@@ -51,10 +60,3 @@ status_effect_area = NodePath("../StatusContainer")
 [node name="ModifierManager" type="Node" parent="." unique_id=1067453016]
 script = ExtResource("6_sga3o")
 metadata/_custom_type_script = "uid://ca7xr68felq2v"
-
-[node name="SkillContainer" parent="." unique_id=809158978 node_paths=PackedStringArray("parent") instance=ExtResource("8_4uuik")]
-offset_left = -309.0
-offset_top = -221.0
-offset_right = 307.0
-offset_bottom = -139.0
-parent = NodePath("..")

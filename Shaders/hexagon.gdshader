@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform bool pointy_top = false;       // false = flat edges on top/bottom, true = corner pointing up
-uniform bool stretch_to_square = false; // true = hexagon touches all 4 sides (not regular on a square texture)
+uniform bool stretch_to_square = true; // true = hexagon touches all 4 sides (not regular on a square texture)
 
 void fragment() {
     vec2 p = UV - vec2(0.5);

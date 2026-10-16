@@ -20,17 +20,18 @@ func set_status(new_status: StatusEffect) -> void:
 	
 	if not status.count_changed.is_connected(_on_status_changed):
 		status.count_changed.connect(_on_status_changed)
-		
+	
+	if not status.removed.is_connected(queue_free):
+		status.removed.connect(queue_free)
+
 	_on_status_changed()
 	
 func _on_status_changed() -> void:
 	if not status:
 		return
 	
-	if status.count == 0:
-		queue_free()
-		
 	stack.text = str(status.stack)
+	
 	if status.stack == 0:
 		stack.hide()
 	count.text = str(status.count)

@@ -38,4 +38,6 @@ func remove_status(id: String) -> void:
 		return
 	var s: StatusEffect = status_effects[id]
 	status_effects.erase(id)
-	s.on_remove()
+	
+	s.on_effect_removed()
+	s.removed.emit()

@@ -3,6 +3,7 @@ class_name StatusEffect
 
 signal count_changed
 signal stack_changed
+signal removed
 
 @export_group("Stuff")
 @export var id: String = ""

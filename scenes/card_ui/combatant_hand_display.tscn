@@ -6,36 +6,21 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8af7l"]
 shader = ExtResource("2_8af7l")
-shader_parameter/pointy_top = false
+shader_parameter/pointy_top = true
 shader_parameter/stretch_to_square = false
 
-[node name="hand_display" type="Control" unique_id=287759262 node_paths=PackedStringArray("sprite")]
-custom_minimum_size = Vector2(120, 168)
+[node name="hand_display_icon" type="Control" unique_id=287759262 node_paths=PackedStringArray("sprite")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -520.0
-offset_bottom = -192.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
+anchors_preset = 0
 script = ExtResource("1_0m16k")
 sprite = NodePath("Visuals/Punching")
 
 [node name="Visuals" type="Control" parent="." unique_id=563005732]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -120.0
-offset_bottom = -168.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="Punching" type="Sprite2D" parent="Visuals" unique_id=1324702959]
 texture_filter = 2
 material = SubResource("ShaderMaterial_8af7l")
-position = Vector2(61, 55)
-scale = Vector2(1, 1.35)
+scale = Vector2(0.8, 1.08)
 texture = ExtResource("2_582m2")
+centered = false

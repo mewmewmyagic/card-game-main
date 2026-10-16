@@ -7,5 +7,6 @@ func choose_card(enemy: Combatant, battle: BattleState) -> Card:
 		if battle.card_play_manager.can_play(card, enemy):
 			return card
 	print("cant do shit")
-	battle.turn_manager.end_turn(0)
+	
+	battle.turn_manager.end_turn()
 	return null

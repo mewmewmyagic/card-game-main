@@ -17,7 +17,7 @@ signal anim_done
 @export var appearance: CombatantSpriteResource
 @onready var sprite_2d: CombatantAnimationPlayer = $AnimatedSprite2D
 
-@onready var skill_container: SkillContainer = $SkillContainer as SkillContainer
+@onready var skill_container: HandDisplay = $HandDisplay as HandDisplay
 @onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
 
 var draw_pile: CardPile = CardPile.new()

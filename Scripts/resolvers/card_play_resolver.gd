@@ -35,7 +35,7 @@ func is_valid_target(context: CardEffectContext) -> bool:
 		Card.TargetType.SELF:
 			return context.target == context.source
 		_:
-			return true
+			return false
 
 func resolve(context: CardEffectContext) -> bool:
 	if not can_play(context.card, context.source):
@@ -59,6 +59,8 @@ func resolve(context: CardEffectContext) -> bool:
 	context.source.hand_pile.remove_card(context.card)
 	context.source.discard_pile.add_card(context.card)
 	
-	battle.turn_manager.end_turn(context.card.recovery_cost)
+	battle.turn_manager._add_recovery_cost(context.card.recovery_cost)
+	
+	battle.turn_manager.end_turn()
 	
 	return true

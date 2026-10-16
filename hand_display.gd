@@ -1,5 +1,5 @@
-extends GridContainer
-class_name SkillContainer
+extends HBoxContainer
+class_name HandDisplay
 
 @export var parent: Combatant
 @export var card_ui_scene: PackedScene
@@ -10,7 +10,7 @@ func refresh_display(_amount: int) -> void:
 		child.queue_free()
 	
 	for card in parent.hand_pile.cards:
-		var card_ui := card_ui_scene.instantiate() as HandDisplay
-		card_ui.card = card
-		card_ui.owner_combatant = parent
-		add_child(card_ui)
+		var icon := card_ui_scene.instantiate() as HandDisplayIcon
+		icon.card = card
+		icon.owner_combatant = parent
+		add_child(icon)
