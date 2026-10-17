@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/TurnOrderUI.tscn" id="14_th5m4"]
 [ext_resource type="PackedScene" uid="uid://sewshbwxty6x" path="res://scenes/ui/card_pile_ui.tscn" id="15_4q0u5"]
-[ext_resource type="PackedScene" uid="uid://cy206irxku8cg" path="res://scenes/turn_order_icon.tscn" id="19_i1ovl"]
 [ext_resource type="PackedScene" uid="uid://df4gabwwtl1tb" path="res://scenes/ui/skip_round.tscn" id="21_2wrqn"]
 [ext_resource type="Shader" uid="uid://bs7lemhfqjxqc" path="res://scenes/BottomFade.gdshader" id="21_qiykf"]
 
@@ -51,23 +50,26 @@ metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 position = Vector2(102, 206.00002)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
-appearance = ExtResource("9_0t5w0")
+combatant_name = ""
 battle_state = NodePath("..")
+appearance = ExtResource("9_0t5w0")
 
 [node name="Bob" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(195, 223)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
-appearance = ExtResource("9_2jvsm")
+combatant_name = ""
 battle_state = NodePath("..")
+appearance = ExtResource("9_2jvsm")
 
 [node name="Cindy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
 position = Vector2(540.00006, 219)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
-appearance = ExtResource("9_2jvsm")
+combatant_name = ""
 battle_state = NodePath("..")
+appearance = ExtResource("9_2jvsm")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui", "skip_round_ui") groups=["ui_layer"]]
 script = ExtResource("2_4f3f8")
@@ -97,7 +99,6 @@ offset_right = -636.0
 offset_bottom = -64.0
 
 [node name="TurnUI" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
-turn_icon_scene = ExtResource("19_i1ovl")
 
 [node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
 offset_left = 19.0

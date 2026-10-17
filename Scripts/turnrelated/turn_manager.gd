@@ -44,6 +44,7 @@ func start_round(starting_combatants: Array[Combatant]) -> void:
 	
 	turn_order.shuffle()
 	
+	round_started.emit()
 	start_turn()
 
 func end_round() -> void:
@@ -62,12 +63,10 @@ func start_turn() -> void:
 	
 	EventBus.turn_started.emit()
 	turn_started.emit(current_turn.combatant)
-	
-	var play: Card = await _get_card_decision(current_turn.combatant)
-
-	# 3. do it: costs are paid and effects run now, the animation plays alongside
-	if play != null:
-		await play.execute(battle)
+	if current_turn.combatant.ai_behavior:
+		current_turn.combatant.take_ai_turn(battle)
+	else:
+		ally_turn_started.emit(current_turn)
 
 func end_turn() -> void:
 	
@@ -84,16 +83,6 @@ func end_turn() -> void:
 	
 	_advance_time()
 	start_turn()
-
-
-
-func _get_card_decision(actor: Combatant) -> Card:
-	if actor.ai_behavior:
-		return actor.ai_behavior.choose_play(actor, battle)
-	_awaiting_decision = true
-	ally_turn_started.emit(actor)
-	return await decision_made
-
 
 
 
