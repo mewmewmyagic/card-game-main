@@ -63,7 +63,7 @@ func start_turn() -> void:
 	EventBus.turn_started.emit()
 	turn_started.emit(current_turn.combatant)
 	
-	var play: Card = await _get_card_decision(actor)
+	var play: Card = await _get_card_decision(current_turn.combatant)
 
 	# 3. do it: costs are paid and effects run now, the animation plays alongside
 	if play != null:
