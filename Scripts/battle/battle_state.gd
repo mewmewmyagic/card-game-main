@@ -26,8 +26,12 @@ func _ready() -> void:
 	for c in allies:
 		c.sprite_2d.scale.x *= -1
 		
+<<<<<<< Updated upstream
 	for c in all_combatants():
 		c.im_dead.connect(_on_combatant_died)
+=======
+	turn_manager.turn_ended.connect(_on_combatant_died)
+>>>>>>> Stashed changes
 	turn_manager.start_round(all_combatants())
 	
 func all_combatants() -> Array[Combatant]:

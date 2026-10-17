@@ -150,10 +150,17 @@ offset_right = -636.0
 offset_bottom = -64.0
 
 [node name="TurnUI" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
+<<<<<<< Updated upstream
 offset_left = 1.0
 offset_top = 1.0
 offset_right = -451.0
 offset_bottom = -336.0
+=======
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = -309.0
+>>>>>>> Stashed changes
 turn_icon_scene = ExtResource("19_i1ovl")
 
 [node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]

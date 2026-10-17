@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dwsjgd3bmp76l"]
+
+[ext_resource type="Script" uid="uid://cjlocxsykvcko" path="res://Scripts/turnrelated/turn_order_ui.gd" id="1_ktdfj"]
+[ext_resource type="PackedScene" uid="uid://cy206irxku8cg" path="res://scenes/turn_order_icon.tscn" id="2_gaxaj"]
+
+[node name="turn_order_ui" type="Control" unique_id=1005858877 node_paths=PackedStringArray("big_icon")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -312.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ktdfj")
+big_icon = NodePath("TurnOrderIcon")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=59822280]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 23.0
+offset_right = 224.0
+offset_bottom = 25.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=1426246051]
+layout_mode = 0
+offset_left = 202.0
+offset_top = -1.9999924
+offset_right = 206.25
+offset_bottom = 2.2500076
+rotation = 0.7853982
+
+[node name="TurnOrderIcon" parent="." unique_id=1361914112 instance=ExtResource("2_gaxaj")]
+z_index = 1
+layout_mode = 0
+scale = Vector2(1.5, 1.5)
