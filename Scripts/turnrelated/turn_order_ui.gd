@@ -56,6 +56,8 @@ func sync() -> void:
 	_refresh_turn_icons()
 	_update_layout()
 	
+#the plan: this should stay, but add a spawn icon func that already know where its position is
+#when its current turn, the current turn order icon gets deleted.  it gets spawned back when its not curent turn
 func _refresh_turn_icons() -> void:
 	turn_icons.clear()
 	for t in turn_manager.turn_order: #has to be sorted
@@ -68,5 +70,7 @@ func _update_layout() -> void:
 	for i in turn_icons.size():
 		if (i == 0):
 			big_icon.combatant_icon.texture = turn_icons[i].combatant_icon.texture
-		turn_icons[i].animator.move_to(Vector2((i-1) * spacing + big_icon.size.x * big_icon.scale.x, self.size.y/2 - ICON_SPACING/2), 0.0, 10) #
-		turn_icons[i].amount.text = str(turn_icons[i].turn.recovery_time)
+			turn_icons[i].animator.move_to(Vector2(big_icon.size.x * big_icon.scale.x/4, self.size.y/2 - ICON_SPACING/2), 0.0, .25) #
+		else:	
+			turn_icons[i].animator.move_to(Vector2((i-1) * spacing + big_icon.size.x * big_icon.scale.x, self.size.y/2 - ICON_SPACING/2), 0.0, .25) #
+			turn_icons[i].amount.text = str(turn_icons[i].turn.recovery_time)
