@@ -23,6 +23,6 @@ scale = Vector2(1.5, 1.5)
 [node name="ColorRect" type="ColorRect" parent="." unique_id=412244913]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 22.0
+offset_top = 23.0
 offset_right = 226.0
-offset_bottom = 24.0
+offset_bottom = 25.0

@@ -11,11 +11,15 @@ signal turn_ended(combatant: Combatant)
 signal turn_order_changed
 signal decision_made(play: Card)
 
+enum Stage {START, INPUT, OUTPUT, END}
+
 var battle: BattleState
-#all combatants currently in battle. some combatants arent active combatants (cant take turns) while others are
 var combatants: Array[Combatant] = []
+
 var turn_order: Array[CombatantTurn] = []
 var current_turn: CombatantTurn
+
+var stage: Stage = Stage.START
 
 var _awaiting_decision := false
 
@@ -59,17 +63,19 @@ func start_turn() -> void:
 	_sort_turns()
 	
 	current_turn = _next_active_turn()
+	_set_stage(Stage.START)
 	current_turn.combatant._on_self_turn_started()
 	
 	EventBus.turn_started.emit()
 	turn_started.emit(current_turn.combatant)
+	
 	if current_turn.combatant.ai_behavior:
 		current_turn.combatant.take_ai_turn(battle)
 	else:
 		ally_turn_started.emit(current_turn)
 
 func end_turn() -> void:
-	
+	_set_stage(Stage.END)
 	current_turn.combatant._on_self_turn_ended()
 	EventBus.turn_ended.emit()
 	turn_ended.emit(current_turn.combatant)
@@ -109,22 +115,21 @@ func _advance_time() -> void:
 	var should_advance := true
 	if active.is_empty():
 		return
-
 	while (true):
 		for t in active:
 			if (t.recovery_time <= 0):
 				should_advance = false
 				break
-				
 		if not should_advance:
 			break
-			
 		for t in active:
 			t.recovery_time = maxf(0, t.recovery_time - t.combatant.stats.agility * 1.0)
-			
+
 func _add_recovery_cost(rc: int) -> void:
 	current_turn.recovery_time += rc
 	
+func _set_stage(new_stage: Stage):
+	stage = new_stage
 #TODO
 #run turn, where it executes start turn, waits for your bullshit (picking a card, executing effects, etc), and ends turn
 #action queue, but it seems fucking complicated with little gain

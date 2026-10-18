@@ -101,7 +101,7 @@ offset_bottom = -64.0
 [node name="TurnUI" parent="BattleUI" unique_id=1005858877 instance=ExtResource("14_th5m4")]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 4.0
+offset_right = -4.0
 offset_bottom = -308.0
 
 [node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]

@@ -16,11 +16,20 @@ func bind(turnManager: TurnManager) -> void:
 	turn_manager.turn_order_changed.connect(sync)
 	big_icon.amount.hide()
 	
-func spawn_icon(t: CombatantTurn) -> void:
+#right to left
+func round_start_spawn_icon(t: CombatantTurn):
 	var turn_icon := turn_icon_scene.instantiate() as TurnOrderIcon
 	turn_icon.init(t)
 	add_child(turn_icon)
 	turn_icon.global_position = Vector2(self.size.x, self.size.y/2 - ICON_SPACING/2)
+	turn_to_ui[t] = turn_icon
+	
+#from top
+func spawn_icon(t: CombatantTurn) -> void:
+	var turn_icon := turn_icon_scene.instantiate() as TurnOrderIcon
+	turn_icon.init(t)
+	add_child(turn_icon)
+	turn_icon.global_position = Vector2(self.size.x * self.scale.x, self.size.y/2 - ICON_SPACING/2)
 	turn_to_ui[t] = turn_icon
 	
 func _despawn_icon(t: CombatantTurn) -> void:
@@ -55,9 +64,9 @@ func _refresh_turn_icons() -> void:
 		
 func _update_layout() -> void:
 	var spacing = ICON_SPACING
+	
 	for i in turn_icons.size():
 		if (i == 0):
 			big_icon.combatant_icon.texture = turn_icons[i].combatant_icon.texture
-		
-		turn_icons[i].animator.move_to(Vector2((i-1) * spacing + big_icon.size.x * big_icon.scale.x, self.size.y/2 - ICON_SPACING/2), 0.0, 0.25) #
+		turn_icons[i].animator.move_to(Vector2((i-1) * spacing + big_icon.size.x * big_icon.scale.x, self.size.y/2 - ICON_SPACING/2), 0.0, 10) #
 		turn_icons[i].amount.text = str(turn_icons[i].turn.recovery_time)
