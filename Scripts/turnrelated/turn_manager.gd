@@ -62,17 +62,24 @@ func end_round() -> void:
 func start_turn() -> void:
 	_sort_turns()
 	
-	current_turn = _next_active_turn()
 	_set_stage(Stage.START)
+	current_turn = _next_active_turn()
 	current_turn.combatant._on_self_turn_started()
 	
 	EventBus.turn_started.emit()
 	turn_started.emit(current_turn.combatant)
 	
-	if current_turn.combatant.ai_behavior:
+	input_phase()
+
+func input_phase() -> void:
+	if not current_turn.combatant.ai_behavior:
+		ally_turn_started.emit(current_turn)
 		current_turn.combatant.take_ai_turn(battle)
 	else:
-		ally_turn_started.emit(current_turn)
+		output_phase()
+	
+func output_phase() -> void:
+	current_turn.combatant.take_ai_turn(battle)
 
 func end_turn() -> void:
 	_set_stage(Stage.END)

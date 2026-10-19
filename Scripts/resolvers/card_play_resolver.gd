@@ -12,6 +12,39 @@ func _on_player_card_play_requested(card: Card, source: Combatant, target: Comba
 	
 	resolve(card_play_context)
 	
+func validate_card(context: CardEffectContext) -> bool:
+	if not can_play(context.card, context.source):
+		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
+		EventBus.card_play_rejected.emit()
+		return false
+		
+	if not is_valid_target(context):
+		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
+		EventBus.card_play_rejected.emit()
+		return false
+		
+	return true
+	
+func resolve(context: CardEffectContext) -> void:
+	if (validate_card(context) == false):
+		return
+	
+	context.source.stats.stamina -= context.card.stamina_cost
+	context.source.play_skill_animation(context.card)
+	
+	for effect in context.card.effects:
+		effect.execute(context)
+	
+	context.source.card_played.emit(context.card)
+	
+	context.source.hand_pile.remove_card(context.card)
+	context.source.discard_pile.add_card(context.card)
+	
+	battle.turn_manager._add_recovery_cost(context.card.recovery_cost)
+	
+	battle.turn_manager.end_turn()
+	
+	
 func can_afford(card: Card, source: Combatant) -> bool:
 	return source.stats.enough_stamina(card)
 
@@ -36,31 +69,3 @@ func is_valid_target(context: CardEffectContext) -> bool:
 			return context.target == context.source
 		_:
 			return false
-
-func resolve(context: CardEffectContext) -> bool:
-	if not can_play(context.card, context.source):
-		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
-		EventBus.card_play_rejected.emit()
-		return false
-		
-	if not is_valid_target(context):
-		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
-		EventBus.card_play_rejected.emit()
-		return false
-	
-	context.source.stats.stamina -= context.card.stamina_cost
-	context.source.play_skill_animation(context.card)
-	
-	for effect in context.card.effects:
-		effect.execute(context)
-	
-	context.source.card_played.emit(context.card)
-	
-	context.source.hand_pile.remove_card(context.card)
-	context.source.discard_pile.add_card(context.card)
-	
-	battle.turn_manager._add_recovery_cost(context.card.recovery_cost)
-	
-	battle.turn_manager.end_turn()
-	
-	return true

@@ -7,7 +7,7 @@ const ICON_SPACING = 32
 
 @export var big_icon: TurnOrderIcon
 var turn_icons: Array[TurnOrderIcon] = []
-var turn_to_ui: Dictionary = {}
+var turn_to_ui: Dictionary = {} #combatant turn, turn icon
 
 var turn_manager: TurnManager
 
@@ -40,7 +40,7 @@ func _despawn_icon(t: CombatantTurn) -> void:
 	turn_icon.queue_free()
 	
 #should be called when sort combatant has already been called. cause you know, thats how syncing works 
-func sync() -> void:
+func round_start() -> void:
 	var turns := turn_manager._active_turns().duplicate()
 	
 	#loops through dict, despawn icon not in turns and unassigning it to the dict
@@ -52,6 +52,19 @@ func sync() -> void:
 	for t in turns:
 		if not turn_to_ui.has(t):
 			spawn_icon(t)
+
+	_refresh_turn_icons()
+	_update_layout()
+	
+func sync() -> void:
+	var turns := turn_manager._active_turns().duplicate()
+	
+	for t in turn_to_ui.keys().duplicate():
+		if not turns.has(t):
+			_despawn_icon(t)
+	for t in turns:
+		if not turn_to_ui.has(t):
+			round_start_spawn_icon(t)
 
 	_refresh_turn_icons()
 	_update_layout()
@@ -70,7 +83,7 @@ func _update_layout() -> void:
 	for i in turn_icons.size():
 		if (i == 0):
 			big_icon.combatant_icon.texture = turn_icons[i].combatant_icon.texture
-			turn_icons[i].animator.move_to(Vector2(big_icon.size.x * big_icon.scale.x/4, self.size.y/2 - ICON_SPACING/2), 0.0, .25) #
-		else:	
+			turn_icons[i].animator.move_to(Vector2(big_icon.size.x * big_icon.scale.x/4, self.size.y/2 - ICON_SPACING/2), 0.0, 0.25)
+		else:
 			turn_icons[i].animator.move_to(Vector2((i-1) * spacing + big_icon.size.x * big_icon.scale.x, self.size.y/2 - ICON_SPACING/2), 0.0, .25) #
 			turn_icons[i].amount.text = str(turn_icons[i].turn.recovery_time)
