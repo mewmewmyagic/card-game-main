@@ -1,4 +1,3 @@
-# CardAnimator.gd
 class_name TurnOrderIconAnimator
 extends Node
 
@@ -24,5 +23,4 @@ func move_to(target_position: Vector2, target_rotation: float = 0.0 , duration: 
 	_active_tween.set_ease(ease_type)
 	_active_tween.tween_property(turn_icon, "position", target_position, d)
 	_active_tween.parallel().tween_property(turn_icon, "rotation_degrees", target_rotation, d)
-	_active_tween.finished
 	_active_tween.finished.connect(func(): is_animating = false)

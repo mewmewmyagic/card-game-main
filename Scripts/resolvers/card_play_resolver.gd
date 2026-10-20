@@ -14,12 +14,10 @@ func _on_player_card_play_requested(card: Card, source: Combatant, target: Comba
 	
 func validate_card(context: CardEffectContext) -> bool:
 	if not can_play(context.card, context.source):
-		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
 		EventBus.card_play_rejected.emit()
 		return false
 		
 	if not is_valid_target(context):
-		#context.source.hand_pile.card_pile_size_changed.emit(context.source.hand_pile.cards.size())
 		EventBus.card_play_rejected.emit()
 		return false
 		
@@ -28,6 +26,7 @@ func validate_card(context: CardEffectContext) -> bool:
 func resolve(context: CardEffectContext) -> void:
 	if (validate_card(context) == false):
 		return
+	
 	
 	context.source.stats.stamina -= context.card.stamina_cost
 	context.source.play_skill_animation(context.card)
@@ -42,14 +41,14 @@ func resolve(context: CardEffectContext) -> void:
 	
 	battle.turn_manager._add_recovery_cost(context.card.recovery_cost)
 	
-	battle.turn_manager.end_turn()
+	battle.turn_manager.output_phase()
 	
 	
 func can_afford(card: Card, source: Combatant) -> bool:
 	return source.stats.enough_stamina(card)
 
 func can_play(card: Card, source: Combatant) -> bool:
-	if not source.is_current_turn:
+	if not source.is_playing:
 		return false
 
 	return can_afford(card, source)

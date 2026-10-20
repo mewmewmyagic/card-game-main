@@ -13,15 +13,14 @@ extends CanvasLayer
 func _ready() -> void:
 	turn_ui.bind(battle_state.turn_manager)
 
-	#signals to make hand not playable in between turns
-	EventBus.turn_started.connect(the_hand_ui._update_interactability_ui)
-	EventBus.turn_ended.connect(the_hand_ui._update_interactability_ui)
+	EventBus.turn_stage_changed.connect(the_hand_ui._update_interactability_ui)
 	
 	battle_state.turn_manager.turn_started.connect(_on_different_ally_turn_started)
 
 func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	if combatant.ai_behavior:
 		return
+	
 	the_hand_ui.bind(battle_state.card_play_manager, combatant)
 	stamina_ui.bind(combatant.stats)
 	draw_pile_ui.bind(combatant.draw_pile)

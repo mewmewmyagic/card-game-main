@@ -9,7 +9,7 @@ signal ally_turn_started(combatant: Combatant)
 signal turn_ended(combatant: Combatant)
 
 signal turn_order_changed
-signal decision_made(play: Card)
+signal decision_made
 
 enum Stage {START, INPUT, OUTPUT, END}
 
@@ -72,22 +72,29 @@ func start_turn() -> void:
 	input_phase()
 
 func input_phase() -> void:
-	if not current_turn.combatant.ai_behavior:
-		ally_turn_started.emit(current_turn)
+	current_turn.combatant.is_playing = true
+	_set_stage(Stage.INPUT)
+	
+	if current_turn.combatant.ai_behavior:
 		current_turn.combatant.take_ai_turn(battle)
 	else:
-		output_phase()
+		ally_turn_started.emit(current_turn.combatant) #this is fucking useless
+	
 	
 func output_phase() -> void:
-	current_turn.combatant.take_ai_turn(battle)
+	current_turn.combatant.is_playing = false
+	_set_stage(Stage.OUTPUT)
+	
+	await current_turn.combatant.anim_done
+	
+	end_turn()
 
 func end_turn() -> void:
 	_set_stage(Stage.END)
+	
 	current_turn.combatant._on_self_turn_ended()
 	EventBus.turn_ended.emit()
 	turn_ended.emit(current_turn.combatant)
-	
-	await current_turn.combatant.anim_done
 	
 	if _round_over():
 		round_ended.emit()
@@ -137,6 +144,7 @@ func _add_recovery_cost(rc: int) -> void:
 	
 func _set_stage(new_stage: Stage):
 	stage = new_stage
+	EventBus.turn_stage_changed.emit()
 #TODO
 #run turn, where it executes start turn, waits for your bullshit (picking a card, executing effects, etc), and ends turn
 #action queue, but it seems fucking complicated with little gain

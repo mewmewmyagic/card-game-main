@@ -41,5 +41,5 @@ func _on_hold_complete() -> void:
 	prog_bar.hide()
 	if parent and parent.is_current_turn:
 		parent.discard_hand()
-		parent.battle_state.turn_manager.end_turn()
+		parent.battle_state.turn_manager.output_phase()
 		parent.play_other_animation()

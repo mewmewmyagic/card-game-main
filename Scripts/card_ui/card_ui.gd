@@ -23,7 +23,7 @@ var playable: bool = true:
 		playable = value
 		_update_playable_visuals()
 		
-func set_interactable_ui(value: bool) -> void:
+func set_interactable(value: bool) -> void:
 	playable = value
 	
 func _update_playable_visuals() -> void:

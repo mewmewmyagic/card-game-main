@@ -17,14 +17,15 @@ signal anim_done
 @export var appearance: CombatantSpriteResource
 @onready var sprite_2d: CombatantAnimationPlayer = $AnimatedSprite2D
 
-@onready var skill_container: HandDisplay = $HandDisplay as HandDisplay
-@onready var stats_ui: CombatantStatsUI = $StatsUI as CombatantStatsUI
+@export var skill_container: HandDisplay
+@export var stats_ui: CombatantStatsUI
 
 var draw_pile: CardPile = CardPile.new()
 var discard_pile: CardPile = CardPile.new()
 var hand_pile: CardPile = CardPile.new()
 
 var is_current_turn: bool = false
+var is_playing: bool = false
 var is_dead: bool = false
 	
 	

@@ -10,3 +10,4 @@ signal turn_end_request()
 #Turns
 signal turn_ended
 signal turn_started
+signal turn_stage_changed

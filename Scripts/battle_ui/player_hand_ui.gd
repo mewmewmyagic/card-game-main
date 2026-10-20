@@ -33,10 +33,8 @@ func bind(resolver: CardPlayManager, source: Combatant) -> void:
 	card_play_manager = resolver
 	source_combatant = source
 	hand_pile.card_pile_size_changed.connect(_on_pile_changed)
-	source_combatant.stats.stamina_changed.connect(_on_stamina_changed)
 	
 	_sync()
-	_update_interactability_ui()
 	
 func _unbind() -> void:
 	if hand_pile and hand_pile.card_pile_size_changed.is_connected(_on_pile_changed):
@@ -49,12 +47,12 @@ func _unbind() -> void:
 		_despawn_card(card)
 
 func _on_stamina_changed(_new_stamina: int) -> void:
-	_update_interactability_ui()
+	pass
 
 func _update_interactability_ui() -> void:
 	for card_ui in card_to_ui.values():
-		var playable := card_play_manager.can_play(card_ui.card, source_combatant)
-		card_ui.set_interactable_ui(playable)
+		var playable = card_play_manager.can_play(card_ui.card, source_combatant)
+		card_ui.set_interactable(playable)
 
 func _on_pile_changed(_count: int) -> void:
 	_sync()
