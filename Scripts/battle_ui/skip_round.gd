@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 		prog_bar.value = progress * 100
 
 func _on_button_down() -> void:
-	if parent and parent.is_current_turn:
+	if parent and parent.is_playing:
 		
 		prog_bar.value = 0;
 		prog_bar.show()
