@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0qp458spkt0j" path="res://scenes/OverWorld.gd" id="1_g8o4n"]
 [ext_resource type="PackedScene" uid="uid://cccii5uivi4fi" path="res://scenes/player_character.tscn" id="1_mk5rj"]
-[ext_resource type="Script" uid="uid://bdndugt6hkyvs" path="res://scenes/CombatTriggerArea.gd" id="2_knp7x"]
+[ext_resource type="Script" uid="uid://bdndugt6hkyvs" path="res://scenes/combat_trigger_area.gd" id="2_knp7x"]
 [ext_resource type="Texture2D" uid="uid://dne4ti104n0a1" path="res://Textures/Screenshot 2026-09-27 120525.png" id="4_vsipq"]
 [ext_resource type="Texture2D" uid="uid://b82reey63v0bj" path="res://Textures/RicardoSprites/skill2_1.png" id="5_vsipq"]
 [ext_resource type="Texture2D" uid="uid://dmff8w32asch2" path="res://Textures/Backgrounds/ffff.png" id="6_wr2b7"]

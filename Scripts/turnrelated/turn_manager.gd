@@ -1,6 +1,8 @@
 class_name TurnManager
 extends RefCounted
 
+enum Stage {START, INPUT, OUTPUT, END}
+
 signal round_started()
 signal round_ended
 
@@ -10,8 +12,6 @@ signal turn_ended(combatant: Combatant)
 
 signal turn_order_changed
 signal decision_made
-
-enum Stage {START, INPUT, OUTPUT, END}
 
 var battle: BattleState
 var combatants: Array[Combatant] = []

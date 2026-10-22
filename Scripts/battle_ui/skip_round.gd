@@ -26,7 +26,6 @@ func _process(_delta: float) -> void:
 
 func _on_button_down() -> void:
 	if parent and parent.is_playing:
-		
 		prog_bar.value = 0;
 		prog_bar.show()
 		hold_timer.start()
@@ -39,7 +38,7 @@ func _on_button_up() -> void:
 
 func _on_hold_complete() -> void:
 	prog_bar.hide()
-	if parent and parent.is_current_turn:
+	if parent:
 		parent.discard_hand()
 		parent.battle_state.turn_manager.output_phase()
 		parent.play_other_animation()

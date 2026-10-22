@@ -12,7 +12,7 @@ var is_animating: bool = false
 func init(icon: Control) -> void:
 	turn_icon = icon
 
-func move_to(target_position: Vector2, target_rotation: float = 0.0 , duration: float = -1.0) -> void:
+func move_to(target_position: Vector2, target_rotation: float = 0.0, duration: float = -1.0) -> void:
 	if _active_tween and _active_tween.is_valid():
 		_active_tween.kill()
 	is_animating = true

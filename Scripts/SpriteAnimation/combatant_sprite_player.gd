@@ -14,7 +14,7 @@ func play_card_animation(anim_name: String) -> void:
 	if sprite_frames and sprite_frames.has_animation(anim_name):
 		play(anim_name)
 	else:
-		print("no sprite frame or animation")
+		push_error("no sprite frame or animation")
 
 func _on_animation_finished() -> void:
 	if animation == _idle_animation:

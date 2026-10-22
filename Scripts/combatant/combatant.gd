@@ -30,10 +30,10 @@ var is_dead: bool = false
 	
 	
 func _on_self_turn_started() -> void:
-	is_current_turn = true
-		
+	pass
+	
 func _on_self_turn_ended() -> void:
-	is_current_turn = false
+	pass
 
 func _ready() -> void:
 	sprite_2d.bind(appearance)
