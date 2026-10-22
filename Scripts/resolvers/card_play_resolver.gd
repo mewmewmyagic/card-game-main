@@ -29,10 +29,10 @@ func resolve(context: CardEffectContext) -> void:
 	
 	
 	context.source.stats.stamina -= context.card.stamina_cost
-	context.source.play_skill_animation(context.card)
+	context.battle.action_queue.push_back(AnimationAction.create(context.source, context.card))
 	
 	for effect in context.card.effects:
-		effect.execute(context)
+		context.battle.action_queue.push_back(CardEffectAction.create(effect, context))
 	
 	context.source.card_played.emit(context.card)
 	

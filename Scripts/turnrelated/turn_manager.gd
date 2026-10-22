@@ -85,7 +85,7 @@ func output_phase() -> void:
 	current_turn.combatant.is_playing = false
 	_set_stage(Stage.OUTPUT)
 	
-	await current_turn.combatant.anim_done
+	await battle.action_queue.drain()
 	
 	end_turn()
 

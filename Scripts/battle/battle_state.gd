@@ -10,6 +10,7 @@ var play_history: Array[Card] = []
 var card_play_manager: CardPlayManager
 var damage_resolver: DamageResolver
 var turn_manager: TurnManager
+var action_queue: ActionQueue
 
 func _ready() -> void:
 	card_play_manager = CardPlayManager.new()
@@ -20,6 +21,8 @@ func _ready() -> void:
 	
 	damage_resolver = DamageResolver.new()
 	damage_resolver.battle = self
+	
+	action_queue = ActionQueue.new()
 	
 	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
 	EventBus.turn_end_request.connect(turn_manager.end_turn)
