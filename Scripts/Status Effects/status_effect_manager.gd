@@ -26,7 +26,6 @@ func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 		var icon := status_effect_icon.instantiate() as StatusEffectIcon
 		icon.status = instance
 		status_effect_area.add_child(icon)
-		
 	else:
 		var existing := status_effects[status.id] as StatusEffect
 

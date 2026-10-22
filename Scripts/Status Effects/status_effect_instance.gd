@@ -14,7 +14,7 @@ var count: int = 0
 func init(c: Combatant, s: StatusEffectManager) -> void:
 	pass
 
-func trigger_status_effect() -> void:
+func proc_status_effect() -> void:
 	pass
 	
 func on_effect_applied() -> void:

@@ -9,7 +9,5 @@ static func create(p_parent: Combatant, p_card: Card) -> AnimationAction:
 	action.card = p_card
 	return action
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func execute() -> void:
 	await parent.play_skill_animation(card)

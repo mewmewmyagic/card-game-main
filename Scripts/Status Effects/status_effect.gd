@@ -20,7 +20,10 @@ var count: int = 0
 func init(_c: Combatant, _s: StatusEffectManager) -> void:
 	pass
 
-func trigger_status_effect() -> void:
+func queue_status_action() -> void:
+	target.battle_state.action_queue.push_back(StatusProcAction.create(self))
+
+func proc_status_effect() -> void:
 	pass
 	
 func on_effect_applied() -> void:

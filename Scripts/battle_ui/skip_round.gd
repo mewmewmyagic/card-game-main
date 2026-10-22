@@ -4,6 +4,7 @@ class_name SkipRoundButton
 @export var hold_time: float = 0.75
 
 var parent: Combatant
+var battle: BattleState
 @onready var hold_timer: Timer = $HoldTimer
 @onready var prog_bar: TextureProgressBar = $HoldProgressBar
 

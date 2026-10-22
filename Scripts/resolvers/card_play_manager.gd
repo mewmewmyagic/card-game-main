@@ -24,11 +24,11 @@ func validate_card(context: CardEffectContext) -> bool:
 	return true
 	
 func resolve(context: CardEffectContext) -> void:
-	if (validate_card(context) == false):
+	if not validate_card(context):
 		return
 	
-	
 	context.source.stats.stamina -= context.card.stamina_cost
+	
 	context.battle.action_queue.push_back(AnimationAction.create(context.source, context.card))
 	
 	for effect in context.card.effects:
