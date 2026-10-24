@@ -47,7 +47,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_xtcen")
 }, {
-"duration": 1.0,
+"duration": 1.7,
 "texture": ExtResource("4_3lax2")
 }, {
 "duration": 1.0,

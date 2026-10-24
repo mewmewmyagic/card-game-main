@@ -24,7 +24,7 @@ func on_effect_applied() -> void:
 	value.percent_value = stack / 10.0 # times 10 per stack divided by 100 to convert to percentage
 	modifier.add_new_value(value)
 
-func proc_status_effec(_c: Combatant) -> void:
+func proc_status_effect() -> void:
 	add_count(-1)
 	if count <= 0:
 		manager.remove_status(id)

@@ -11,7 +11,7 @@ func on_effect_removed() -> void:
 
 func proc_status_effect() -> void:
 	var damage := DamagePacket.create(stack, null, target, DamageType.Type.BLEED)
-	target.take_damage(damage)
+	DamageHandler.deal_damage(damage)
 	add_count(-1)
 	if count <= 0:
 		manager.remove_status(id)

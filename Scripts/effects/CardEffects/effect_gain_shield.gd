@@ -1,4 +1,4 @@
-class_name GainShieldEffect
+class_name EffectGainShield
 extends CardEffect
 
 @export var amount: int = 1

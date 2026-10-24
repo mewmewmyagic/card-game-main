@@ -1,4 +1,4 @@
-class_name AddCardEffect
+class_name EffectAddCard
 extends CardEffect
 
 @export var amount: int = 1

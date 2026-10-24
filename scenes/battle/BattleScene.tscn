@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqojtyf4in0y3" path="res://scenes/Combatant.tscn" id="4_0yjdt"]
 [ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/battle_ui/player_hand_ui.gd" id="4_ldu1p"]
 [ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://Scripts/combatant_characters/tourist/tourist.tres" id="6_hvhqn"]
-[ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_state.gd" id="6_q34gv"]
+[ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_manager.gd" id="6_q34gv"]
 [ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/combatant_enemy/first_playable_card.gd" id="8_emfdx"]
 [ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://SpritesAndStuffs/tourist_sprite_resource.tres" id="9_0t5w0"]
 [ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://SpritesAndStuffs/bird_sprite_resource.tres" id="9_2jvsm"]
@@ -39,26 +39,26 @@ visible = false
 position = Vector2(203, 202)
 texture = ExtResource("3_lk1r3")
 
-[node name="BattleState" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
+[node name="BattleManager" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
 allies = [NodePath("Alex"), NodePath("Bob")]
 enemies = [NodePath("Cindy")]
 next_scene = "uid://qpqkb081pr1m"
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
-[node name="Alex" parent="BattleState" unique_id=1903320986 instance=ExtResource("4_0yjdt")]
+[node name="Alex" parent="BattleManager" unique_id=1903320986 instance=ExtResource("4_0yjdt")]
 position = Vector2(102, 206.00002)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 appearance = ExtResource("9_0t5w0")
 
-[node name="Bob" parent="BattleState" unique_id=1763858510 instance=ExtResource("4_0yjdt")]
+[node name="Bob" parent="BattleManager" unique_id=1763858510 instance=ExtResource("4_0yjdt")]
 position = Vector2(195, 223)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 appearance = ExtResource("9_2jvsm")
 
-[node name="Cindy" parent="BattleState" unique_id=1047957331 instance=ExtResource("4_0yjdt")]
+[node name="Cindy" parent="BattleManager" unique_id=1047957331 instance=ExtResource("4_0yjdt")]
 position = Vector2(540.00006, 219)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
@@ -67,7 +67,7 @@ appearance = ExtResource("9_2jvsm")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui", "skip_round_ui") groups=["ui_layer"]]
 script = ExtResource("2_4f3f8")
-battle_state = NodePath("../BattleState")
+battle_state = NodePath("../BattleManager")
 the_hand_ui = NodePath("Hand")
 stamina_ui = NodePath("StaminaUI")
 turn_ui = NodePath("TurnUI")

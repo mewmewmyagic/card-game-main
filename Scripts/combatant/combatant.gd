@@ -103,19 +103,11 @@ func check_if_dead() -> void:
 	
 	
 	
-func do_damage(packet: DamagePacket) -> void:
-	packet.amount = modifier_manager.get_modified_value(packet, Modifier.Type.dmg_dealt)
-	packet.target.take_damage(packet)
-
-func take_damage(packet: DamagePacket) -> void:
-	if stats.health <= 0:
+func apply_damage(to_shield: int, to_health: int) -> void:
+	if is_dead:
 		return
-	var amount := modifier_manager.get_modified_value(packet, Modifier.Type.dmg_taken)
-	var to_shield := mini(amount, stats.shield)
 	stats.shield -= to_shield
-	stats.health -= amount - to_shield
-	
-	
+	stats.health -= to_health
 	
 func gain_shield(shield: int) -> void:
 	stats.shield += shield                

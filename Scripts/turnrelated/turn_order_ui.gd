@@ -43,7 +43,7 @@ func _despawn_icon(t: CombatantTurn) -> void:
 	
 #should be called when sort combatant has already been called. cause you know, thats how syncing works 
 func round_start() -> void:
-	var turns := turn_manager._active_turns().duplicate()
+	var turns := turn_manager.get_active_turns().duplicate()
 	
 	#loops through dict, despawn icon not in turns and unassigning it to the dict
 	for t in turn_to_ui.keys().duplicate():
@@ -59,7 +59,7 @@ func round_start() -> void:
 	_update_layout()
 	
 func sync() -> void:
-	var turns := turn_manager._active_turns().duplicate()
+	var turns := turn_manager.get_active_turns().duplicate()
 	
 	for t in turn_to_ui.keys().duplicate():
 		if not turns.has(t):

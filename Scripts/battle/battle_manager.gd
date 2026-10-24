@@ -13,8 +13,9 @@ signal ally_turn_started(combatant: Combatant)
 signal turn_ended(combatant: Combatant)
 
 var card_play_manager: CardPlayManager
-var damage_resolver: DamageResolver
 var turn_manager: TurnManager
+#var damage_handler: damage handler
+#var action_queue: actionqueue
 
 var play_history: Array[Card] = []
 var stage: Stage = Stage.START
@@ -24,9 +25,6 @@ func _ready() -> void:
 	card_play_manager.battle = self
 	
 	turn_manager = TurnManager.new()
-	
-	damage_resolver = DamageResolver.new()
-	damage_resolver.battle = self
 	
 	ActionQueue.queue.clear()
 	
@@ -65,13 +63,15 @@ func end_round() -> void:
 	start_round()
 
 func start_turn() -> void:
-	turn_manager._sort_turns()
+	turn_manager.sort_turns()
 	
-	turn_manager._next_active_turn()
+	turn_manager.set_next_active_turn()
 	_set_stage(Stage.START)
 	
 	EventBus.turn_started.emit()
 	turn_started.emit(turn_manager.current_turn.combatant)
+	
+	await ActionQueue.drain()
 	
 	input_phase()
 
@@ -98,9 +98,11 @@ func end_turn() -> void:
 	EventBus.turn_ended.emit()
 	turn_ended.emit(turn_manager.current_turn.combatant)
 	
+	await ActionQueue.drain()
+	
 	check_death()
 	
-	if turn_manager._round_over():
+	if turn_manager.round_over():
 		end_round()
 		return
 	

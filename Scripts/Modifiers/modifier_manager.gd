@@ -1,7 +1,7 @@
 extends Node
 class_name ModifierManager
 
-var _modifiers: Dictionary = {}
+var _modifiers: Dictionary = {} #Type, Modifier
 
 func _init() -> void:
 	for type in Modifier.Type.values():
@@ -16,5 +16,6 @@ func get_modified_value(damage: DamagePacket, type: Modifier.Type) -> int:
 
 	if not modifier:
 		return damage.amount
+	
 
 	return modifier.apply_modifiers(damage)
