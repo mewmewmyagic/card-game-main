@@ -2,10 +2,10 @@
 class_name EnemyAIBehavior
 extends Resource
 
-func choose_card(_enemy: Combatant, _battle: BattleState) -> Card:
+func choose_card(_enemy: Combatant, _battle: BattleManager) -> Card:
 	return null  # override
 
-func choose_target(enemy: Combatant, battle: BattleState) -> Combatant:
+func choose_target(enemy: Combatant, battle: BattleManager) -> Combatant:
 	var targets := battle.opposing_team(enemy).filter(func(c): return not c.is_dead)
 	if targets.is_empty():
 		return null

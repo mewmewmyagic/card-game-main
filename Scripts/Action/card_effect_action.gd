@@ -11,4 +11,4 @@ static func create(p_effect: CardEffect, p_context: CardEffectContext) -> CardEf
 	return action
 
 func execute() -> void:
-	await effect.execute(context)
+	effect.execute(context)

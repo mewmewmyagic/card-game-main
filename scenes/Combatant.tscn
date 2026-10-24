@@ -14,8 +14,8 @@
 [node name="Combatant" type="Node2D" unique_id=1903320986 node_paths=PackedStringArray("status_manager", "modifier_manager", "skill_container", "stats_ui") groups=["character"]]
 y_sort_enabled = true
 script = ExtResource("1_ddi1i")
-status_manager = NodePath("Managers/StatusManager")
-modifier_manager = NodePath("Managers/ModifierManager")
+status_manager = NodePath("Handlers/StatusHandler")
+modifier_manager = NodePath("Handlers/ModifierHandler")
 skill_container = NodePath("CombatantUI/HandDisplay")
 stats_ui = NodePath("CombatantUI/StatsUI")
 
@@ -23,7 +23,7 @@ stats_ui = NodePath("CombatantUI/StatsUI")
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_bhuil")
-animation = &"default_enemy"
+animation = &"stab"
 script = ExtResource("2_ddi1i")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1975118247]
@@ -32,15 +32,15 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1604127139]
 shape = SubResource("RectangleShape2D_crx7y")
 
-[node name="Managers" type="Node" parent="." unique_id=997656242]
+[node name="Handlers" type="Node" parent="." unique_id=997656242]
 
-[node name="StatusManager" type="Node" parent="Managers" unique_id=810462496 node_paths=PackedStringArray("parent", "status_effect_area")]
+[node name="StatusHandler" type="Node" parent="Handlers" unique_id=810462496 node_paths=PackedStringArray("parent", "status_effect_area")]
 script = ExtResource("5_88lpd")
 parent = NodePath("../..")
 status_effect_icon = ExtResource("6_fsa1f")
 status_effect_area = NodePath("../../CombatantUI/StatusEffectDisplay")
 
-[node name="ModifierManager" type="Node" parent="Managers" unique_id=1067453016]
+[node name="ModifierHandler" type="Node" parent="Handlers" unique_id=1067453016]
 script = ExtResource("6_sga3o")
 metadata/_custom_type_script = "uid://ca7xr68felq2v"
 

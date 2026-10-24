@@ -1,7 +1,7 @@
 class_name DamageResolver
 extends RefCounted
 
-var battle: BattleState
+var battle: BattleManager
 
 func resolve(damage: DamagePacket) -> int:
 	if damage.source != null:
@@ -9,6 +9,6 @@ func resolve(damage: DamagePacket) -> int:
 		
 	if damage.target != null:
 		damage.amount = damage.target.modifier_manager.get_modified_value(damage, Modifier.Type.dmg_taken)
-		damage.target.take_damage(damage.amount)
+		#damage.target.take_damage(damage.amount)
 	
 	return damage.amount

@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name HasteStatusEffect
 
-func init(_target: Combatant, _manager: StatusEffectManager) -> void:
+func init(_target: Combatant, _manager: StatusEffectHandler) -> void:
 	target = _target
 	manager = _manager
 	EventBus.turn_ended.connect(proc_status_effect)

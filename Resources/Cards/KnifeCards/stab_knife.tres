@@ -29,7 +29,7 @@ metadata/_custom_type_script = "uid://d214ayipywbee"
 [resource]
 script = ExtResource("5_2j7q1")
 card_name = "Stab"
-stamina_cost = 9
+stamina_cost = 5
 recovery_cost = 7
 effects = Array[ExtResource("1_mcvat")]([SubResource("Resource_hyd8b"), SubResource("Resource_5mi8n"), SubResource("Resource_dqdv4")])
 card_art = ExtResource("1_4dgue")

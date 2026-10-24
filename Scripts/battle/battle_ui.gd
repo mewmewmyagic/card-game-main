@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var battle_state: BattleState
+@export var battle_state: BattleManager
 @export var the_hand_ui: PlayerHand
 @export var stamina_ui: StaminaUI
 @export var turn_ui: TurnOrderUI
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 	EventBus.turn_stage_changed.connect(the_hand_ui._update_interactability_ui)
 	
-	battle_state.turn_manager.turn_started.connect(_on_different_ally_turn_started)
+	battle_state.turn_started.connect(_on_different_ally_turn_started)
 
 func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	if combatant.ai_behavior:
@@ -25,7 +25,7 @@ func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	stamina_ui.bind(combatant.stats)
 	draw_pile_ui.bind(combatant.draw_pile)
 	discard_pile_ui.bind(combatant.discard_pile)
-	skip_round_ui.bind(combatant)
+	skip_round_ui.bind(combatant, battle_state)
 	
 func unbind_all() -> void:
 	the_hand_ui._unbind()

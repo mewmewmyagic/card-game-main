@@ -1,28 +1,32 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://druu3xurtnyka"]
 
-[ext_resource type="Texture2D" uid="uid://cmcoc2wqk5dvl" path="res://Textures/skill2_2.png" id="2_lqe6o"]
-[ext_resource type="Texture2D" uid="uid://b5m5ry1nfbna" path="res://Textures/skill2_8.png" id="6_0yn1f"]
-[ext_resource type="Texture2D" uid="uid://dr7w7j7nwdsvn" path="res://Textures/skill2_9.png" id="7_rq5b1"]
-[ext_resource type="Texture2D" uid="uid://c88umxyyirnvu" path="res://Textures/skill2_10.png" id="8_qk80h"]
-[ext_resource type="Texture2D" uid="uid://4va4d6a231f8" path="res://Textures/skill2_11.png" id="9_8qevs"]
+[ext_resource type="Texture2D" uid="uid://cmcoc2wqk5dvl" path="res://Textures/ValencinaSprites/skill1/skill2_2.png" id="1_imkrc"]
+[ext_resource type="Texture2D" uid="uid://b5m5ry1nfbna" path="res://Textures/ValencinaSprites/skill1/skill2_8.png" id="2_0ba5p"]
+[ext_resource type="Texture2D" uid="uid://dr7w7j7nwdsvn" path="res://Textures/ValencinaSprites/skill1/skill2_9.png" id="3_tf6ir"]
+[ext_resource type="Texture2D" uid="uid://c88umxyyirnvu" path="res://Textures/ValencinaSprites/skill1/skill2_10.png" id="4_3lax2"]
+[ext_resource type="Texture2D" uid="uid://4va4d6a231f8" path="res://Textures/ValencinaSprites/skill1/skill2_11.png" id="5_pp48m"]
+[ext_resource type="Texture2D" uid="uid://h67qgv657kvl" path="res://Textures/ValencinaSprites/skill2/skill1_2.png" id="6_ush25"]
+[ext_resource type="Texture2D" uid="uid://ccfbpg6mi82aq" path="res://Textures/ValencinaSprites/skill2/skill1_3.png" id="7_xtcen"]
+[ext_resource type="Texture2D" uid="uid://nugrjs5pc6xa" path="res://Textures/ValencinaSprites/skill2/skill1_4.png" id="8_tgyhe"]
+[ext_resource type="Texture2D" uid="uid://bkhem0pbbrq1q" path="res://Textures/ValencinaSprites/skill2/skill1_5.png" id="9_hck8k"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lqe6o")
+"texture": ExtResource("1_imkrc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_0yn1f")
+"texture": ExtResource("2_0ba5p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_rq5b1")
+"texture": ExtResource("3_tf6ir")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_qk80h")
+"texture": ExtResource("4_3lax2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_8qevs")
+"texture": ExtResource("5_pp48m")
 }],
 "loop": 0,
 "name": &"default_enemy",
@@ -30,9 +34,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lqe6o")
+"texture": ExtResource("1_imkrc")
 }],
 "loop": 0,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ush25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xtcen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3lax2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tgyhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hck8k")
+}],
+"loop": 0,
+"name": &"stab",
 "speed": 5.0
 }]

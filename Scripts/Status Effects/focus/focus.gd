@@ -1,13 +1,13 @@
 extends StatusEffect
 class_name FocusStatusEffect
 
-func init(_target: Combatant, _manager: StatusEffectManager) -> void:
+func init(_target: Combatant, _manager: StatusEffectHandler) -> void:
 	target = _target
 	manager = _manager
 	self.stack_changed.connect(queue_status_action)
 	target.card_played.connect(_reduce_count)
 	
-func on_remove() -> void:
+func on_effect_removed() -> void:
 	var modifier := target.modifier_manager.get_modifier(Modifier.Type.dmg_dealt) as Modifier
 	modifier.remove_value("focus")
 	self.stack_changed.disconnect(queue_status_action)

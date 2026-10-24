@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EventBus="*uid://cje4bfrxoeqty"
 SceneLoader="*uid://ufcg0t6u4pcs"
+ActionQueue="*uid://7kmyi8csidos"
 
 [display]
 

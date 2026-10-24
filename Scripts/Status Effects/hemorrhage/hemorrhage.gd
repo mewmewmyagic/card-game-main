@@ -1,19 +1,21 @@
 extends StatusEffect
 class_name HemorrhageStatusEffect
 
-func init(_target: Combatant, _manager: StatusEffectManager) -> void:
+func init(_target: Combatant, _manager: StatusEffectHandler) -> void:
 	target = _target
 	manager = _manager
-	self.stack_changed.connect(proc_status_effect)
-	target.battle_state.turn_manager.turn_ended.connect(_reduce_count)
 	
-func on_remove() -> void:
+	self.stack_changed.connect(on_effect_applied)
+	EventBus.turn_ended.connect(queue_status_action)
+	
+func on_effect_removed() -> void:
 	var modifier := target.modifier_manager.get_modifier(Modifier.Type.dmg_taken) as Modifier
 	modifier.remove_value(self.id)
-	self.stack_changed.disconnect(proc_status_effect)
-	target.battle_state.turn_manager.turn_ended.disconnect(_reduce_count)
+	
+	self.stack_changed.disconnect(on_effect_applied)
+	EventBus.turn_ended.disconnect(queue_status_action)
 
-func proc_status_effect() -> void:
+func on_effect_applied() -> void:
 	var modifier := target.modifier_manager.get_modifier(Modifier.Type.dmg_taken) as Modifier
 	var value := modifier.get_value(self.id)
 	if not value:
@@ -22,7 +24,7 @@ func proc_status_effect() -> void:
 	value.percent_value = stack / 10.0 # times 10 per stack divided by 100 to convert to percentage
 	modifier.add_new_value(value)
 
-func _reduce_count(_c: Combatant) -> void:
+func proc_status_effec(_c: Combatant) -> void:
 	add_count(-1)
 	if count <= 0:
 		manager.remove_status(id)

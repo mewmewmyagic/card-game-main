@@ -4,21 +4,20 @@ extends Resource
 @export var sprite_frames: SpriteFrames
 @export var combatant_icon: Texture2D
 
-var idle_animation: String = "idle" #hopefully never happens
+var idle_animation: String = "idle"
 
 func get_animation_for_card(card: Card) -> StringName:
 	if card != null:
 		var type_name: String = Card.TargetType.keys()[card.target_type].to_lower()
-		for anim in [
-			StringName(card.card_name),                           
-			StringName("default_" + type_name),                   
-		]:
-			if is_usable(anim):
-				return anim
+		
+		if has_animation(StringName(card.card_name.to_lower())):
+			return StringName(card.card_name.to_lower())
+		if has_animation(StringName("default_" + type_name)):
+			return StringName("default_" + type_name)
 
 	return StringName(idle_animation)
 
-func is_usable(anim: StringName) -> bool:
+func has_animation(anim: StringName) -> bool:
 	if sprite_frames != null and sprite_frames.has_animation(anim):
 		return true
 	return false

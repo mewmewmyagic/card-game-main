@@ -1,5 +1,5 @@
-extends RefCounted
-class_name ActionQueue
+#this is an autoload
+extends Node
 
 var queue: Array[BattleAction]
 

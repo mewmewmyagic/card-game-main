@@ -4,5 +4,5 @@ extends CardEffect
 @export var amount: int = 1
 
 func execute(context: CardEffectContext) -> void:
-	if context.battle:
+	if context:
 		context.source.draw_to_hand()

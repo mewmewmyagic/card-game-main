@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4va4d6a231f8"
-path="res://.godot/imported/skill2_11.png-0c8b860f8bb8454b855ef62852fca43e.ctex"
+uid="uid://cmcoc2wqk5dvl"
+path="res://.godot/imported/skill2_2.png-e0feb4c2abf6bd0648270ea9e700828d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/skill2_11.png"
-dest_files=["res://.godot/imported/skill2_11.png-0c8b860f8bb8454b855ef62852fca43e.ctex"]
+source_file="res://Textures/ValencinaSprites/skill1/skill2_2.png"
+dest_files=["res://.godot/imported/skill2_2.png-e0feb4c2abf6bd0648270ea9e700828d.ctex"]
 
 [params]
 

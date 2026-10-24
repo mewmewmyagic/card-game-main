@@ -1,5 +1,5 @@
 extends Node
-class_name StatusEffectManager
+class_name StatusEffectHandler
 
 #the way status' work in this is that theres a resource for shit like id and max count etc and a .gd for logic
 #each status connects to what event triggers it
@@ -26,11 +26,15 @@ func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 		var icon := status_effect_icon.instantiate() as StatusEffectIcon
 		icon.status = instance
 		status_effect_area.add_child(icon)
+		
+		instance.on_effect_applied()
 	else:
 		var existing := status_effects[status.id] as StatusEffect
 
 		existing.add_count(count)
 		existing.add_stack(stack)
+		
+		existing.on_effect_applied()
 
 func remove_status(id: String) -> void:
 	if not status_effects.has(id):

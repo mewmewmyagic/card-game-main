@@ -1,11 +1,10 @@
 class_name CardPlayManager
 extends RefCounted
 
-var battle: BattleState
+var battle: BattleManager
 
 func _on_player_card_play_requested(card: Card, source: Combatant, target: Combatant) -> void:
 	var card_play_context = CardEffectContext.new()
-	card_play_context.battle = battle
 	card_play_context.source = source
 	card_play_context.card = card
 	card_play_context.target = target
@@ -29,10 +28,10 @@ func resolve(context: CardEffectContext) -> void:
 	
 	context.source.stats.stamina -= context.card.stamina_cost
 	
-	context.battle.action_queue.push_back(AnimationAction.create(context.source, context.card))
+	ActionQueue.push_back(AnimationAction.create(context.source, context.card))
 	
 	for effect in context.card.effects:
-		context.battle.action_queue.push_back(CardEffectAction.create(effect, context))
+		ActionQueue.push_back(CardEffectAction.create(effect, context))
 	
 	context.source.card_played.emit(context.card)
 	
@@ -41,7 +40,7 @@ func resolve(context: CardEffectContext) -> void:
 	
 	battle.turn_manager._add_recovery_cost(context.card.recovery_cost)
 	
-	battle.turn_manager.output_phase()
+	battle.output_phase()
 	
 	
 func can_afford(card: Card, source: Combatant) -> bool:

@@ -8,6 +8,8 @@ signal card_ui_play_rejected(card_ui: HandCardUI)  # UI-specific, see below
 signal turn_end_request()
 
 #Turns
+signal round_started
+signal round_ended
 signal turn_ended
 signal turn_started
 signal turn_stage_changed

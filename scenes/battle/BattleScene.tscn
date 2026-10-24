@@ -46,29 +46,23 @@ enemies = [NodePath("Cindy")]
 next_scene = "uid://qpqkb081pr1m"
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
-[node name="Alex" parent="BattleState" unique_id=1903320986 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Alex" parent="BattleState" unique_id=1903320986 instance=ExtResource("4_0yjdt")]
 position = Vector2(102, 206.00002)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
-combatant_name = ""
-battle_state = NodePath("..")
 appearance = ExtResource("9_0t5w0")
 
-[node name="Bob" parent="BattleState" unique_id=1763858510 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Bob" parent="BattleState" unique_id=1763858510 instance=ExtResource("4_0yjdt")]
 position = Vector2(195, 223)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
-combatant_name = ""
-battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
-[node name="Cindy" parent="BattleState" unique_id=1047957331 node_paths=PackedStringArray("battle_state") instance=ExtResource("4_0yjdt")]
+[node name="Cindy" parent="BattleState" unique_id=1047957331 instance=ExtResource("4_0yjdt")]
 position = Vector2(540.00006, 219)
 scale = Vector2(0.2, 0.2)
 stats = ExtResource("6_hvhqn")
 ai_behavior = SubResource("Resource_rfwfw")
-combatant_name = ""
-battle_state = NodePath("..")
 appearance = ExtResource("9_2jvsm")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_state", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui", "skip_round_ui") groups=["ui_layer"]]

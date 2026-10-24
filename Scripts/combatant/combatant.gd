@@ -9,10 +9,8 @@ signal anim_done
 @export var ai_behavior: EnemyAIBehavior
 @export var combatant_name: String
 
-@export var status_manager: StatusEffectManager
+@export var status_manager: StatusEffectHandler
 @export var modifier_manager: ModifierManager
-
-@export var battle_state: BattleState
 
 @export var appearance: CombatantSpriteResource
 @onready var sprite_2d: CombatantAnimationPlayer = $AnimatedSprite2D
@@ -103,16 +101,22 @@ func check_if_dead() -> void:
 	if stats.health <= 0:
 		_die()
 	
-func take_damage(damage: int) ->void:
-	if (stats.health <= 0):
-		return
 	
-	var damage_to_shield := int(min(damage, stats.shield))
-	var damage_to_health := damage - damage_to_shield
+	
+func do_damage(packet: DamagePacket) -> void:
+	packet.amount = modifier_manager.get_modified_value(packet, Modifier.Type.dmg_dealt)
+	packet.target.take_damage(packet)
 
-	stats.shield -= damage_to_shield
-	stats.health -= damage_to_health
-
+func take_damage(packet: DamagePacket) -> void:
+	if stats.health <= 0:
+		return
+	var amount := modifier_manager.get_modified_value(packet, Modifier.Type.dmg_taken)
+	var to_shield := mini(amount, stats.shield)
+	stats.shield -= to_shield
+	stats.health -= amount - to_shield
+	
+	
+	
 func gain_shield(shield: int) -> void:
 	stats.shield += shield                
 
@@ -136,7 +140,7 @@ func play_other_animation() -> void:
 	
 	
 #TODO i dont want this here bruh
-func take_ai_turn(battle: BattleState) -> void:
+func take_ai_turn(battle: BattleManager) -> void:
 	if ai_behavior == null:
 		return
 	var card := ai_behavior.choose_card(self, battle)

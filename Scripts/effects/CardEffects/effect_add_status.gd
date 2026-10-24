@@ -6,5 +6,5 @@ extends CardEffect
 @export var count: int
 
 func execute(context: CardEffectContext) -> void:
-	if context.battle:
+	if context:
 		context.target.status_manager.apply_status(status, stack, count)

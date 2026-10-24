@@ -7,11 +7,11 @@ signal stack_changed
 @export var status_effect_resource: StatusEffect
 
 var target: Combatant
-var manager: StatusEffectManager
+var manager: StatusEffectHandler
 var stack: int = 0
 var count: int = 0
 
-func init(c: Combatant, s: StatusEffectManager) -> void:
+func init(c: Combatant, s: StatusEffectHandler) -> void:
 	pass
 
 func proc_status_effect() -> void:

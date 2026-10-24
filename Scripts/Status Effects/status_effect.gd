@@ -13,15 +13,15 @@ signal removed
 @export var max_count: int = 1
 
 var target: Combatant
-var manager: StatusEffectManager
+var manager: StatusEffectHandler
 var stack: int = 0
 var count: int = 0
 
-func init(_c: Combatant, _s: StatusEffectManager) -> void:
+func init(_c: Combatant, _s: StatusEffectHandler) -> void:
 	pass
 
 func queue_status_action() -> void:
-	target.battle_state.action_queue.push_back(StatusProcAction.create(self))
+	ActionQueue.push_back(StatusProcAction.create(self))
 
 func proc_status_effect() -> void:
 	pass

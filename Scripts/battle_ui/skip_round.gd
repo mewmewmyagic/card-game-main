@@ -4,12 +4,13 @@ class_name SkipRoundButton
 @export var hold_time: float = 0.75
 
 var parent: Combatant
-var battle: BattleState
+var battle: BattleManager
 @onready var hold_timer: Timer = $HoldTimer
 @onready var prog_bar: TextureProgressBar = $HoldProgressBar
 
-func bind(c: Combatant) -> void:
+func bind(c: Combatant, b: BattleManager) -> void:
 	parent = c
+	battle = b
 
 func _ready() -> void:
 	hold_timer.wait_time = hold_time
@@ -41,5 +42,5 @@ func _on_hold_complete() -> void:
 	prog_bar.hide()
 	if parent:
 		parent.discard_hand()
-		parent.battle_state.turn_manager.output_phase()
+		battle.output_phase()
 		parent.play_other_animation()
