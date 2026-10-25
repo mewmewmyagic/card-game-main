@@ -11,6 +11,7 @@ enum Stage {START, INPUT, OUTPUT, END}
 signal turn_started(combatant: Combatant)
 signal ally_turn_started(combatant: Combatant)
 signal turn_ended(combatant: Combatant)
+signal battle_ended
 
 var card_play_manager: CardPlayManager
 var turn_manager: TurnManager
@@ -63,6 +64,10 @@ func end_round() -> void:
 	start_round()
 
 func start_turn() -> void:
+	if turn_manager.round_over(): #no ones active for some reason
+		await end_battle()      
+		return
+	
 	turn_manager.sort_turns()
 	
 	turn_manager.set_next_active_turn()
@@ -100,7 +105,8 @@ func end_turn() -> void:
 	
 	await ActionQueue.drain()
 	
-	check_death()
+	if battle_is_over():
+		await end_battle()
 	
 	if turn_manager.round_over():
 		end_round()
@@ -128,14 +134,15 @@ func same_team(c: Combatant) -> Array[Combatant]:
 		return allies
 	return enemies
 	
-func check_death() -> void:
+func battle_is_over() -> bool:
 	var allies_alive := allies.any(func(c): return not c.is_dead)
 	var enemies_alive := enemies.any(func(c): return not c.is_dead)
-	
-	if allies_alive and enemies_alive:
-		return
-		
-	if next_scene != null:
+	return not (allies_alive and enemies_alive)
+
+func end_battle() -> void:
+	battle_ended.emit()
+	await ActionQueue.drain()
+	if not next_scene.is_empty():
 		SceneLoader.load_scene(next_scene)
 
 func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> void:

@@ -45,7 +45,8 @@ func _unbind() -> void:
 	source_combatant = null
 	for card in card_to_ui.keys().duplicate():
 		_despawn_card(card)
-
+ 
+	
 func _on_stamina_changed(_new_stamina: int) -> void:
 	pass
 
@@ -58,13 +59,15 @@ func _on_pile_changed(_count: int) -> void:
 	_sync()
 
 func _sync() -> void:
-	for card in hand_pile.cards:
-		if not card_to_ui.has(card):
-			_spawn_card(card)
+	if (not hand_pile.cards.is_empty()):
+		for card in hand_pile.cards:
+			if not card_to_ui.has(card):
+				_spawn_card(card)
 	
-	for card in card_to_ui.keys().duplicate():
-		if not hand_pile.cards.has(card):
-			_despawn_card(card)
+	if (not card_to_ui.keys().is_empty()):
+		for card in card_to_ui.keys().duplicate():
+			if not hand_pile.cards.has(card):
+				_despawn_card(card)
 	
 	_refresh_cards()
 	_update_layout()
@@ -84,8 +87,9 @@ func _despawn_card(card: Card) -> void:
 
 func _refresh_cards() -> void:
 	cards.clear()
-	for card_ui in card_to_ui.values():
-		cards.append(card_ui)
+	if (not card_to_ui.values().is_empty()):
+		for card_ui in card_to_ui.values():
+			cards.append(card_ui)
 
 func request_relayout() -> void:
 	_update_layout()

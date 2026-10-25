@@ -16,6 +16,7 @@ func _ready() -> void:
 	EventBus.turn_stage_changed.connect(the_hand_ui._update_interactability_ui)
 	
 	battle_state.turn_started.connect(_on_different_ally_turn_started)
+	battle_state.battle_ended.connect(hide_all)
 
 func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	if combatant.ai_behavior:
@@ -32,3 +33,11 @@ func unbind_all() -> void:
 	stamina_ui.unbind()
 	draw_pile_ui.unbind()
 	discard_pile_ui.unbind()
+	
+func hide_all() -> void:
+	the_hand_ui.hide()
+	stamina_ui.hide()
+	draw_pile_ui.hide()
+	discard_pile_ui.hide()
+	skip_round_ui.hide()
+	turn_ui.hide()
