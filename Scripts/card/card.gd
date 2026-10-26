@@ -3,11 +3,12 @@ extends Resource
 
 
 enum TargetType {
-	ENEMY,
-	ALLY,
 	SELF,
+	ENEMY,
 	ALL_ENEMY,
-	RANDOM_ENEMY
+	ALLY,
+	ALL_ALLY,
+	ALL
 }
 
 enum CardType {

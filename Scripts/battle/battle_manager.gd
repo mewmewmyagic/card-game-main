@@ -4,6 +4,8 @@ extends Node
 #_ready() must run before battle uis ready(), aka battle state is in higher order of the scene tree
 @export var allies: Array[Combatant]
 @export var enemies: Array[Combatant]
+@export var neutral: Array[Combatant]
+
 @export_file("*.tscn") var next_scene: String
 
 enum Stage {START, INPUT, OUTPUT, END}
@@ -15,17 +17,19 @@ signal battle_ended
 
 var card_play_manager: CardPlayManager
 var turn_manager: TurnManager
+var battle_state: BattleState
 #var damage_handler: damage handler
 #var action_queue: actionqueue
 
-var play_history: Array[Card] = []
 var stage: Stage = Stage.START
 
 func _ready() -> void:
-	card_play_manager = CardPlayManager.new()
-	card_play_manager.battle = self
-	
 	turn_manager = TurnManager.new()
+	battle_state = BattleState.new()
+	
+	card_play_manager = CardPlayManager.new()
+	card_play_manager.battle_state = battle_state
+	card_play_manager.battle_manager = self
 	
 	ActionQueue.queue.clear()
 	
@@ -33,14 +37,18 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	
-	for c in allies:
+	battle_state.allies = allies
+	battle_state.enemies = enemies
+	battle_state.neutral = neutral
+	
+	for c in battle_state.allies:
 		c.sprite_2d.scale.x *= -1
 		
 	start_round()
 
 #currently, since round sort round directly sorts the combatants array, 
 func start_round() -> void:
-	for c in all_combatants():
+	for c in battle_state.all_combatants():
 		c.stats.reset_stamina()
 		c.stats.reset_shield()
 		c.card_piles_handler.build_hand()
@@ -106,7 +114,7 @@ func end_turn() -> void:
 	
 	await ActionQueue.drain()
 	
-	if battle_is_over():
+	if battle_state.battle_is_over():
 		await end_battle()
 	
 	if turn_manager.round_over():
@@ -120,25 +128,6 @@ func _set_stage(new_stage: Stage):
 	stage = new_stage
 	EventBus.turn_stage_changed.emit()
 
-
-
-func all_combatants() -> Array[Combatant]:
-	return allies + enemies
-	
-func opposing_team(c: Combatant) -> Array[Combatant]:
-	if c in allies:
-		return enemies
-	return allies
-	
-func same_team(c: Combatant) -> Array[Combatant]:
-	if c in allies:
-		return allies
-	return enemies
-	
-func battle_is_over() -> bool:
-	var allies_alive := allies.any(func(c): return not c.is_dead)
-	var enemies_alive := enemies.any(func(c): return not c.is_dead)
-	return not (allies_alive and enemies_alive)
 
 func end_battle() -> void:
 	battle_ended.emit()
