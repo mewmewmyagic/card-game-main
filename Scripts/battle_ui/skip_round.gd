@@ -41,6 +41,6 @@ func _on_button_up() -> void:
 func _on_hold_complete() -> void:
 	prog_bar.hide()
 	if parent:
-		parent.discard_hand()
+		parent.card_piles_handler.discard_hand()
 		battle.output_phase()
 		parent.play_other_animation()

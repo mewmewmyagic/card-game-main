@@ -35,9 +35,8 @@ func resolve(context: CardEffectContext) -> void:
 	
 	context.source.card_played.emit(context.card)
 	
-	context.source.hand_pile.remove_card(context.card)
-	context.source.discard_pile.add_card(context.card)
-	
+	context.source.card_piles_handler.after_card_played(context.card)
+
 	battle.turn_manager._add_recovery_cost(context.card.recovery_cost)
 	
 	battle.output_phase()

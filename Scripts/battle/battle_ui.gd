@@ -24,8 +24,8 @@ func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	
 	the_hand_ui.bind(battle_state.card_play_manager, combatant)
 	stamina_ui.bind(combatant.stats)
-	draw_pile_ui.bind(combatant.draw_pile)
-	discard_pile_ui.bind(combatant.discard_pile)
+	draw_pile_ui.bind(combatant.card_piles_handler.draw_pile)
+	discard_pile_ui.bind(combatant.card_piles_handler.discard_pile)
 	skip_round_ui.bind(combatant, battle_state)
 	
 func unbind_all() -> void:

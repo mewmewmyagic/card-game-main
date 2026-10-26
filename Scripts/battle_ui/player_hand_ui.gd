@@ -29,7 +29,7 @@ func bind(resolver: CardPlayManager, source: Combatant) -> void:
 		
 	_unbind()
 	
-	hand_pile = source.hand_pile
+	hand_pile = source.card_piles_handler.hand_pile
 	card_play_manager = resolver
 	source_combatant = source
 	hand_pile.card_pile_size_changed.connect(_on_pile_changed)

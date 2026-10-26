@@ -7,15 +7,17 @@
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
 [ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_effect_icon.tscn" id="6_fsa1f"]
 [ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_manager.gd" id="6_sga3o"]
+[ext_resource type="Script" uid="uid://b5l1pm6870olx" path="res://Scripts/card/card_piles_handler.gd" id="7_lu8df"]
 [ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://hand_display.tscn" id="8_4uuik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
-[node name="Combatant" type="Node2D" unique_id=1903320986 node_paths=PackedStringArray("status_manager", "modifier_manager", "skill_container", "stats_ui") groups=["character"]]
+[node name="Combatant" type="Node2D" unique_id=1903320986 node_paths=PackedStringArray("status_manager", "modifier_manager", "card_piles_handler", "skill_container", "stats_ui") groups=["character"]]
 y_sort_enabled = true
 script = ExtResource("1_ddi1i")
 status_manager = NodePath("Handlers/StatusHandler")
 modifier_manager = NodePath("Handlers/ModifierHandler")
+card_piles_handler = NodePath("Handlers/CardPilesHandler")
 skill_container = NodePath("CombatantUI/HandDisplay")
 stats_ui = NodePath("CombatantUI/StatsUI")
 
@@ -43,6 +45,9 @@ status_effect_area = NodePath("../../CombatantUI/StatusEffectDisplay")
 [node name="ModifierHandler" type="Node" parent="Handlers" unique_id=1067453016]
 script = ExtResource("6_sga3o")
 metadata/_custom_type_script = "uid://ca7xr68felq2v"
+
+[node name="CardPilesHandler" type="Node" parent="Handlers" unique_id=1920134723]
+script = ExtResource("7_lu8df")
 
 [node name="CombatantUI" type="Control" parent="." unique_id=2009267767]
 layout_mode = 3

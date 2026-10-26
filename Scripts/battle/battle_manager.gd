@@ -43,7 +43,7 @@ func start_round() -> void:
 	for c in all_combatants():
 		c.stats.reset_stamina()
 		c.stats.reset_shield()
-		c.build_hand()
+		c.card_piles_handler.build_hand()
 		
 		var turn := CombatantTurn.new()
 		turn.combatant = c

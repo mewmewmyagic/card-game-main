@@ -1,12 +1,12 @@
-class_name EffectDiscardRandomCard
+class_name EffectDiscardRandomCardEnemy
 extends CardEffect
 
 @export var amount: int = 1
 
 
 func execute(context: CardEffectContext) -> void:
-	var hand_pile := context.target.hand_pile
-	var discard_pile := context.target.discard_pile
+	var hand_pile := context.target.card_piles_handler.hand_pile
+	var discard_pile := context.target.card_piles_handler.discard_pile
 
 	for i in amount:
 		if hand_pile.cards.is_empty():

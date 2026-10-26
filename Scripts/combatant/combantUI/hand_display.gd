@@ -15,5 +15,5 @@ func refresh_display(_amount: int) -> void:
 	for child in get_children():
 		child.queue_free()
 	
-	for card in parent.hand_pile.cards:
+	for card in parent.card_piles_handler.hand_pile.cards:
 		spawn_icon(card)

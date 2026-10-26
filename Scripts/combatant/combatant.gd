@@ -11,6 +11,7 @@ signal anim_done
 
 @export var status_manager: StatusEffectHandler
 @export var modifier_manager: ModifierManager
+@export var card_piles_handler: CardPilesHandler
 
 @export var appearance: CombatantSpriteResource
 @onready var sprite_2d: CombatantAnimationPlayer = $AnimatedSprite2D
@@ -18,9 +19,6 @@ signal anim_done
 @export var skill_container: HandDisplay
 @export var stats_ui: CombatantStatsUI
 
-var draw_pile: CardPile = CardPile.new()
-var discard_pile: CardPile = CardPile.new()
-var hand_pile: CardPile = CardPile.new()
 
 var is_current_turn: bool = false
 var is_playing: bool = false
@@ -35,66 +33,29 @@ func _on_self_turn_ended() -> void:
 
 func _ready() -> void:
 	sprite_2d.bind(appearance)
-	build_deck()
+	card_piles_handler.setup(stats.starting_pile, stats.max_hand_size, stats.OPENING_HAND_SIZE)
 	stats = stats.create_instance()
 	stats.stats_changed.connect(check_if_dead)
 	bind()
 
+func bind() -> void:
+	stats_ui.bind(stats)
+	status_manager.parent = self
+	card_piles_handler.hand_pile.card_pile_size_changed.connect(skill_container.refresh_display)
 
-func build_deck() -> void:
-	for card in stats.starting_pile.cards:
-		draw_pile.add_card(card.duplicate())
-	draw_pile.shuffle()
-
-func discard_hand() -> void:
-	if hand_pile.empty():
-		return
-	for card in hand_pile.cards.duplicate():
-		discard_pile.add_card(card)
-	hand_pile.clear()
-	hand_pile.card_pile_size_changed.emit(hand_pile.cards.size())
-	
-#draws from draw_pile. draw_pile empty? fill it with discard pile then draw. discard empty? some stupid shit happened
-func draw_to_hand() -> void:
-	if draw_pile.empty(): 
-		if discard_pile.empty():
-			return
-		draw_pile.cards = discard_pile.cards.duplicate() 
-		discard_pile.clear() 
-		draw_pile.shuffle() 
-	var card := draw_pile.draw_card()
-	add_to_hand(card)
-
-func add_to_hand(card: Card) -> void:
-	if hand_pile.cards.size() >= stats.max_hand_size:
-		discard_pile.add_card(card)
-	else:
-		hand_pile.add_card(card)
-	
-func build_hand() -> void:
-	discard_hand() #hand gets discarded and added back to discard pile
-	for i in stats.OPENING_HAND_SIZE:
-		draw_to_hand()
-			
 func is_active_combatant() -> bool:
 	if is_dead:
 		return false
 	return has_playable_card()
 	
 func has_playable_card() -> bool:
-	if hand_pile.cards.is_empty():
+	if card_piles_handler.hand_pile.cards.is_empty():
 		return false
 		
-	for card in hand_pile.cards:
+	for card in card_piles_handler.hand_pile.cards:
 		if stats.enough_stamina(card):
 			return true
 	return false
-	
-	
-func bind() -> void:
-	stats_ui.bind(stats)
-	status_manager.parent = self
-	hand_pile.card_pile_size_changed.connect(skill_container.refresh_display)
 
 #why is this here? and why is it like this? no clue
 func check_if_dead() -> void:

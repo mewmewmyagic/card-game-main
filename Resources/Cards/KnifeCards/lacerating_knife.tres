@@ -29,8 +29,9 @@ metadata/_custom_type_script = "uid://d214ayipywbee"
 [resource]
 script = ExtResource("3_tj0li")
 card_name = "Lacerating"
+card_art = ExtResource("1_wdwki")
 stamina_cost = 3
 recovery_cost = 10
 effects = Array[ExtResource("1_dmq55")]([SubResource("Resource_hyd8b"), SubResource("Resource_5sjd4"), SubResource("Resource_y1fgs")])
-card_art = ExtResource("1_wdwki")
+after_play_type = 1
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"
