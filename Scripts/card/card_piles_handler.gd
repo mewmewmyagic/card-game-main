@@ -40,7 +40,8 @@ func draw_to_hand() -> void:
 			return
 		draw_pile.cards = discard_pile.cards.duplicate() 
 		discard_pile.clear() 
-		draw_pile.shuffle() 
+		draw_pile.shuffle()
+		
 	var card := draw_pile.draw_card()
 	add_to_hand(card)
 
@@ -51,7 +52,10 @@ func add_to_hand(card: Card) -> void:
 		hand_pile.add_card(card)
 
 func after_card_played(card: Card) -> void:
+	card_play_history.push_front(card)
+	
 	hand_pile.remove_card(card)
+	
 	if card.after_play_type == card.AfterPlayType.EXHAUST:
 		exhaust_pile.add_card(card)
 	else:
