@@ -2,6 +2,8 @@ class_name BattleManager
 extends Node
 
 #_ready() must run before battle uis ready(), aka battle state is in higher order of the scene tree
+
+#TODO 2 source of allies/enemies/neutral??
 @export var allies: Array[Combatant]
 @export var enemies: Array[Combatant]
 @export var neutral: Array[Combatant]
@@ -29,6 +31,7 @@ func _ready() -> void:
 	
 	card_play_manager = CardPlayManager.new()
 	card_play_manager.battle_state = battle_state
+	card_play_manager.card_resolved.connect(_on_card_resolved)
 	card_play_manager.battle_manager = self
 	
 	ActionQueue.queue.clear()
@@ -48,7 +51,7 @@ func _ready() -> void:
 
 #currently, since round sort round directly sorts the combatants array, 
 func start_round() -> void:
-	for c in battle_state.all_combatants():
+	for c in battle_state.literally_all_combatants():
 		c.stats.reset_stamina()
 		c.stats.reset_shield()
 		c.card_piles_handler.build_hand()
@@ -94,7 +97,7 @@ func input_phase() -> void:
 	_set_stage(Stage.INPUT)
 	
 	if turn_manager.current_turn.combatant.ai_behavior:
-		turn_manager.current_turn.combatant.take_ai_turn(self)
+		take_ai_turn(turn_manager.current_turn.combatant)
 	else:
 		ally_turn_started.emit(turn_manager.current_turn.combatant) #this is fucking useless
 	
@@ -116,6 +119,7 @@ func end_turn() -> void:
 	
 	if battle_state.battle_is_over():
 		await end_battle()
+		return
 	
 	if turn_manager.round_over():
 		end_round()
@@ -124,10 +128,10 @@ func end_turn() -> void:
 	turn_manager._advance_time()
 	start_turn()
 	
+	
 func _set_stage(new_stage: Stage):
 	stage = new_stage
 	EventBus.turn_stage_changed.emit()
-
 
 func end_battle() -> void:
 	battle_ended.emit()
@@ -135,9 +139,20 @@ func end_battle() -> void:
 	if not next_scene.is_empty():
 		SceneLoader.load_scene(next_scene)
 
-func resolve_ai_card_play(source: Combatant, card: Card, target: Combatant) -> void:
-	var context := CardEffectContext.new()
-	context.card = card
-	context.source = source
-	context.target = target
-	card_play_manager.resolve(context)
+		
+func _on_card_resolved(_s: Combatant, c: Card) -> void:
+	turn_manager._add_recovery_cost(c.recovery_cost)
+	output_phase()
+	
+func take_ai_turn(ai: Combatant) -> void:
+	if ai.ai_behavior == null:
+		push_error("how you gon call this and not have ai behaviour you whack ass")
+		return
+	var card := ai.ai_behavior.choose_card(ai, self)
+	var target := ai.ai_behavior.choose_target(ai, self)
+	
+	if card == null or target == null:
+		output_phase()
+		return
+
+	EventBus.card_play_requested.emit(card, ai, target)

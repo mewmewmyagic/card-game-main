@@ -3,6 +3,7 @@ extends Node
 
 static var any_card_dragging: bool = false #hover state special treatment
 enum State {BASE, CLICKED, DRAGGING, AIMING, RELEASED, HOVER}
+@warning_ignore("unused_signal")
 signal transition_requested(from: CardState, to: State)
 
 @export var state: State

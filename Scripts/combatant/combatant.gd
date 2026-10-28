@@ -6,7 +6,7 @@ signal card_played(card: Card)
 signal anim_done
 
 @export var stats: CombatantStats #: set = set_combatant_stats
-@export var ai_behavior: EnemyAIBehavior
+@export var ai_behavior: CombatantAIBase
 @export var combatant_name: String
 
 @export var status_manager: StatusEffectHandler
@@ -90,14 +90,3 @@ func play_other_animation() -> void:
 		return
 	sprite_2d.play_card_animation("idle")
 	emit_signal("anim_done")
-	
-	
-#TODO i dont want this here bruh
-func take_ai_turn(battle: BattleManager) -> void:
-	if ai_behavior == null:
-		return
-	var card := ai_behavior.choose_card(self, battle)
-	if card == null:
-		return
-	var target := ai_behavior.choose_target(self, battle)
-	battle.resolve_ai_card_play(self, card, target)

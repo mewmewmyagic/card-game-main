@@ -21,6 +21,8 @@ func reset_stamina() -> void:
 	self.stamina = max_stamina
 	
 func enough_stamina(card: Card) -> bool:
+	if card == null:
+		return false
 	return stamina >= card.stamina_cost
 	
 func create_instance() -> Resource:

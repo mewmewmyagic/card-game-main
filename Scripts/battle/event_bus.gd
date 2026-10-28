@@ -1,6 +1,8 @@
 extends Node
 
 # EventBus.gd
+
+@warning_ignore_start("unused_signal")
 signal card_play_requested(card: Card, source: Combatant, target: Combatant)
 signal card_played(card: Card, source: Combatant)
 signal card_play_rejected(card: Card, source: Combatant)

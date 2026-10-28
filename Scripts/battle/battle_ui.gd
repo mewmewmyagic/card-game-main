@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var battle_state: BattleManager
+@export var battle_manager: BattleManager
 @export var the_hand_ui: PlayerHand
 @export var stamina_ui: StaminaUI
 @export var turn_ui: TurnOrderUI
@@ -11,22 +11,22 @@ extends CanvasLayer
 #change this shit so when its enemies turn (actually, more like when its playing
 #an animation it doesnt show the ui, ala limbus
 func _ready() -> void:
-	turn_ui.bind(battle_state.turn_manager)
+	turn_ui.bind(battle_manager.turn_manager)
 
 	EventBus.turn_stage_changed.connect(the_hand_ui._update_interactability_ui)
 	
-	battle_state.turn_started.connect(_on_different_ally_turn_started)
-	battle_state.battle_ended.connect(hide_all)
+	battle_manager.turn_started.connect(_on_different_ally_turn_started)
+	battle_manager.battle_ended.connect(hide_all)
 
 func _on_different_ally_turn_started(combatant: Combatant) -> void:
 	if combatant.ai_behavior:
 		return
 	
-	the_hand_ui.bind(battle_state.card_play_manager, combatant)
+	the_hand_ui.bind(battle_manager.card_play_manager, combatant)
 	stamina_ui.bind(combatant.stats)
 	draw_pile_ui.bind(combatant.card_piles_handler.draw_pile)
 	discard_pile_ui.bind(combatant.card_piles_handler.discard_pile)
-	skip_round_ui.bind(combatant, battle_state)
+	skip_round_ui.bind(combatant, battle_manager)
 	
 func unbind_all() -> void:
 	the_hand_ui._unbind()

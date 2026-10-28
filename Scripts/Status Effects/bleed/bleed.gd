@@ -4,10 +4,14 @@ class_name BleedStatusEffect
 func init(_target: Combatant, _manager: StatusEffectHandler) -> void:
 	target = _target
 	manager = _manager
-	target.anim_done.connect(queue_status_action)
+	target.card_played.connect(_decide)
 
 func on_effect_removed() -> void:
-	target.anim_done.disconnect(queue_status_action)
+	target.card_played.disconnect(_decide)
+
+func _decide(c: Card) -> void:
+	if (c.card_type == Card.CardType.ATTACK):
+		queue_status_action()
 
 func proc_status_effect() -> void:
 	var damage := DamagePacket.create(stack, null, target, DamageType.Type.BLEED)

@@ -1,20 +1,18 @@
 class_name CardPlayManager
 extends RefCounted
 
+signal card_resolved(source: Combatant, card: Card)
+
 var battle_state: BattleState
 var battle_manager: BattleManager
 
 func _on_player_card_play_requested(card: Card, source: Combatant, target: Combatant) -> void:
-	var card_play_context = CardEffectContext.new()
-	card_play_context.source = source
-	card_play_context.card = card
-	card_play_context.target = target
+	var card_play_context = CardEffectContext.create(card, source, target)
 	
 	resolve(card_play_context)
 	
 func validate_card(context: CardEffectContext) -> bool:
 	if not can_play(context.card, context.source):
-		EventBus.card_play_rejected.emit()
 		return false
 		
 	if not is_valid_target(context):
@@ -24,6 +22,7 @@ func validate_card(context: CardEffectContext) -> bool:
 	return true
 	
 func get_targets(context: CardEffectContext) -> Array[Combatant]:
+	
 	var result: Array[Combatant] = []
 	match context.card.target_type:
 		Card.TargetType.ALL_ENEMY:
@@ -46,22 +45,15 @@ func resolve(context: CardEffectContext) -> void:
 	
 	for t in targets:
 		for effect in context.card.effects:
-			ActionQueue.push_back(CardEffectAction.create(effect, _context_for(context, t)))
+			var ctx := CardEffectContext.create(context.card, context.source, t)
+			ActionQueue.push_back(CardEffectAction.create(effect, ctx))
 	
 	context.source.card_played.emit(context.card)
 	
 	context.source.card_piles_handler.after_card_played(context.card)
 
-	#TODO dont depend on battle_manager
-	battle_manager.turn_manager._add_recovery_cost(context.card.recovery_cost)
-	battle_manager.output_phase()
+	card_resolved.emit(context.source, context.card)
 	
-func _context_for(context: CardEffectContext, target: Combatant) -> CardEffectContext:
-	var c := CardEffectContext.new()
-	c.card = context.card
-	c.source = context.source
-	c.target = target
-	return c
 	
 func can_afford(card: Card, source: Combatant) -> bool:
 	return source.stats.enough_stamina(card)

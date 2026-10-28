@@ -9,5 +9,5 @@ var facing: Vector2 = Vector2.DOWN
 func _ready() -> void:
 	character_state_machine.init(self)
 	
-func play_anim(anim_name: String) -> void:
+func play_anim(_anim_name: String) -> void:
 	pass
