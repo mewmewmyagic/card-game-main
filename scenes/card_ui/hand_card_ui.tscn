@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://47ngu2grsubq" path="res://Scripts/card_ui/card_state/card_dragging_state.gd" id="6_cmaid"]
 [ext_resource type="Texture2D" uid="uid://k7ll7a178nsf" path="res://Textures/CardArts/CardBackground.png" id="6_lmj0m"]
 [ext_resource type="Script" uid="uid://dy04m73ovkqv2" path="res://Scripts/card_ui/card_state/card_release_state.gd" id="7_vcvy6"]
-[ext_resource type="Texture2D" uid="uid://ccno6whirqfvt" path="res://Textures/cardArt/punching.png" id="8_bqffo"]
 [ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="10_l35cs"]
 [ext_resource type="Script" uid="uid://bgnnuplhtpaax" path="res://Scripts/card_ui/card_animator.gd" id="11_cb4sq"]
 
@@ -36,7 +35,7 @@ color = NodePath("Visuals/Color")
 stam_label = NodePath("Visuals/Background/Frame/Stam")
 rc_label = NodePath("Visuals/Background/Frame/Rc")
 name_label = NodePath("Visuals/Background/Frame/Name")
-card_art = NodePath("Visuals/Background/Art")
+card_art = NodePath("Visuals/Background/TextureRect")
 
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1984929670]
 z_index = 1
@@ -52,8 +51,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -80.0
-offset_bottom = -128.0
+offset_right = -105.0
+offset_bottom = -147.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -69,39 +68,39 @@ mouse_filter = 2
 color = Color(0, 1, 0.23921569, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Visuals" unique_id=1448744232]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 3.0000002
-anchor_bottom = 4.2000003
-offset_bottom = -1.5258789e-05
+[node name="Background" type="TextureRect" parent="Visuals" unique_id=335394984]
+texture_filter = 2
+layout_mode = 0
+scale = Vector2(0.6812501, 0.67410725)
 mouse_filter = 2
-texture = ExtResource("8_bqffo")
+texture = ExtResource("6_lmj0m")
+
+[node name="TextureRect" type="TextureRect" parent="Visuals/Background" unique_id=1616683201]
+custom_maximum_size = Vector2(35, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 48.0
+offset_right = -105.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.4487607, 2.0068898)
+mouse_filter = 2
+texture = ExtResource("5_lmj0m")
 expand_mode = 1
 
-[node name="Background" type="Sprite2D" parent="Visuals" unique_id=1799899056]
+[node name="Frame" type="TextureRect" parent="Visuals/Background" unique_id=660392014]
 texture_filter = 2
-scale = Vector2(0.6812501, 0.67410725)
-texture = ExtResource("6_lmj0m")
-centered = false
-
-[node name="Art" type="Sprite2D" parent="Visuals/Background" unique_id=413370470]
-texture_filter = 2
-position = Vector2(20, 40)
-scale = Vector2(0.9999999, 0.99999994)
-texture = ExtResource("5_lmj0m")
-centered = false
-offset = Vector2(0, 7)
-
-[node name="Frame" type="Sprite2D" parent="Visuals/Background" unique_id=146765506]
-texture_filter = 2
+layout_mode = 0
 scale = Vector2(0.9999997, 0.9999999)
+mouse_filter = 2
 texture = ExtResource("3_wrych")
-centered = false
 
 [node name="Name" type="Label" parent="Visuals/Background/Frame" unique_id=1445796093]
+layout_mode = 0
 offset_left = 38.666668
 offset_top = 8.0
 offset_right = 151.33333
@@ -113,6 +112,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Rc" type="Label" parent="Visuals/Background/Frame" unique_id=1785261573]
+layout_mode = 0
 offset_left = 13.333334
 offset_top = 34.666668
 offset_right = 31.333334
@@ -123,6 +123,7 @@ theme_override_font_sizes/font_size = 28
 text = "Y"
 
 [node name="Stam" type="Label" parent="Visuals/Background/Frame" unique_id=1024157302]
+layout_mode = 0
 offset_left = 13.333333
 offset_top = 9.333334
 offset_right = 31.333332

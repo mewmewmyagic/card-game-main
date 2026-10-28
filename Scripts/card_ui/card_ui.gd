@@ -8,7 +8,7 @@ signal request_snap_back
 @export var stam_label: Label
 @export var rc_label: Label
 @export var name_label: Label
-@export var card_art: Sprite2D
+@export var card_art: TextureRect
 
 @export var card: Card
 @export var owner_combatant: Combatant

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_8jrqw"]
 [ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_hyd8b"]
 [ext_resource type="Script" uid="uid://bi1axmnryrd81" path="res://Scripts/effects/CardEffects/effect_discard_random_card_enemy.gd" id="4_o1s88"]
+[ext_resource type="Script" uid="uid://wrfdx1hk2ehm" path="res://Scripts/effects/CardEffects/effect_overhead_hazard_card.gd" id="5_o1s88"]
 
 [sub_resource type="Resource" id="Resource_hyd8b"]
 script = ExtResource("2_hyd8b")
@@ -15,11 +16,16 @@ metadata/_custom_type_script = "uid://dmpv8844g3q0f"
 script = ExtResource("4_o1s88")
 metadata/_custom_type_script = "uid://bi1axmnryrd81"
 
+[sub_resource type="Resource" id="Resource_d37c3"]
+script = ExtResource("5_o1s88")
+amount = 100
+metadata/_custom_type_script = "uid://wrfdx1hk2ehm"
+
 [resource]
 script = ExtResource("2_8jrqw")
 card_name = "Slash"
 card_art = ExtResource("1_epklh")
 stamina_cost = 1
 recovery_cost = 5
-effects = Array[ExtResource("1_nseut")]([SubResource("Resource_hyd8b"), SubResource("Resource_epklh")])
+effects = Array[ExtResource("1_nseut")]([SubResource("Resource_hyd8b"), SubResource("Resource_epklh"), SubResource("Resource_d37c3")])
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

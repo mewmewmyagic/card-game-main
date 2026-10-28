@@ -3,25 +3,26 @@ extends RefCounted
 
 signal turn_order_changed
 
-var turn_order: Array[CombatantTurn] = []
+var battle_state: BattleState
 
+var turn_order: Array[CombatantTurn] = []
 var current_turn: CombatantTurn
 
 func get_active_turns() -> Array[CombatantTurn]:
-	return turn_order.filter(func(t): return t.combatant.is_active_combatant())
+	return battle_state.turn_order.filter(func(t): return t.combatant.is_active_combatant())
 
 func set_next_active_turn() -> void:
 	if (get_active_turns().is_empty()):
 		push_error("no active combatants")
 		return
 		
-	current_turn = get_active_turns()[0]
+	battle_state.current_turn = get_active_turns()[0]
 	
 func turns_of(combatant: Combatant) -> Array[CombatantTurn]:
-	return turn_order.filter(func(t): return t.combatant == combatant)
+	return battle_state.turn_order.filter(func(t): return t.combatant == combatant)
 
 func sort_turns() -> void:
-	turn_order.sort_custom(func(a, b): return a.recovery_time < b.recovery_time)
+	battle_state.turn_order.sort_custom(func(a, b): return a.recovery_time < b.recovery_time)
 	turn_order_changed.emit()
 	
 func round_over() -> bool:
@@ -43,4 +44,4 @@ func _advance_time() -> void:
 			t.recovery_time = maxf(0, t.recovery_time - t.combatant.stats.agility * 1.0)
 
 func _add_recovery_cost(rc: int) -> void:
-	current_turn.recovery_time += rc
+	battle_state.current_turn.recovery_time += rc

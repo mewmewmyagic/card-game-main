@@ -75,7 +75,7 @@ func sync() -> void:
 #when its current turn, the current turn order icon gets deleted.  it gets spawned back when its not curent turn
 func _refresh_turn_icons() -> void:
 	turn_icons.clear()
-	for t in turn_manager.turn_order: #has to be sorted
+	for t in turn_manager.get_active_turns(): #has to be sorted
 		if turn_to_ui.has(t):
 			turn_icons.append(turn_to_ui[t])
 		

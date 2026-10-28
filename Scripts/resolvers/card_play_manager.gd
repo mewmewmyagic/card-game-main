@@ -4,10 +4,9 @@ extends RefCounted
 signal card_resolved(source: Combatant, card: Card)
 
 var battle_state: BattleState
-var battle_manager: BattleManager
 
 func _on_player_card_play_requested(card: Card, source: Combatant, target: Combatant) -> void:
-	var card_play_context = CardEffectContext.create(card, source, target)
+	var card_play_context = CardEffectContext.create(card, source, target, battle_state)
 	
 	resolve(card_play_context)
 	
@@ -21,10 +20,12 @@ func validate_card(context: CardEffectContext) -> bool:
 		
 	return true
 	
-func get_targets(context: CardEffectContext) -> Array[Combatant]:
+func get_targets(context: CardEffectContext) -> Array[Combatant]: #for multi targeting cards
 	
 	var result: Array[Combatant] = []
 	match context.card.target_type:
+		Card.TargetType.ALL_ALLY:
+			result.append_array(battle_state.alive(battle_state.same_team(context.source)))
 		Card.TargetType.ALL_ENEMY:
 			result.append_array(battle_state.alive(battle_state.opposing_team(context.source)))
 		Card.TargetType.ALL:
@@ -45,7 +46,7 @@ func resolve(context: CardEffectContext) -> void:
 	
 	for t in targets:
 		for effect in context.card.effects:
-			var ctx := CardEffectContext.create(context.card, context.source, t)
+			var ctx := CardEffectContext.create(context.card, context.source, t, battle_state)
 			ActionQueue.push_back(CardEffectAction.create(effect, ctx))
 	
 	context.source.card_played.emit(context.card)
@@ -75,5 +76,7 @@ func is_valid_target(context: CardEffectContext) -> bool:
 			return context.target in battle_state.same_team(context.source)
 		Card.TargetType.SELF:
 			return context.target == context.source
+		Card.TargetType.ALL:
+			return true
 		_:
 			return false

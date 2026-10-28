@@ -5,7 +5,7 @@ class_name HandDisplayIcon
 @export var card: Card
 @export var owner_combatant: Combatant
 
-@export var sprite: Sprite2D
+@export var sprite: TextureRect
 
 func _ready() -> void:
 	sprite.texture = card.card_art

@@ -26,13 +26,14 @@ var battle_state: BattleState
 var stage: Stage = Stage.START
 
 func _ready() -> void:
-	turn_manager = TurnManager.new()
 	battle_state = BattleState.new()
+	
+	turn_manager = TurnManager.new()
+	turn_manager.battle_state = battle_state
 	
 	card_play_manager = CardPlayManager.new()
 	card_play_manager.battle_state = battle_state
 	card_play_manager.card_resolved.connect(_on_card_resolved)
-	card_play_manager.battle_manager = self
 	
 	ActionQueue.queue.clear()
 	
@@ -59,16 +60,16 @@ func start_round() -> void:
 		
 		var turn := CombatantTurn.new()
 		turn.combatant = c
-		turn_manager.turn_order.append(turn)
+		battle_state.turn_order.append(turn)
 	
-	turn_manager.turn_order.shuffle()
+	battle_state.turn_order.shuffle()
 	
 	EventBus.round_started.emit()
 	start_turn()
 
 func end_round() -> void:
 	#battle.battle_ui.unbind_all() #TODO
-	turn_manager.turn_order.clear()
+	battle_state.turn_order.clear()
 	turn_manager.turn_order_changed.emit()
 	
 	EventBus.round_ended.emit()
@@ -86,23 +87,23 @@ func start_turn() -> void:
 	_set_stage(Stage.START)
 	
 	EventBus.turn_started.emit()
-	turn_started.emit(turn_manager.current_turn.combatant)
+	turn_started.emit(battle_state.current_turn.combatant)
 	
 	await ActionQueue.drain()
 	
 	input_phase()
 
 func input_phase() -> void:
-	turn_manager.current_turn.combatant.is_playing = true
+	battle_state.current_turn.combatant.is_playing = true
 	_set_stage(Stage.INPUT)
 	
-	if turn_manager.current_turn.combatant.ai_behavior:
-		take_ai_turn(turn_manager.current_turn.combatant)
+	if battle_state.current_turn.combatant.ai_behavior:
+		take_ai_turn(battle_state.current_turn.combatant)
 	else:
-		ally_turn_started.emit(turn_manager.current_turn.combatant) #this is fucking useless
+		ally_turn_started.emit(battle_state.current_turn.combatant) #this is fucking useless
 	
 func output_phase() -> void:
-	turn_manager.current_turn.combatant.is_playing = false
+	battle_state.current_turn.combatant.is_playing = false
 	_set_stage(Stage.OUTPUT)
 	
 	await ActionQueue.drain()
@@ -113,7 +114,7 @@ func end_turn() -> void:
 	_set_stage(Stage.END)
 	
 	EventBus.turn_ended.emit()
-	turn_ended.emit(turn_manager.current_turn.combatant)
+	turn_ended.emit(battle_state.current_turn.combatant)
 	
 	await ActionQueue.drain()
 	
@@ -141,7 +142,7 @@ func end_battle() -> void:
 
 		
 func _on_card_resolved(_s: Combatant, c: Card) -> void:
-	turn_manager._add_recovery_cost(c.recovery_cost)
+	battle_state.add_recovery_time_to_current(c.recovery_cost)
 	output_phase()
 	
 func take_ai_turn(ai: Combatant) -> void:

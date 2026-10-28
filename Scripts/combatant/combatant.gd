@@ -67,8 +67,8 @@ func check_if_dead() -> void:
 func apply_damage(to_shield: int, to_health: int) -> void:
 	if is_dead:
 		return
-	stats.shield -= to_shield
-	stats.health -= to_health
+	stats.take_shield_damage(to_shield)
+	stats.take_health_damage(to_health)
 	
 func gain_shield(shield: int) -> void:
 	stats.shield += shield                

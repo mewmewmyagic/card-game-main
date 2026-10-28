@@ -42,7 +42,7 @@ texture = ExtResource("3_lk1r3")
 [node name="BattleManager" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
 allies = [NodePath("Alex"), NodePath("Bob")]
-enemies = [NodePath("Cindy"), NodePath("Cindy2"), NodePath("Cindy3")]
+enemies = [NodePath("Cindy")]
 next_scene = "uid://qpqkb081pr1m"
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 

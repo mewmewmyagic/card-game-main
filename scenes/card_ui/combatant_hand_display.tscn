@@ -10,17 +10,24 @@ shader_parameter/pointy_top = true
 shader_parameter/stretch_to_square = false
 
 [node name="hand_display_icon" type="Control" unique_id=287759262 node_paths=PackedStringArray("sprite")]
+custom_maximum_size = Vector2(96, 82)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 96.0
+offset_bottom = 82.0
 script = ExtResource("1_0m16k")
 sprite = NodePath("Visuals/Punching")
 
 [node name="Visuals" type="Control" parent="." unique_id=563005732]
 anchors_preset = 0
 
-[node name="Punching" type="Sprite2D" parent="Visuals" unique_id=1324702959]
+[node name="Punching" type="TextureRect" parent="Visuals" unique_id=1557896040]
 texture_filter = 2
 material = SubResource("ShaderMaterial_8af7l")
-scale = Vector2(0.8, 1.08)
+custom_maximum_size = Vector2(120, 82)
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 82.0
+scale = Vector2(0.8, 1)
 texture = ExtResource("2_582m2")
-centered = false
+expand_mode = 1

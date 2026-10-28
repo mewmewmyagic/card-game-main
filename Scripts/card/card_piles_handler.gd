@@ -51,6 +51,11 @@ func add_to_hand(card: Card) -> void:
 	else:
 		hand_pile.add_card(card)
 
+func get_last_played() -> Card:
+	if (card_play_history.is_empty()):
+		return null
+	return card_play_history[0]
+
 func after_card_played(card: Card) -> void:
 	card_play_history.push_front(card)
 	

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://bmubocgwm01ku"]
+
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="1_a34kc"]
+[ext_resource type="Texture2D" uid="uid://c7r8ki3wy50d1" path="res://Textures/CardArts/Overhead-Train-Lines-Installation-Essential-Guide-1.png" id="1_xcbif"]
+[ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="2_jxsff"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="2_rdkyx"]
+[ext_resource type="Script" uid="uid://wrfdx1hk2ehm" path="res://Scripts/effects/CardEffects/effect_overhead_hazard_card.gd" id="3_xcbif"]
+
+[sub_resource type="Resource" id="Resource_xcbif"]
+script = ExtResource("2_jxsff")
+base_amount = 15
+metadata/_custom_type_script = "uid://dmpv8844g3q0f"
+
+[sub_resource type="Resource" id="Resource_jxsff"]
+script = ExtResource("3_xcbif")
+amount = 25
+metadata/_custom_type_script = "uid://wrfdx1hk2ehm"
+
+[resource]
+script = ExtResource("2_rdkyx")
+card_name = "train overhead"
+card_art = ExtResource("1_xcbif")
+target_type = 5
+recovery_cost = 50
+effects = Array[ExtResource("1_a34kc")]([SubResource("Resource_xcbif"), SubResource("Resource_jxsff")])
+metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

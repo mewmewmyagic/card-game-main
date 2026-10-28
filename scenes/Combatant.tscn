@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://Scripts/SpriteAnimation/combatant_sprite_player.gd" id="2_ddi1i"]
 [ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_bar_ui.tscn" id="3_gqvtd"]
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
-[ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://status_effect_icon.tscn" id="6_fsa1f"]
+[ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://scenes/status_effect_icon.tscn" id="6_fsa1f"]
 [ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_manager.gd" id="6_sga3o"]
 [ext_resource type="Script" uid="uid://b5l1pm6870olx" path="res://Scripts/card/card_piles_handler.gd" id="7_lu8df"]
-[ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://hand_display.tscn" id="8_4uuik"]
+[ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://scenes/hand_display.tscn" id="8_4uuik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
