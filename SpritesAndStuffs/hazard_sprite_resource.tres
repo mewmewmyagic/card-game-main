@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatantSpriteResource" format=3 uid="uid://ct0ufy0cnfcxt"]
+
+[ext_resource type="Texture2D" uid="uid://c7r8ki3wy50d1" path="res://Textures/CardArts/Overhead-Train-Lines-Installation-Essential-Guide-1.png" id="1_hqeig"]
+[ext_resource type="Script" uid="uid://b16ta6atwgotx" path="res://Scripts/SpriteAnimation/combatant_sprite_resource.gd" id="2_a3ba7"]
+[ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="3_un4jb"]
+
+[resource]
+script = ExtResource("2_a3ba7")
+sprite_frames = ExtResource("3_un4jb")
+combatant_icon = ExtResource("1_hqeig")
+metadata/_custom_type_script = "uid://b16ta6atwgotx"

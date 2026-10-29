@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="CardPile" format=3 uid="uid://bwe20136aixtf"]
 
 [ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="1_do0g8"]
-[ext_resource type="Resource" uid="uid://bmubocgwm01ku" path="res://Resources/Cards/HazardsCards/train_overhead.tres" id="2_nce7o"]
 [ext_resource type="Script" uid="uid://b7gxswfche1cy" path="res://Scripts/card/card_pile/card_pile.gd" id="2_q2i58"]
+[ext_resource type="Resource" uid="uid://ce4cu64fxrraf" path="res://Resources/Cards/BareKnuckles/block_tourist.tres" id="2_x2h2j"]
+[ext_resource type="Resource" uid="uid://dla4rpbwk5ouh" path="res://Resources/Cards/BareKnuckles/punching.tres" id="3_vofeu"]
+[ext_resource type="Resource" uid="uid://1htro5im1q4o" path="res://Resources/Cards/BareKnuckles/kicking.tres" id="4_hib4w"]
 
 [resource]
 script = ExtResource("2_q2i58")
-cards = Array[ExtResource("1_do0g8")]([ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o"), ExtResource("2_nce7o")])
+cards = Array[ExtResource("1_do0g8")]([ExtResource("2_x2h2j"), ExtResource("2_x2h2j"), ExtResource("2_x2h2j"), ExtResource("2_x2h2j"), ExtResource("2_x2h2j"), ExtResource("2_x2h2j"), ExtResource("3_vofeu"), ExtResource("3_vofeu"), ExtResource("3_vofeu"), ExtResource("3_vofeu"), ExtResource("4_hib4w"), ExtResource("4_hib4w"), ExtResource("4_hib4w")])
 metadata/_custom_type_script = "uid://b7gxswfche1cy"

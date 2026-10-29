@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://47ngu2grsubq" path="res://Scripts/card_ui/card_state/card_dragging_state.gd" id="6_cmaid"]
 [ext_resource type="Texture2D" uid="uid://k7ll7a178nsf" path="res://Textures/CardArts/CardBackground.png" id="6_lmj0m"]
 [ext_resource type="Script" uid="uid://dy04m73ovkqv2" path="res://Scripts/card_ui/card_state/card_release_state.gd" id="7_vcvy6"]
-[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="10_l35cs"]
+[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/justsomeblackcoffee/alagard.ttf" id="10_l35cs"]
 [ext_resource type="Script" uid="uid://bgnnuplhtpaax" path="res://Scripts/card_ui/card_animator.gd" id="11_cb4sq"]
 
 [sub_resource type="Theme" id="Theme_xm8em"]

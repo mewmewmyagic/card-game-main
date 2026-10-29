@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://x43jwqfneosx" path="res://Scripts/Status Effects/status effect ui/status_icon.gd" id="1_gowu1"]
 [ext_resource type="Texture2D" uid="uid://c625u4qb3ffuy" path="res://Textures/blehhhhh.png" id="2_og71l"]
-[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/cardArt/alagard.ttf" id="3_1mif7"]
+[ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/justsomeblackcoffee/alagard.ttf" id="3_1mif7"]
 
 [node name="status effect" type="Control" unique_id=1075959553]
 custom_maximum_size = Vector2(64, 64)

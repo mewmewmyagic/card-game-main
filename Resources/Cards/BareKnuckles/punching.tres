@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://dla4rpbwk5ouh"]
+
+[ext_resource type="Texture2D" uid="uid://ccno6whirqfvt" path="res://Textures/justsomeblackcoffee/punching.png" id="1_2cuio"]
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="2_2cuio"]
+[ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="3_aqt3g"]
+[ext_resource type="Script" uid="uid://plnoqdvhwky0" path="res://Scripts/effects/CardEffects/effect_inflict_rc.gd" id="4_aqt3g"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="4_p3yof"]
+
+[sub_resource type="Resource" id="Resource_cal7s"]
+script = ExtResource("3_aqt3g")
+base_amount = 15
+metadata/_custom_type_script = "uid://dmpv8844g3q0f"
+
+[sub_resource type="Resource" id="Resource_kccqd"]
+script = ExtResource("4_aqt3g")
+base_amount = 2
+metadata/_custom_type_script = "uid://plnoqdvhwky0"
+
+[resource]
+script = ExtResource("4_p3yof")
+card_name = "Punching"
+card_art = ExtResource("1_2cuio")
+stamina_cost = 1
+recovery_cost = 3
+effects = Array[ExtResource("2_2cuio")]([SubResource("Resource_cal7s"), SubResource("Resource_kccqd")])
+after_play_type = 1
+metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

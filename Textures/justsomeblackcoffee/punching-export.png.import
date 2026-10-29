@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx00lm5efg52v"
-path="res://.godot/imported/punching-export.png-d48cd7a4e43bb686266fcb50732113c5.ctex"
+path="res://.godot/imported/punching-export.png-18548b7fccba2d58ba007f6de3f3af19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/cardArt/punching-export.png"
-dest_files=["res://.godot/imported/punching-export.png-d48cd7a4e43bb686266fcb50732113c5.ctex"]
+source_file="res://Textures/justsomeblackcoffee/punching-export.png"
+dest_files=["res://.godot/imported/punching-export.png-18548b7fccba2d58ba007f6de3f3af19.ctex"]
 
 [params]
 

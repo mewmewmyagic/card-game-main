@@ -24,7 +24,7 @@ enum AfterPlayType {
 
 @export_group("Card Information")
 @export var card_name: String = ""
-@export var card_art: Texture2D
+@export var card_art: Texture2D = preload("res://icon.svg")
 
 @export_group("Combat Properties")
 @export var card_type: CardType = CardType.ATTACK

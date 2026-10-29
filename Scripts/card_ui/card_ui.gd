@@ -52,6 +52,12 @@ func _on_mouse_exited() -> void:
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	if not targets.has(area):
 		targets.append(area)
+	
+	var c = targets[0].get_parent() as Combatant
+	EventBus.card_entered_area.emit(card, c)
 		
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
+	var c = targets[0].get_parent() as Combatant
+	EventBus.card_exited_area.emit(card, c)
+	
 	targets.erase(area)

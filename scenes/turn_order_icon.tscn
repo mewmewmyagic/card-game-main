@@ -10,10 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v5iqs"]
 shader = ExtResource("3_v5iqs")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7qlc"]
-shader = ExtResource("3_v5iqs")
-
-[node name="TurnOrderIcon" type="Control" unique_id=1361914112 node_paths=PackedStringArray("combatant_name", "amount", "combatant_icon", "animator")]
+[node name="TurnOrderIcon" type="Control" unique_id=1361914112 node_paths=PackedStringArray("combatant_name", "amount", "combatant_icon", "background", "animator")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 32.0
@@ -22,7 +19,8 @@ theme = SubResource("Theme_crx7y")
 script = ExtResource("1_6nfnu")
 combatant_name = NodePath("Name")
 amount = NodePath("Amount")
-combatant_icon = NodePath("Container/Icon")
+combatant_icon = NodePath("Container/Container/Icon")
+background = NodePath("Container/Container")
 animator = NodePath("Animator")
 
 [node name="Name" type="Label" parent="." unique_id=246694431]
@@ -45,15 +43,22 @@ theme_override_font_sizes/font_size = 7
 text = "999"
 horizontal_alignment = 2
 
-[node name="Container" type="ColorRect" parent="." unique_id=87759793]
+[node name="Container" type="Control" parent="." unique_id=100536944]
 material = SubResource("ShaderMaterial_v5iqs")
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Container" type="ColorRect" parent="Container" unique_id=87759793]
+use_parent_material = true
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 offset_transform_enabled = true
+color = Color(0.49803922, 0.9607843, 1, 1)
 
-[node name="Icon" type="TextureRect" parent="Container" unique_id=264299782]
-material = SubResource("ShaderMaterial_e7qlc")
+[node name="Icon" type="TextureRect" parent="Container/Container" unique_id=264299782]
+use_parent_material = true
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0

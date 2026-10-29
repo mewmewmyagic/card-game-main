@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_xcbif"]
 script = ExtResource("2_jxsff")
-base_amount = 15
+base_amount = 5
 metadata/_custom_type_script = "uid://dmpv8844g3q0f"
 
 [sub_resource type="Resource" id="Resource_jxsff"]
@@ -21,6 +21,6 @@ script = ExtResource("2_rdkyx")
 card_name = "train overhead"
 card_art = ExtResource("1_xcbif")
 target_type = 5
-recovery_cost = 50
+recovery_cost = 15
 effects = Array[ExtResource("1_a34kc")]([SubResource("Resource_xcbif"), SubResource("Resource_jxsff")])
 metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

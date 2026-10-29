@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Card" format=3 uid="uid://1htro5im1q4o"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_8auk7"]
+[ext_resource type="Script" uid="uid://b14m8bmggqgn1" path="res://Scripts/card/card_effect.gd" id="2_1thdi"]
+[ext_resource type="Script" uid="uid://dmpv8844g3q0f" path="res://Scripts/effects/CardEffects/effect_deal_damage.gd" id="3_8auk7"]
+[ext_resource type="Script" uid="uid://bi1axmnryrd81" path="res://Scripts/effects/CardEffects/effect_discard_random_card_enemy.gd" id="4_bstfs"]
+[ext_resource type="Script" uid="uid://dwtw5u7l8uiv5" path="res://Scripts/card/card.gd" id="4_yklra"]
+[ext_resource type="Script" uid="uid://plnoqdvhwky0" path="res://Scripts/effects/CardEffects/effect_inflict_rc.gd" id="5_kdhd1"]
+
+[sub_resource type="Resource" id="Resource_cal7s"]
+script = ExtResource("3_8auk7")
+base_amount = 25
+metadata/_custom_type_script = "uid://dmpv8844g3q0f"
+
+[sub_resource type="Resource" id="Resource_bstfs"]
+script = ExtResource("4_bstfs")
+metadata/_custom_type_script = "uid://bi1axmnryrd81"
+
+[sub_resource type="Resource" id="Resource_p3yof"]
+script = ExtResource("5_kdhd1")
+base_amount = 4
+metadata/_custom_type_script = "uid://plnoqdvhwky0"
+
+[resource]
+script = ExtResource("4_yklra")
+card_name = "Kicking"
+stamina_cost = 3
+recovery_cost = 7
+effects = Array[ExtResource("2_1thdi")]([SubResource("Resource_cal7s"), SubResource("Resource_bstfs"), SubResource("Resource_p3yof")])
+after_play_type = 1
+metadata/_custom_type_script = "uid://dwtw5u7l8uiv5"

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://df8tdi38y2ci6"
-path="res://.godot/imported/TableArt.png-d1061241da658b750159c44cfdb08d20.ctex"
+path="res://.godot/imported/TableArt.png-61bb03c7c1d9b78e5808dae9744df0b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/cardArt/TableArt.png"
-dest_files=["res://.godot/imported/TableArt.png-d1061241da658b750159c44cfdb08d20.ctex"]
+source_file="res://Textures/justsomeblackcoffee/TableArt.png"
+dest_files=["res://.godot/imported/TableArt.png-61bb03c7c1d9b78e5808dae9744df0b7.ctex"]
 
 [params]
 

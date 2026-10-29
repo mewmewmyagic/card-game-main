@@ -8,8 +8,6 @@ void fragment() {
     if (abs(p.x) + abs(p.y) > 0.5) {
         discard;
     }
-
-    COLOR = texture(TEXTURE, UV);
 }
 
 //void light() {

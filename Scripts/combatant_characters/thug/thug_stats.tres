@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://n3tbdi52fsei"]
+
+[ext_resource type="Script" uid="uid://nbbhc701n0jf" path="res://Scripts/combatant/combatant_stats.gd" id="1_d1el1"]
+[ext_resource type="Resource" uid="uid://cfswdv2qxwe88" path="res://Scripts/combatant_characters/thug/thug_starting_deck.tres" id="2_g05nv"]
+
+[resource]
+script = ExtResource("1_d1el1")
+max_stamina = 7
+starting_pile = ExtResource("2_g05nv")
+max_health = 120
+metadata/_custom_type_script = "uid://nbbhc701n0jf"

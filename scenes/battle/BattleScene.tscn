@@ -12,7 +12,10 @@
 [ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/ComabatantAI/first_playable_card.gd" id="8_emfdx"]
 [ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://SpritesAndStuffs/tourist_sprite_resource.tres" id="9_0t5w0"]
 [ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://SpritesAndStuffs/bird_sprite_resource.tres" id="9_2jvsm"]
+[ext_resource type="Resource" uid="uid://n3tbdi52fsei" path="res://Scripts/combatant_characters/thug/thug_stats.tres" id="9_4rstf"]
+[ext_resource type="Resource" uid="uid://bjbdgr1x7bcvf" path="res://Scripts/combatant_characters/TrainOverhead/hazards_stats.tres" id="11_5b2op"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
+[ext_resource type="Resource" uid="uid://ct0ufy0cnfcxt" path="res://SpritesAndStuffs/hazard_sprite_resource.tres" id="11_vpuc1"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/TurnOrderUI.tscn" id="14_th5m4"]
 [ext_resource type="PackedScene" uid="uid://sewshbwxty6x" path="res://scenes/ui/card_pile_ui.tscn" id="15_4q0u5"]
 [ext_resource type="PackedScene" uid="uid://df4gabwwtl1tb" path="res://scenes/ui/skip_round.tscn" id="21_2wrqn"]
@@ -39,10 +42,11 @@ visible = false
 position = Vector2(203, 202)
 texture = ExtResource("3_lk1r3")
 
-[node name="BattleManager" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies") groups=["battle_state"]]
+[node name="BattleManager" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies", "neutral") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
 allies = [NodePath("Alex"), NodePath("Bob")]
-enemies = [NodePath("Cindy")]
+enemies = [NodePath("Cindy"), NodePath("Cindy2"), NodePath("Cindy3")]
+neutral = [NodePath("Cindy4")]
 next_scene = "uid://qpqkb081pr1m"
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
 
@@ -61,23 +65,34 @@ appearance = ExtResource("9_2jvsm")
 [node name="Cindy" parent="BattleManager" unique_id=1047957331 instance=ExtResource("4_0yjdt")]
 position = Vector2(540.00006, 219)
 scale = Vector2(0.2, 0.2)
-stats = ExtResource("6_hvhqn")
+stats = ExtResource("9_4rstf")
 ai_behavior = SubResource("Resource_rfwfw")
+combatant_name = "fuck head"
 appearance = ExtResource("9_2jvsm")
 
-[node name="Cindy2" parent="BattleManager" unique_id=2048485480 instance=ExtResource("4_0yjdt")]
-position = Vector2(590, 237)
+[node name="Cindy2" parent="BattleManager" unique_id=1607962784 instance=ExtResource("4_0yjdt")]
+position = Vector2(609, 224)
 scale = Vector2(0.2, 0.2)
-stats = ExtResource("6_hvhqn")
+stats = ExtResource("9_4rstf")
 ai_behavior = SubResource("Resource_rfwfw")
+combatant_name = "fuck head"
 appearance = ExtResource("9_2jvsm")
 
-[node name="Cindy3" parent="BattleManager" unique_id=1188546034 instance=ExtResource("4_0yjdt")]
-position = Vector2(465, 211)
+[node name="Cindy3" parent="BattleManager" unique_id=419259227 instance=ExtResource("4_0yjdt")]
+position = Vector2(474, 216)
 scale = Vector2(0.2, 0.2)
-stats = ExtResource("6_hvhqn")
+stats = ExtResource("9_4rstf")
 ai_behavior = SubResource("Resource_rfwfw")
+combatant_name = "fuck head"
 appearance = ExtResource("9_2jvsm")
+
+[node name="Cindy4" parent="BattleManager" unique_id=541432164 instance=ExtResource("4_0yjdt")]
+position = Vector2(485, 454)
+scale = Vector2(0.2, 0.2)
+stats = ExtResource("11_5b2op")
+ai_behavior = SubResource("Resource_rfwfw")
+combatant_name = "fuck head"
+appearance = ExtResource("11_vpuc1")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_manager", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui", "skip_round_ui") groups=["ui_layer"]]
 script = ExtResource("2_4f3f8")

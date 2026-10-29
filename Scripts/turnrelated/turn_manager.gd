@@ -5,9 +5,6 @@ signal turn_order_changed
 
 var battle_state: BattleState
 
-var turn_order: Array[CombatantTurn] = []
-var current_turn: CombatantTurn
-
 func get_active_turns() -> Array[CombatantTurn]:
 	return battle_state.turn_order.filter(func(t): return t.combatant.is_active_combatant())
 

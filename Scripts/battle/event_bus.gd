@@ -15,3 +15,7 @@ signal round_ended
 signal turn_ended
 signal turn_started
 signal turn_stage_changed
+
+#CardUI
+signal card_entered_area(card: Card, target: Combatant)
+signal card_exited_area(card: Card, target: Combatant)
