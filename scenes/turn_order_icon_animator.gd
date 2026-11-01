@@ -12,7 +12,7 @@ var is_animating: bool = false
 func init(icon: Control) -> void:
 	turn_icon = icon
 
-func move_to(target_position: Vector2, target_rotation: float = 0.0, duration: float = -1.0) -> void:
+func move_to(target_position: Vector2, target_rotation: float = 0.0, duration: float = -1.0) -> Tween:
 	if _active_tween and _active_tween.is_valid():
 		_active_tween.kill()
 	is_animating = true
@@ -24,3 +24,5 @@ func move_to(target_position: Vector2, target_rotation: float = 0.0, duration: f
 	_active_tween.tween_property(turn_icon, "position", target_position, d)
 	_active_tween.parallel().tween_property(turn_icon, "rotation_degrees", target_rotation, d)
 	_active_tween.finished.connect(func(): is_animating = false)
+	
+	return _active_tween

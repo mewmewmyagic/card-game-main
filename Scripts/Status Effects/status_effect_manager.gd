@@ -12,35 +12,30 @@ func apply_status(status: StatusEffect, stack: int = 0, count: int = 0) -> void:
 	if not status_effects.has(status.id):
 		var instance := status.duplicate() as StatusEffect
 		status_effects[instance.id] = instance
+		instance.remove_requested.connect(remove_status.bind(instance.id))
 		
 		if count == 0:
 			count = 1
 		if stack == 0:
 			stack = 1
 
-		instance.init(parent, self)
-		
+		instance.init(parent)
 		instance.add_count(count)
 		instance.add_stack(stack)
 		
 		var icon := status_effect_icon.instantiate() as StatusEffectIcon
 		icon.status = instance
 		status_effect_area.add_child(icon)
-		
-		instance.on_effect_applied()
 	else:
 		var existing := status_effects[status.id] as StatusEffect
 
 		existing.add_count(count)
 		existing.add_stack(stack)
-		
-		existing.on_effect_applied()
 
 func remove_status(id: String) -> void:
 	if not status_effects.has(id):
 		return
 	var s: StatusEffect = status_effects[id]
 	status_effects.erase(id)
-	
 	s.on_effect_removed()
-	s.removed.emit()
+	s.instance_removed.emit()

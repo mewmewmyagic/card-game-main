@@ -57,7 +57,7 @@ func resolve(context: CardEffectContext) -> void:
 	
 	
 func can_afford(card: Card, source: Combatant) -> bool:
-	return source.stats.enough_stamina(card)
+	return source.stats.enough_stamina(card.stamina_cost)
 
 func can_play(card: Card, source: Combatant) -> bool:
 	if not source.is_playing:
@@ -80,3 +80,9 @@ func is_valid_target(context: CardEffectContext) -> bool:
 			return true
 		_:
 			return false
+
+func preview_targets(card: Card, source: Combatant, target: Combatant) -> Array[Combatant]:
+	var ctx := CardEffectContext.create(card, source, target, battle_state)
+	if not can_play(card, source) or not is_valid_target(ctx):
+		return []
+	return get_targets(ctx)

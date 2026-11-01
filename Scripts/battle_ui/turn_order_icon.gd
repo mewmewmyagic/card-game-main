@@ -12,23 +12,19 @@ var turn: CombatantTurn
 func _ready() -> void:
 	animator.init(self)
 	background.color = Color.ROYAL_BLUE
+	EventBus.card_aim_changed.connect(_on_target_changed)
 	
-func init(c: CombatantTurn) -> void:
+func update_owner(c: CombatantTurn) -> void:
 	turn = c
 	combatant_name.text = turn.combatant.name
 	amount.text = str(turn.recovery_time)
 	combatant_icon.texture = turn.combatant.appearance.combatant_icon
 	
-	EventBus.card_entered_area.connect(_on_combatant_selected)
-	EventBus.card_exited_area.connect(_on_combatant_deselected)
-	
 func _on_recovery_time_changed() -> void:
 	amount.text = str(turn.recovery_time)
 	
-func _on_combatant_selected(_c: Card, comb: Combatant) -> void:
-	if comb == turn.combatant:
-		background.color = Color.ORANGE_RED
-	
-func _on_combatant_deselected(_c: Card, comb: Combatant) -> void:
-	if comb == turn.combatant:
+func _on_target_changed(_c: Card, hovered: Combatant, affected: Array[Combatant]) -> void:
+	if affected.has(turn.combatant):
+		background.color = Color.ORANGE_RED      # will be hit
+	else:
 		background.color = Color.ROYAL_BLUE

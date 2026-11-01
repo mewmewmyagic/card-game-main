@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bvyey28gketnv"]
+
+[ext_resource type="Script" uid="uid://btvms7le7h8da" path="res://scripts/tool_tip.gd" id="1_f7v32"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crx7y"]
+bg_color = Color(0, 0, 0, 0.19607843)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 24.0
+expand_margin_top = 12.0
+expand_margin_right = 24.0
+expand_margin_bottom = 12.0
+
+[node name="ToolTip" type="PanelContainer" unique_id=1289577931]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_crx7y")
+script = ExtResource("1_f7v32")
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=1923214059]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true

@@ -53,7 +53,7 @@ func has_playable_card() -> bool:
 		return false
 		
 	for card in card_piles_handler.hand_pile.cards:
-		if stats.enough_stamina(card):
+		if stats.enough_stamina(card.stamina_cost):
 			return true
 	return false
 

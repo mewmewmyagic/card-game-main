@@ -1,21 +1,25 @@
-extends Node
 class_name ModifierManager
+extends Node
 
-var _modifiers: Dictionary = {} #Type, Modifier
+var modifiers: Array[ModifierBase] = []
 
-func _init() -> void:
-	for type in Modifier.Type.values():
-		_modifiers[type] = Modifier.new(type)
+func add(m: ModifierBase) -> void:
+	remove(m.id)   # same id replaces
+	modifiers.append(m)
 
-func get_modifier(type: Modifier.Type) -> Modifier:
-	return _modifiers.get(type)
+func remove(id: String) -> void:
+	modifiers= modifiers.filter(func(m): return m.id != id)
 
-
-func get_modified_value(damage: DamagePacket, type: Modifier.Type) -> int:
-	var modifier := get_modifier(type)
-
-	if not modifier:
-		return damage.amount
-	
-
-	return modifier.apply_modifiers(damage)
+func apply(type: ModifierBase.Type, base: float, ctx = null) -> float:
+	var flat := 0.0
+	var percent := 0.0
+	for m in modifiers:
+		if m.type != type or not m.filter(ctx):
+			continue
+		if m.operation == ModifierBase.Operation.FLAT:
+			flat += m.value
+		else:
+			percent += m.value
+	var final_value = (base + flat) * (1.0 + percent)
+	print(base, final_value)
+	return final_value

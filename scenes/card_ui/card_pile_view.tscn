@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cj3h30knveloo"]
+
+[node name="CardPileView" type="Control" unique_id=1344247723]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="." unique_id=840069800]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1225355804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=265950132]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=833016149]
+layout_mode = 2
+text = "Cock and ball tortue, or cbt is a form of sexual gratification"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=230462727]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 2
+scroll_hint_mode = 1
+
+[node name="Cards" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1325918732]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 9

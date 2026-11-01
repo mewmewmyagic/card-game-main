@@ -74,8 +74,7 @@ func _sync() -> void:
 
 func _spawn_card(card: Card) -> void:
 	var card_ui := card_ui_scene.instantiate() as HandCardUI
-	card_ui.card = card
-	card_ui.owner_combatant = source_combatant
+	card_ui.init(card, source_combatant, card_play_manager)
 	card_ui.request_snap_back.connect(request_relayout)
 	add_child(card_ui)
 	card_to_ui[card] = card_ui

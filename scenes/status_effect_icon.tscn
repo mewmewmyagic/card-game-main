@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://wb8nl4l28r7w"]
 
 [ext_resource type="Script" uid="uid://x43jwqfneosx" path="res://Scripts/Status Effects/status effect ui/status_icon.gd" id="1_gowu1"]
+[ext_resource type="Resource" uid="uid://hrg5sh4161o7" path="res://Scripts/Status Effects/bleed/bleed.tres" id="2_1mif7"]
 [ext_resource type="Texture2D" uid="uid://c625u4qb3ffuy" path="res://Textures/blehhhhh.png" id="2_og71l"]
 [ext_resource type="FontFile" uid="uid://c6ccqp6l47401" path="res://Textures/justsomeblackcoffee/alagard.ttf" id="3_1mif7"]
 
@@ -12,6 +13,7 @@ offset_right = 34.0
 offset_bottom = 41.0
 scale = Vector2(2, 2)
 script = ExtResource("1_gowu1")
+status = ExtResource("2_1mif7")
 
 [node name="status icon" type="TextureRect" parent="." unique_id=1967618961]
 custom_maximum_size = Vector2(64, 64)
@@ -21,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_og71l")
 stretch_mode = 5
 

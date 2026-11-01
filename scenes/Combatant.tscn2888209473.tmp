@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dqojtyf4in0y3"]
+
+[ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://Scripts/combatant/combatant.gd" id="1_ddi1i"]
+[ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="2_bhuil"]
+[ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://Scripts/SpriteAnimation/combatant_sprite_player.gd" id="2_ddi1i"]
+[ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_bar_ui.tscn" id="3_gqvtd"]
+[ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
+[ext_resource type="PackedScene" uid="uid://wb8nl4l28r7w" path="res://scenes/status_effect_icon.tscn" id="6_fsa1f"]
+[ext_resource type="Script" uid="uid://ca7xr68felq2v" path="res://Scripts/Modifiers/modifier_manager.gd" id="6_sga3o"]
+[ext_resource type="Script" uid="uid://b5l1pm6870olx" path="res://Scripts/card/card_piles_handler.gd" id="7_lu8df"]
+[ext_resource type="PackedScene" uid="uid://csbn5q80nu6vw" path="res://scenes/hand_display.tscn" id="8_4uuik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
+
+[node name="Combatant" type="Node2D" unique_id=1903320986 node_paths=PackedStringArray("status_manager", "modifier_manager", "card_piles_handler", "skill_container", "stats_ui") groups=["character"]]
+y_sort_enabled = true
+script = ExtResource("1_ddi1i")
+status_manager = NodePath("Handlers/StatusHandler")
+modifier_manager = NodePath("Handlers/ModifierHandler")
+card_piles_handler = NodePath("Handlers/CardPilesHandler")
+skill_container = NodePath("CombatantUI/HandDisplay")
+stats_ui = NodePath("CombatantUI/StatsUI")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1362894786]
+y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("2_bhuil")
+animation = &"stab"
+script = ExtResource("2_ddi1i")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1975118247]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1604127139]
+shape = SubResource("RectangleShape2D_crx7y")
+
+[node name="Handlers" type="Node" parent="." unique_id=997656242]
+
+[node name="StatusHandler" type="Node" parent="Handlers" unique_id=810462496 node_paths=PackedStringArray("parent", "status_effect_area")]
+script = ExtResource("5_88lpd")
+parent = NodePath("../..")
+status_effect_icon = ExtResource("6_fsa1f")
+status_effect_area = NodePath("../../CombatantUI/StatusEffectDisplay")
+
+[node name="ModifierHandler" type="Node" parent="Handlers" unique_id=1067453016]
+script = ExtResource("6_sga3o")
+metadata/_custom_type_script = "uid://ca7xr68felq2v"
+
+[node name="CardPilesHandler" type="Node" parent="Handlers" unique_id=1920134723]
+script = ExtResource("7_lu8df")
+
+[node name="CombatantUI" type="Control" parent="." unique_id=2009267767]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HandDisplay" parent="CombatantUI" unique_id=809158978 node_paths=PackedStringArray("parent") instance=ExtResource("8_4uuik")]
+layout_mode = 1
+offset_left = -309.0
+offset_top = -221.0
+offset_right = 307.0
+offset_bottom = -139.0
+parent = NodePath("../..")
+
+[node name="StatusEffectDisplay" type="GridContainer" parent="CombatantUI" unique_id=1358199471]
+layout_mode = 0
+offset_left = -142.0
+offset_top = 175.0
+offset_right = 149.0
+offset_bottom = 351.0
+columns = 10
+
+[node name="StatsUI" parent="CombatantUI" unique_id=43148091 instance=ExtResource("3_gqvtd")]
+layout_mode = 0
+offset_left = -140.0
+offset_top = 138.0
+offset_right = -82.8
+offset_bottom = 156.8
+mouse_filter = 2

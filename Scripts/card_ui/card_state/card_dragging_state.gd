@@ -7,7 +7,6 @@ var drag_start_time := 0.0
 func enter() -> void:
 	CardState.any_card_dragging = true
 	card_ui.z_index = 10
-	card_ui.color.color = Color.NAVY_BLUE
 	drag_start_time = Time.get_ticks_msec() / 1000.0
 	set_process(true)
 

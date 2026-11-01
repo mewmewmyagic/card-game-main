@@ -5,7 +5,6 @@ func enter() -> void:
 		await card_ui.ready
 	
 	CardState.any_card_dragging = false
-	card_ui.color.color = Color.SEA_GREEN
 	card_ui.pivot_offset = Vector2.ZERO
 		
 func on_mouse_entered() -> void:

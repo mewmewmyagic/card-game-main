@@ -13,9 +13,9 @@ static func calculate(p_packet: DamagePacket) -> Result:
 	var packet := DamagePacket.create(p_packet.amount, p_packet.source, p_packet.target, p_packet.damage_type)
 
 	if packet.source:
-		packet.amount = packet.source.modifier_manager.get_modified_value(packet, Modifier.Type.dmg_dealt)
+		packet.amount = packet.source.modifier_manager.apply(ModifierBase.Type.dmg_dealt, packet.amount, packet.damage_type)
 	if packet.target:
-		packet.amount = packet.target.modifier_manager.get_modified_value(packet, Modifier.Type.dmg_taken)
+		packet.amount = packet.target.modifier_manager.apply(ModifierBase.Type.dmg_taken, packet.amount, packet.damage_type)
 
 	var r := Result.new()
 	r.amount = packet.amount

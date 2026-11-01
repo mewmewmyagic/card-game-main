@@ -15,14 +15,15 @@ func set_status(new_status: StatusEffect) -> void:
 	icon.texture = status.icon
 	custom_minimum_size = icon.size * 2
 	
+	
 	if not status.stack_changed.is_connected(_on_status_changed):
 		status.stack_changed.connect(_on_status_changed)
 	
 	if not status.count_changed.is_connected(_on_status_changed):
 		status.count_changed.connect(_on_status_changed)
 	
-	if not status.removed.is_connected(queue_free):
-		status.removed.connect(queue_free)
+	if not status.instance_removed.is_connected(queue_free):
+		status.instance_removed.connect(queue_free)
 
 	_on_status_changed()
 	
@@ -30,8 +31,9 @@ func _on_status_changed() -> void:
 	if not status:
 		return
 	
+	stack.show()
 	stack.text = str(status.stack)
-	
 	if status.stack == 0:
 		stack.hide()
+		
 	count.text = str(status.count)

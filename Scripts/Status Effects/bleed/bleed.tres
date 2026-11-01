@@ -7,6 +7,6 @@
 script = ExtResource("1_q6pbo")
 id = "bleed"
 icon = ExtResource("1_5sjd4")
-tooltip = "does damage based on stack and reduces count each turn "
+description = "everytime u attack, take damage equal to stack and reduce count by one"
 max_stack = 99
 max_count = 99

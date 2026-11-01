@@ -1,30 +1,15 @@
 extends StatusEffect
 class_name HemorrhageStatusEffect
-
-func init(_target: Combatant, _manager: StatusEffectHandler) -> void:
-	target = _target
-	manager = _manager
 	
-	self.stack_changed.connect(on_effect_applied)
-	EventBus.turn_ended.connect(queue_status_action)
+func on_effect_applied() -> void:
+	self.stack_changed.connect(update_modifier)
 	
 func on_effect_removed() -> void:
-	var modifier := target.modifier_manager.get_modifier(Modifier.Type.dmg_taken) as Modifier
-	modifier.remove_value(self.id)
-	
-	self.stack_changed.disconnect(on_effect_applied)
-	EventBus.turn_ended.disconnect(queue_status_action)
+	self.stack_changed.disconnect(update_modifier)
+	self.remove_requested.emit()
 
-func on_effect_applied() -> void:
-	var modifier := target.modifier_manager.get_modifier(Modifier.Type.dmg_taken) as Modifier
-	var value := modifier.get_value(self.id)
-	if not value:
-		value = ModifierValue.create_new_modifier(self.id, ModifierValue.ModifierType.PERCENT, DamageType.Type.BLEED)
-	
-	value.percent_value = stack / 10.0 # times 10 per stack divided by 100 to convert to percentage
-	modifier.add_new_value(value)
+func update_modifier() -> void:
+	parent.modifier_manager.add(DamageModifier.new(self.id, ModifierBase.Type.dmg_taken, ModifierBase.Operation.PERCENT, stack/10.0, DamageType.Type.BLEED))
 
 func proc_status_effect() -> void:
 	add_count(-1)
-	if count <= 0:
-		manager.remove_status(id)

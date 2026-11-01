@@ -152,6 +152,7 @@ script = ExtResource("4_ldu1p")
 card_ui_scene = ExtResource("1_ukcc5")
 
 [node name="skip_round_button" parent="BattleUI" unique_id=2049350227 instance=ExtResource("21_2wrqn")]
+anchors_preset = 15
 offset_left = 563.0
 offset_top = 298.0
 offset_right = -8.0

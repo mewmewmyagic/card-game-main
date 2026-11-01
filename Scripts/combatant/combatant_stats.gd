@@ -20,10 +20,8 @@ func set_stamina(value: int) -> void:
 func reset_stamina() -> void:
 	self.stamina = max_stamina
 	
-func enough_stamina(card: Card) -> bool:
-	if card == null:
-		return false
-	return stamina >= card.stamina_cost
+func enough_stamina(cost: int) -> bool:
+	return stamina >= cost
 	
 func create_instance() -> Resource:
 	var instance: CombatantStats = self.duplicate()

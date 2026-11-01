@@ -3,7 +3,6 @@ extends CardState
 var has_target: bool
 
 func enter() -> void:
-	card_ui.color.color = Color.PURPLE
 	has_target = not card_ui.targets.is_empty()
 	if has_target:
 		var target := card_ui.targets[0].get_parent() as Combatant

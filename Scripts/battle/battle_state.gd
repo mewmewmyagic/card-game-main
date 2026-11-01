@@ -9,7 +9,7 @@ var turn_order: Array[CombatantTurn] = []
 var current_turn: CombatantTurn
 var round_number: int = 0
 
-func literally_all_combatants() -> Array[Combatant]:    # this is never getting used i think
+func literally_all_combatants() -> Array[Combatant]:
 	return allies + enemies + neutral
 
 func all_combatants() -> Array[Combatant]:          # who counts for win/lose and who ALL hits

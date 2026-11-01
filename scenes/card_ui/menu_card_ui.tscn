@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://7mxndoo2copm"]
+
+[ext_resource type="Script" uid="uid://dtfchi6kcuoie" path="res://Scripts/battle_ui/card_menu_ui.gd" id="1_tf8y7"]
+[ext_resource type="PackedScene" uid="uid://egrkfrxbpbno" path="res://scenes/card_ui/card_visuals.tscn" id="2_penpo"]
+
+[node name="CardPileCardUI" type="CenterContainer" unique_id=1143719371 node_paths=PackedStringArray("visual")]
+offset_right = 120.0
+offset_bottom = 154.0
+size_flags_horizontal = 3
+use_top_left = true
+script = ExtResource("1_tf8y7")
+visual = NodePath("Visuals")
+
+[node name="Visuals" parent="." unique_id=1072053899 instance=ExtResource("2_penpo")]
+layout_mode = 2
