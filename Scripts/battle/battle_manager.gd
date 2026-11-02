@@ -34,10 +34,10 @@ func _ready() -> void:
 	card_play_manager = CardPlayManager.new()
 	card_play_manager.battle_state = battle_state
 	card_play_manager.card_resolved.connect(_on_card_resolved)
+	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
+	EventBus.card_aim_changed.connect(card_play_manager._on_card_aim_changed)
 	
 	ActionQueue.queue.clear()
-	
-	EventBus.card_play_requested.connect(card_play_manager._on_player_card_play_requested)
 	
 	await get_tree().process_frame
 	

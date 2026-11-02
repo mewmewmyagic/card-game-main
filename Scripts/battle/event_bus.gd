@@ -19,4 +19,7 @@ signal turn_stage_changed
 #CardUI
 signal card_entered_area(card: Card, target: Combatant)
 signal card_exited_area(card: Card, target: Combatant)
-signal card_aim_changed(card: Card, hovered: Combatant, affected: Array[Combatant])
+signal card_aim_changed(card: Card, source: Combatant, target: Combatant)
+
+#TurnOrderUI
+signal highlight_these_turn_ui(combatants: Array[Combatant])

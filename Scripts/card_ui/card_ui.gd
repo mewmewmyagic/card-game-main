@@ -7,14 +7,11 @@ signal request_snap_back
 
 @export var card: Card
 @export var owner_combatant: Combatant
-var play_manager: CardPlayManager   # set by PlayerHand._spawn_card
-
-@onready var targets: Array[Node] = []
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var animator: CardAnimator = $CardAnimator as CardAnimator
 
-var _hovered: Combatant
+var target: Combatant = null
 
 var playable: bool = true:
 	set(value):
@@ -31,7 +28,6 @@ func _update_playable_visuals() -> void:
 func init(p_card: Card, p_owner_combatant: Combatant, p_play_manager: CardPlayManager) -> void:
 	card = p_card
 	owner_combatant = p_owner_combatant
-	play_manager = p_play_manager
 	
 func _ready() -> void:
 	card_state_machine.init(self)
@@ -52,31 +48,21 @@ func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
-	if not targets.has(area):
-		targets.append(area)
+	if target != null:
+		return # one target at a time, first one wins
+	target = area.get_parent() as Combatant
 	_update_aim()
 
 func _on_drop_point_detector_area_exited(area: Area2D) -> void:
-	targets.erase(area)
+	if area.get_parent() != target:
+		return
+	target = null
+	# still over something else? pick it up instead of dropping to null
+	for a in drop_point_detector.get_overlapping_areas():
+		if a != area:
+			target = a.get_parent() as Combatant
+			break
 	_update_aim()
 
-func _pick_hovered() -> Combatant:
-	var best: Combatant = null
-	var best_d := INF
-	for a in targets:
-		if not is_instance_valid(a): continue
-		var d := (a as Area2D).global_position.distance_to(get_global_mouse_position())
-		if d < best_d:
-			best_d = d
-			best = a.get_parent() as Combatant
-	return best
-
 func _update_aim() -> void:
-	var hovered := _pick_hovered()
-	if hovered == _hovered:
-		return
-	_hovered = hovered
-	var affected: Array[Combatant] = []
-	if hovered and play_manager:
-		affected = play_manager.preview_targets(card, owner_combatant, hovered)
-	EventBus.card_aim_changed.emit(card, hovered, affected)
+	EventBus.card_aim_changed.emit(card, owner_combatant, target) # used by card_play_manager

@@ -21,7 +21,6 @@ func validate_card(context: CardEffectContext) -> bool:
 	return true
 	
 func get_targets(context: CardEffectContext) -> Array[Combatant]: #for multi targeting cards
-	
 	var result: Array[Combatant] = []
 	match context.card.target_type:
 		Card.TargetType.ALL_ALLY:
@@ -81,8 +80,14 @@ func is_valid_target(context: CardEffectContext) -> bool:
 		_:
 			return false
 
+
 func preview_targets(card: Card, source: Combatant, target: Combatant) -> Array[Combatant]:
+	if target == null:
+		return []
 	var ctx := CardEffectContext.create(card, source, target, battle_state)
 	if not can_play(card, source) or not is_valid_target(ctx):
 		return []
 	return get_targets(ctx)
+
+func _on_card_aim_changed(card: Card, source: Combatant, target: Combatant) -> void:
+	EventBus.highlight_these_turn_ui.emit(preview_targets(card, source, target))

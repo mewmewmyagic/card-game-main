@@ -8,7 +8,9 @@ func add(m: ModifierBase) -> void:
 	modifiers.append(m)
 
 func remove(id: String) -> void:
-	modifiers= modifiers.filter(func(m): return m.id != id)
+	for i in range(modifiers.size()):
+		if modifiers[i].id == id:
+			modifiers.remove_at(i)
 
 func apply(type: ModifierBase.Type, base: float, ctx = null) -> float:
 	var flat := 0.0
@@ -21,5 +23,4 @@ func apply(type: ModifierBase.Type, base: float, ctx = null) -> float:
 		else:
 			percent += m.value
 	var final_value = (base + flat) * (1.0 + percent)
-	print(base, final_value)
 	return final_value

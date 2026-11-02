@@ -12,7 +12,7 @@ var turn: CombatantTurn
 func _ready() -> void:
 	animator.init(self)
 	background.color = Color.ROYAL_BLUE
-	EventBus.card_aim_changed.connect(_on_target_changed)
+	EventBus.highlight_these_turn_ui.connect(_on_target_changed)
 	
 func update_owner(c: CombatantTurn) -> void:
 	turn = c
@@ -23,7 +23,7 @@ func update_owner(c: CombatantTurn) -> void:
 func _on_recovery_time_changed() -> void:
 	amount.text = str(turn.recovery_time)
 	
-func _on_target_changed(_c: Card, hovered: Combatant, affected: Array[Combatant]) -> void:
+func _on_target_changed(affected: Array[Combatant]) -> void:
 	if affected.has(turn.combatant):
 		background.color = Color.ORANGE_RED      # will be hit
 	else:
