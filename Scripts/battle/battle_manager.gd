@@ -53,24 +53,18 @@ func _ready() -> void:
 #currently, since round sort round directly sorts the combatants array, 
 func start_round() -> void:
 	for c in battle_state.literally_all_combatants():
-		c.stats.reset_stamina()
-		c.stats.reset_shield()
-		c.card_piles_handler.build_hand()
-		c.card_piles_handler.card_play_history.clear()
-		
-		var turn := CombatantTurn.new()
-		turn.combatant = c
-		battle_state.turn_order.append(turn)
-	
-	battle_state.turn_order.shuffle()
+		c.reset_combatant()
+		for i in range(c.stats.turn_slot_count):
+			var c_turn := CombatantTurn.new()
+			c_turn.combatant = c
+			c.stats.turn_slots.append(c_turn)
 	
 	EventBus.round_started.emit()
 	start_turn()
 
 func end_round() -> void:
 	#battle.battle_ui.unbind_all() #TODO
-	battle_state.turn_order.clear()
-	turn_manager.turn_order_changed.emit()
+	turn_manager.clear_turns()
 	
 	EventBus.round_ended.emit()
 	
@@ -81,9 +75,9 @@ func start_turn() -> void:
 		await end_battle()      
 		return
 	
-	turn_manager.sort_turns()
+	turn_manager.turn_order_changed.emit()
 	
-	turn_manager.set_next_active_turn()
+	turn_manager.set_current_turn()
 	_set_stage(Stage.START)
 	
 	EventBus.turn_started.emit()

@@ -5,7 +5,6 @@ var allies: Array[Combatant] = []
 var enemies: Array[Combatant] = []
 var neutral: Array[Combatant] = []
 
-var turn_order: Array[CombatantTurn] = []
 var current_turn: CombatantTurn
 var round_number: int = 0
 
@@ -38,13 +37,6 @@ func alive(team: Array[Combatant]) -> Array[Combatant]:
 
 func battle_is_over() -> bool:
 	return alive(allies).is_empty() or alive(enemies).is_empty()
-
-func turns_of(c: Combatant) -> Array[CombatantTurn]:
-	return turn_order.filter(func(t): return t.combatant == c)
-
-func add_recovery_time_to_every(c: Combatant, amount: int) -> void:
-	for t in turns_of(c):
-		t.recovery_time += amount
 		
 func add_recovery_time_to_current(amount: int) -> void:
 		current_turn.recovery_time += amount

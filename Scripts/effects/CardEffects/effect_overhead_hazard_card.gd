@@ -10,6 +10,6 @@ func execute(context: CardEffectContext) -> void:
 		
 		context.target.apply_damage(0, 25)
 		if (health < 0.75):
-			context.battle_state.add_recovery_time_to_every(context.target, amount)
+			context.target.stats.add_recovery_time_to_all(amount)
 		if (health < 0.25):
 			context.target.stats.take_health_damage(context.target.stats.max_health)

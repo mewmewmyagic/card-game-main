@@ -5,21 +5,27 @@ signal turn_order_changed
 
 var battle_state: BattleState
 
-func get_active_turns() -> Array[CombatantTurn]:
-	return battle_state.turn_order.filter(func(t): return t.combatant.is_active_combatant())
+func get_sorted_turns() -> Array[CombatantTurn]:
+	var all: Array[CombatantTurn] = []
+	for c in battle_state.literally_all_combatants():
+		all.append_array(c.stats.turn_slots)
+		
+	all.sort_custom(func(a, b): if a.recovery_time != b.recovery_time: return a.recovery_time < b.recovery_time)
+	return all
 
-func set_next_active_turn() -> void:
-	if (get_active_turns().is_empty()):
+func get_active_turns() -> Array[CombatantTurn]:
+	return get_sorted_turns().filter(func(t): return t.combatant.is_active_combatant())
+
+func set_current_turn() -> void:
+	var active := get_active_turns()
+	if active.is_empty():
 		push_error("no active combatants")
 		return
-		
-	battle_state.current_turn = get_active_turns()[0]
-	
-func turns_of(combatant: Combatant) -> Array[CombatantTurn]:
-	return battle_state.turn_order.filter(func(t): return t.combatant == combatant)
+	battle_state.current_turn = active[0]
 
-func sort_turns() -> void:
-	battle_state.turn_order.sort_custom(func(a, b): return a.recovery_time < b.recovery_time)
+func clear_turns() -> void:
+	for c in battle_state.literally_all_combatants():
+		c.stats.turn_slots.clear()
 	turn_order_changed.emit()
 	
 func round_over() -> bool:

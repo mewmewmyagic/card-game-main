@@ -7,7 +7,9 @@ signal stamina_changed(new_stamina: int)
 @export var max_hand_size := 10
 @export var max_stamina: int
 @export var starting_pile: CardPile
+@export var turn_slot_count: int = 1
 
+var turn_slots: Array[CombatantTurn]
 var stamina: int: set = set_stamina
 
 func reset_shield() -> void:
@@ -16,6 +18,10 @@ func reset_shield() -> void:
 func set_stamina(value: int) -> void:
 	stamina = value
 	stamina_changed.emit(stamina)
+	
+func add_recovery_time_to_all(amount: int) -> void:
+	for t in turn_slots:
+		t.recovery_time = maxi(0, t.recovery_time + amount)
 	
 func reset_stamina() -> void:
 	self.stamina = max_stamina

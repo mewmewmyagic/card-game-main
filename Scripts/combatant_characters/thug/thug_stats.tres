@@ -7,5 +7,5 @@
 script = ExtResource("1_d1el1")
 max_stamina = 7
 starting_pile = ExtResource("2_g05nv")
-max_health = 120
+max_health = 1000
 metadata/_custom_type_script = "uid://nbbhc701n0jf"

@@ -33,10 +33,19 @@ func _on_self_turn_ended() -> void:
 
 func _ready() -> void:
 	sprite_2d.bind(appearance)
-	card_piles_handler.setup(stats.starting_pile, stats.max_hand_size, stats.OPENING_HAND_SIZE)
+	
 	stats = stats.create_instance()
 	stats.stats_changed.connect(check_if_dead)
+	
+	card_piles_handler.setup(stats.starting_pile, stats.max_hand_size, stats.OPENING_HAND_SIZE)
+	
 	bind()
+
+func reset_combatant() -> void:
+	self.stats.reset_stamina()
+	self.stats.reset_shield()
+	self.card_piles_handler.build_hand()
+	self.card_piles_handler.card_play_history.clear()
 
 func bind() -> void:
 	stats_ui.bind(stats)
