@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hyul72dk0epo"
-path="res://.godot/imported/fe1cd43d-928d-4798-95f2-d85d80a74dc4.jpg-58a6516bb413c37273d38c588b336195.ctex"
+uid="uid://b8a8jys8qs8a8"
+path="res://.godot/imported/sky.png-0628e862f7efec56f86e7a468f36edbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/fe1cd43d-928d-4798-95f2-d85d80a74dc4.jpg"
-dest_files=["res://.godot/imported/fe1cd43d-928d-4798-95f2-d85d80a74dc4.jpg-58a6516bb413c37273d38c588b336195.ctex"]
+source_file="res://Textures/Backgrounds/trainfight/sky.png"
+dest_files=["res://.godot/imported/sky.png-0628e862f7efec56f86e7a468f36edbe.ctex"]
 
 [params]
 

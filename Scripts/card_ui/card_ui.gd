@@ -1,8 +1,6 @@
 class_name HandCardUI
 extends Control
 
-signal request_snap_back
-
 @export var visuals: CardVisuals
 
 @export var card: Card
@@ -12,6 +10,8 @@ signal request_snap_back
 @onready var animator: CardAnimator = $CardAnimator as CardAnimator
 
 var target: Combatant = null
+var position_in_hand: Vector2
+var rotation_in_hand: float
 
 var playable: bool = true:
 	set(value):
@@ -25,7 +25,7 @@ func _update_playable_visuals() -> void:
 	modulate = Color.WHITE if playable else Color(0.4, 0.4, 0.4, 1.0)
 	
 	
-func init(p_card: Card, p_owner_combatant: Combatant, p_play_manager: CardPlayManager) -> void:
+func init(p_card: Card, p_owner_combatant: Combatant) -> void:
 	card = p_card
 	owner_combatant = p_owner_combatant
 	

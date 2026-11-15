@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chrklqrha6lnb"
-path="res://.godot/imported/b4c306f3-5cb2-41ef-b76f-2be23ce6295d.jpg-c4866068a9bdd841d4c301ed69186f55.ctex"
+uid="uid://dmio6emqccni7"
+path="res://.godot/imported/mountains.png-bc01c0c538c7d6acdf36ea6201715c12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/b4c306f3-5cb2-41ef-b76f-2be23ce6295d.jpg"
-dest_files=["res://.godot/imported/b4c306f3-5cb2-41ef-b76f-2be23ce6295d.jpg-c4866068a9bdd841d4c301ed69186f55.ctex"]
+source_file="res://Textures/Backgrounds/trainfight/mountains.png"
+dest_files=["res://.godot/imported/mountains.png-bc01c0c538c7d6acdf36ea6201715c12.ctex"]
 
 [params]
 

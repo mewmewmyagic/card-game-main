@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RandomAIBehaviour" format=3 uid="uid://wvwhngxdni61"]
+
+[ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/ComabatantAI/random_ai_behaviour.gd" id="1_eaonv"]
+
+[resource]
+script = ExtResource("1_eaonv")
+metadata/_custom_type_script = "uid://b5myvxmry6cml"

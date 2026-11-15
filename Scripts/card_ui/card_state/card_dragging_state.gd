@@ -13,6 +13,7 @@ func enter() -> void:
 func exit() -> void:
 	CardState.any_card_dragging = false
 	card_ui.z_index = 0
+	card_ui.drop_point_detector.position = Vector2.ZERO
 	set_process(false)
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	card_ui.global_position = _get_screen_mouse_global() - card_ui.pivot_offset
+	card_ui.drop_point_detector.global_position = _get_world_mouse_global() - card_ui.pivot_offset
 
 func on_input(event: InputEvent) -> void:
 	var cancel := event.is_action_pressed("right_mouse")
@@ -27,7 +29,7 @@ func on_input(event: InputEvent) -> void:
 	var drag_time := Time.get_ticks_msec() / 1000.0 - drag_start_time
 
 	if cancel:
-		card_ui.request_snap_back.emit()
+		card_ui.animator.move_to(card_ui.position_in_hand, card_ui.rotation_in_hand, 0.1)
 		transition_requested.emit(self, CardState.State.BASE)
 	elif confirm and drag_time > MIN_DRAG_TIME:
 		get_viewport().set_input_as_handled()
@@ -38,3 +40,10 @@ func _get_screen_mouse_global() -> Vector2:
 	var window_pos := Vector2(DisplayServer.mouse_get_position()) - Vector2(window.position)
 	var viewport_pos := window.get_screen_transform().affine_inverse() * window_pos
 	return card_ui.get_canvas_transform().affine_inverse() * viewport_pos
+
+func _get_world_mouse_global() -> Vector2:
+	var window := get_window()
+	var window_pos := Vector2(DisplayServer.mouse_get_position()) - Vector2(window.position)
+	var viewport_pos := window.get_screen_transform().affine_inverse() * window_pos
+
+	return get_viewport().get_canvas_transform().affine_inverse() * viewport_pos

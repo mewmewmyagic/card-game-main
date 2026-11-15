@@ -2,7 +2,7 @@ extends CardState
 
 func on_mouse_exited() -> void:
 	card_ui.z_index = 0
-	card_ui.request_snap_back.emit()
+	card_ui.animator.move_to(card_ui.position_in_hand, card_ui.rotation_in_hand, 0.1)
 	transition_requested.emit(self, CardState.State.BASE)
 
 func enter() -> void:

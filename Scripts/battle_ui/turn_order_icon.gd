@@ -7,12 +7,14 @@ var turn: CombatantTurn
 @export var amount: Label
 @export var combatant_icon: TextureRect
 @export var background: ColorRect
+@export var highlight: ColorRect
 @export var animator: TurnOrderIconAnimator
 
 func _ready() -> void:
 	animator.init(self)
 	background.color = Color.ROYAL_BLUE
 	EventBus.highlight_these_turn_ui.connect(_on_target_changed)
+	highlight.hide()
 	
 func update_owner(c: CombatantTurn) -> void:
 	turn = c
@@ -25,6 +27,6 @@ func _on_recovery_time_changed() -> void:
 	
 func _on_target_changed(affected: Array[Combatant]) -> void:
 	if affected.has(turn.combatant):
-		background.color = Color.ORANGE_RED      # will be hit
+		highlight.show()
 	else:
-		background.color = Color.ROYAL_BLUE
+		highlight.hide()

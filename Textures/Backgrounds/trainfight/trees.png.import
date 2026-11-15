@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co0hmtlj250en"
-path="res://.godot/imported/wallpaperflare.com_wallpaper.jpg-9ef27249bf0715c07f0d9d28fc321ec8.ctex"
+uid="uid://vnd0awfsnm7l"
+path="res://.godot/imported/trees.png-d5a973a7899c495420071c18fcaea398.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/wallpaperflare.com_wallpaper.jpg"
-dest_files=["res://.godot/imported/wallpaperflare.com_wallpaper.jpg-9ef27249bf0715c07f0d9d28fc321ec8.ctex"]
+source_file="res://Textures/Backgrounds/trainfight/trees.png"
+dest_files=["res://.godot/imported/trees.png-d5a973a7899c495420071c18fcaea398.ctex"]
 
 [params]
 

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattleData" format=3 uid="uid://bvw2wckx0v3qv"]
+
+[ext_resource type="PackedScene" uid="uid://cw1u3et28weyh" path="res://scenes/battle/backgrounds/train_background.tscn" id="1_05qxm"]
+[ext_resource type="Script" uid="uid://bf211oi55b8fk" path="res://Resources/CombatantData/combatant_data.gd" id="1_kevpi"]
+[ext_resource type="Script" uid="uid://618p2p1ymtk4" path="res://Resources/BattleData/battle_data.gd" id="2_05qxm"]
+[ext_resource type="Resource" uid="uid://emqnjvetu063" path="res://Scripts/combatant_characters/thug/thug_data.tres" id="3_csqcy"]
+[ext_resource type="Resource" uid="uid://bce00kiyd2dqu" path="res://Scripts/combatant_characters/tourist/tourist_data.tres" id="3_fvvms"]
+
+[resource]
+script = ExtResource("2_05qxm")
+allies = Array[ExtResource("1_kevpi")]([ExtResource("3_fvvms"), ExtResource("3_fvvms")])
+enemies = Array[ExtResource("1_kevpi")]([ExtResource("3_csqcy"), ExtResource("3_csqcy")])
+Background = ExtResource("1_05qxm")
+metadata/_custom_type_script = "uid://618p2p1ymtk4"

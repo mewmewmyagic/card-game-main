@@ -23,7 +23,6 @@ var card_play_manager: CardPlayManager
 var source_combatant: Combatant
 
 func bind(resolver: CardPlayManager, source: Combatant) -> void:
-	#dont bind if already binded
 	if source == source_combatant:
 		return
 		
@@ -74,8 +73,7 @@ func _sync() -> void:
 
 func _spawn_card(card: Card) -> void:
 	var card_ui := card_ui_scene.instantiate() as HandCardUI
-	card_ui.init(card, source_combatant, card_play_manager)
-	card_ui.request_snap_back.connect(request_relayout)
+	card_ui.init(card, source_combatant)
 	add_child(card_ui)
 	card_to_ui[card] = card_ui
 
@@ -113,7 +111,7 @@ func _update_layout() -> void:
 	for i in count:
 		var card := cards[i]
 		
-		var target_rotation := (i - count / 2.0) * ROTATION_PER_CARD
+		var target_rotation: float = (i - count / 2.0) * ROTATION_PER_CARD
 		
 		var x := center_x + (i * spacing - total_width / 2.0)
 		#var normalized_offset: float = 0.0
@@ -121,7 +119,9 @@ func _update_layout() -> void:
 		var theta: float = deg_to_rad(target_rotation)
 		var y: float = (ARC_RADIUS - ARC_RADIUS * cos(theta)) * 4
 		var target_position := Vector2(x, y) - Vector2(card.size.x, CARD_Y_OFFSET * count/3) / 2.0
-
+		
+		card.position_in_hand = target_position
+		card.rotation_in_hand = target_rotation
 		_animate_card(card, target_position, target_rotation)
 
 func _animate_card(card: HandCardUI, target_position: Vector2, target_rotation: float) -> void:

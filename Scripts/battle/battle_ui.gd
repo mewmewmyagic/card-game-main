@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name BattleUI
 
 @export var battle_manager: BattleManager
 @export var the_hand_ui: PlayerHand
@@ -19,7 +20,7 @@ func _ready() -> void:
 	battle_manager.battle_ended.connect(hide_all)
 
 func _on_different_ally_turn_started(combatant: Combatant) -> void:
-	if combatant.ai_behavior:
+	if combatant.ai_behaviour:
 		return
 	
 	the_hand_ui.bind(battle_manager.card_play_manager, combatant)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatantData" format=3 uid="uid://emqnjvetu063"]
+
+[ext_resource type="Script" uid="uid://bf211oi55b8fk" path="res://Resources/CombatantData/combatant_data.gd" id="1_0x5ul"]
+[ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/ComabatantAI/random_ai_behaviour.gd" id="1_gb4k1"]
+[ext_resource type="Resource" uid="uid://n3tbdi52fsei" path="res://Scripts/combatant_characters/thug/thug_stats.tres" id="2_cd85e"]
+[ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://SpritesAndStuffs/thug_sprite_resource.tres" id="2_icb25"]
+
+[sub_resource type="Resource" id="Resource_qcili"]
+script = ExtResource("1_gb4k1")
+metadata/_custom_type_script = "uid://b5myvxmry6cml"
+
+[resource]
+script = ExtResource("1_0x5ul")
+stats = ExtResource("2_cd85e")
+appearance = ExtResource("2_icb25")
+ai_behaviour = SubResource("Resource_qcili")
+combatant_name = "Thug"
+metadata/_custom_type_script = "uid://bf211oi55b8fk"

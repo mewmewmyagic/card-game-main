@@ -1,5 +1,5 @@
 # FirstPlayableCardBehavior.gd
-class_name RandomAIBehavior
+class_name RandomAIBehaviour
 extends CombatantAIBase
 
 func choose_card(user: Combatant, battle: BattleManager) -> Card:

@@ -24,7 +24,7 @@ func bind(turnManager: TurnManager) -> void:
 
 #where the icon in slot i belongs. slot 0 sits under the big icon
 func _slot_position(i: int) -> Vector2:
-	var y := self.size.y / 2 - ICON_SPACING / 2
+	var y := self.size.y / 2.0 - ICON_SPACING / 2.0
 	var big_width := big_icon.size.x * big_icon.scale.x
 	if i == 0:
 		return Vector2(big_width / 4, y)
@@ -40,7 +40,7 @@ func _create_icon(t: CombatantTurn) -> TurnOrderIcon:
 #round start: right to left
 func round_start_spawn_icon(t: CombatantTurn) -> void:
 	var turn_icon := _create_icon(t)
-	turn_icon.position = Vector2(self.size.x, self.size.y / 2 - ICON_SPACING / 2)
+	turn_icon.position = Vector2(self.size.x, self.size.y / 2.0 - ICON_SPACING / 2.0)
 
 #mid round: starts hidden, _update_layout drops it in from above its slot
 func spawn_icon(t: CombatantTurn) -> void:

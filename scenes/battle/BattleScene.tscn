@@ -1,98 +1,35 @@
 [gd_scene format=3 uid="uid://bvgn2ofcb603x"]
 
 [ext_resource type="Script" uid="uid://cwknok3wn3wr2" path="res://scenes/battle/BattleScene.gd" id="1_i1ovl"]
-[ext_resource type="Texture2D" uid="uid://h2skwp06ey8c" path="res://Textures/Backgrounds/Background1.png" id="1_k6rj7"]
 [ext_resource type="PackedScene" uid="uid://d0tus8eitn6fa" path="res://scenes/card_ui/hand_card_ui.tscn" id="1_ukcc5"]
 [ext_resource type="Script" uid="uid://b1i6l5yfrj18y" path="res://Scripts/battle/battle_ui.gd" id="2_4f3f8"]
-[ext_resource type="Texture2D" uid="uid://y3uqbfpt74de" path="res://Textures/Backgrounds/Sprite-0003.png" id="3_lk1r3"]
-[ext_resource type="PackedScene" uid="uid://dqojtyf4in0y3" path="res://scenes/Combatant.tscn" id="4_0yjdt"]
+[ext_resource type="Resource" uid="uid://bvw2wckx0v3qv" path="res://Resources/BattleData/train_fight_data.tres" id="2_d37c3"]
 [ext_resource type="Script" uid="uid://c1p7c1ymg1wxp" path="res://Scripts/battle_ui/player_hand_ui.gd" id="4_ldu1p"]
-[ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://Scripts/combatant_characters/tourist/tourist.tres" id="6_hvhqn"]
 [ext_resource type="Script" uid="uid://yt5bgjthmi7b" path="res://Scripts/battle/battle_manager.gd" id="6_q34gv"]
-[ext_resource type="Script" uid="uid://b5myvxmry6cml" path="res://Scripts/ComabatantAI/first_playable_card.gd" id="8_emfdx"]
-[ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://SpritesAndStuffs/tourist_sprite_resource.tres" id="9_0t5w0"]
-[ext_resource type="Resource" uid="uid://cycsu5deravq5" path="res://SpritesAndStuffs/bird_sprite_resource.tres" id="9_2jvsm"]
-[ext_resource type="Resource" uid="uid://n3tbdi52fsei" path="res://Scripts/combatant_characters/thug/thug_stats.tres" id="9_4rstf"]
-[ext_resource type="Resource" uid="uid://bjbdgr1x7bcvf" path="res://Scripts/combatant_characters/TrainOverhead/hazards_stats.tres" id="11_5b2op"]
 [ext_resource type="PackedScene" uid="uid://1uaqytmxr4de" path="res://scenes/ui/stamina_ui.tscn" id="11_emfdx"]
-[ext_resource type="Resource" uid="uid://ct0ufy0cnfcxt" path="res://SpritesAndStuffs/hazard_sprite_resource.tres" id="11_vpuc1"]
 [ext_resource type="PackedScene" uid="uid://dwsjgd3bmp76l" path="res://scenes/ui/TurnOrderUI.tscn" id="14_th5m4"]
 [ext_resource type="PackedScene" uid="uid://sewshbwxty6x" path="res://scenes/ui/card_pile_ui.tscn" id="15_4q0u5"]
+[ext_resource type="Script" uid="uid://bnpeefe3iqr2v" path="res://Scripts/battle/battle_state.gd" id="19_vpuc1"]
 [ext_resource type="PackedScene" uid="uid://df4gabwwtl1tb" path="res://scenes/ui/skip_round.tscn" id="21_2wrqn"]
 [ext_resource type="Shader" uid="uid://bs7lemhfqjxqc" path="res://scenes/BottomFade.gdshader" id="21_qiykf"]
-
-[sub_resource type="Resource" id="Resource_rfwfw"]
-script = ExtResource("8_emfdx")
-metadata/_custom_type_script = "uid://b5myvxmry6cml"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crx7y"]
 shader = ExtResource("21_qiykf")
 
-[node name="BattleScene" type="Node2D" unique_id=17023024]
+[node name="BattleScene" type="Node2D" unique_id=17023024 node_paths=PackedStringArray("battle_state", "battle_ui")]
 script = ExtResource("1_i1ovl")
+battle_state = NodePath("BattleState")
+battle_ui = NodePath("BattleUI")
+data = ExtResource("2_d37c3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=848171344]
-position = Vector2(2, 55)
-scale = Vector2(1, 0.6611111)
-texture = ExtResource("1_k6rj7")
-centered = false
+[node name="BattleState" type="Node" parent="." unique_id=1402039538]
+script = ExtResource("19_vpuc1")
 
-[node name="Sprite0001" type="Sprite2D" parent="." unique_id=413454038]
-visible = false
-position = Vector2(203, 202)
-texture = ExtResource("3_lk1r3")
-
-[node name="BattleManager" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("allies", "enemies", "neutral") groups=["battle_state"]]
+[node name="BattleManager" type="Node" parent="." unique_id=430576926 node_paths=PackedStringArray("battle_state") groups=["battle_state"]]
 script = ExtResource("6_q34gv")
-allies = [NodePath("Alex"), NodePath("Bob")]
-enemies = [NodePath("Cindy"), NodePath("Cindy2"), NodePath("Cindy3")]
-neutral = [NodePath("Cindy4")]
 next_scene = "uid://qpqkb081pr1m"
+battle_state = NodePath("../BattleState")
 metadata/_custom_type_script = "uid://yt5bgjthmi7b"
-
-[node name="Alex" parent="BattleManager" unique_id=1903320986 instance=ExtResource("4_0yjdt")]
-position = Vector2(102, 206.00002)
-scale = Vector2(0.2, 0.2)
-stats = ExtResource("6_hvhqn")
-appearance = ExtResource("9_0t5w0")
-
-[node name="Bob" parent="BattleManager" unique_id=1763858510 instance=ExtResource("4_0yjdt")]
-position = Vector2(195, 223)
-scale = Vector2(0.2, 0.2)
-stats = ExtResource("6_hvhqn")
-appearance = ExtResource("9_2jvsm")
-
-[node name="Cindy" parent="BattleManager" unique_id=1047957331 instance=ExtResource("4_0yjdt")]
-position = Vector2(540.00006, 219)
-scale = Vector2(0.2, 0.2)
-stats = ExtResource("9_4rstf")
-ai_behavior = SubResource("Resource_rfwfw")
-combatant_name = "fuck head"
-appearance = ExtResource("9_2jvsm")
-
-[node name="Cindy2" parent="BattleManager" unique_id=1607962784 instance=ExtResource("4_0yjdt")]
-position = Vector2(609, 224)
-scale = Vector2(0.2, 0.2)
-stats = ExtResource("9_4rstf")
-ai_behavior = SubResource("Resource_rfwfw")
-combatant_name = "fuck head"
-appearance = ExtResource("9_2jvsm")
-
-[node name="Cindy3" parent="BattleManager" unique_id=419259227 instance=ExtResource("4_0yjdt")]
-position = Vector2(474, 216)
-scale = Vector2(0.2, 0.2)
-stats = ExtResource("9_4rstf")
-ai_behavior = SubResource("Resource_rfwfw")
-combatant_name = "fuck head"
-appearance = ExtResource("9_2jvsm")
-
-[node name="Cindy4" parent="BattleManager" unique_id=541432164 instance=ExtResource("4_0yjdt")]
-position = Vector2(485, 454)
-scale = Vector2(0.2, 0.2)
-stats = ExtResource("11_5b2op")
-ai_behavior = SubResource("Resource_rfwfw")
-combatant_name = "fuck head"
-appearance = ExtResource("11_vpuc1")
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=407058147 node_paths=PackedStringArray("battle_manager", "the_hand_ui", "stamina_ui", "turn_ui", "draw_pile_ui", "discard_pile_ui", "skip_round_ui") groups=["ui_layer"]]
 script = ExtResource("2_4f3f8")
@@ -113,6 +50,7 @@ offset_left = -6.0
 offset_top = 310.0
 offset_right = 0.7199707
 offset_bottom = 17.0
+metadata/_edit_use_anchors_ = true
 
 [node name="StaminaUI" parent="BattleUI" unique_id=1157727669 instance=ExtResource("11_emfdx")]
 anchors_preset = -1
@@ -126,18 +64,21 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = -4.0
 offset_bottom = -308.0
+metadata/_edit_use_anchors_ = true
 
 [node name="DrawPileUI" parent="BattleUI" unique_id=188438490 instance=ExtResource("15_4q0u5")]
 offset_left = 19.0
 offset_top = 336.0
 offset_right = -621.0
 offset_bottom = -24.0
+metadata/_edit_use_anchors_ = true
 
 [node name="DiscardPileUI" parent="BattleUI" unique_id=91462868 instance=ExtResource("15_4q0u5")]
 offset_left = 55.0
 offset_top = 335.0
 offset_right = -585.0
 offset_bottom = -25.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHandUI" type="Control" parent="BattleUI" unique_id=1430552393]
 layout_mode = 3
@@ -150,6 +91,7 @@ offset_bottom = 286.99997
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_ldu1p")
 card_ui_scene = ExtResource("1_ukcc5")
+metadata/_edit_use_anchors_ = true
 
 [node name="skip_round_button" parent="BattleUI" unique_id=2049350227 instance=ExtResource("21_2wrqn")]
 anchors_preset = 15
@@ -157,3 +99,6 @@ offset_left = 563.0
 offset_top = 298.0
 offset_right = -8.0
 offset_bottom = -42.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1683653035]

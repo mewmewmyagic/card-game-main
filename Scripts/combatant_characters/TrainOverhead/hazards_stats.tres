@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="CombatantStats" format=3 uid="uid://bjbdgr1x7bcvf"]
 
+[ext_resource type="Resource" uid="uid://wvwhngxdni61" path="res://Scripts/ComabatantAI/random_ai_behaviour.tres" id="1_1trf3"]
 [ext_resource type="Script" uid="uid://nbbhc701n0jf" path="res://Scripts/combatant/combatant_stats.gd" id="1_7wor4"]
 [ext_resource type="Resource" uid="uid://b3r35paidqinm" path="res://Scripts/combatant_characters/TrainOverhead/train_overhead_deck.tres" id="2_7wor4"]
 
@@ -8,5 +9,6 @@ script = ExtResource("1_7wor4")
 OPENING_HAND_SIZE = 2
 max_stamina = 7
 starting_pile = ExtResource("2_7wor4")
+ai_behaviour = ExtResource("1_1trf3")
 max_health = 999
 metadata/_custom_type_script = "uid://nbbhc701n0jf"

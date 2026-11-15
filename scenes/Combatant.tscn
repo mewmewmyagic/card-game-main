@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqojtyf4in0y3"]
 
 [ext_resource type="Script" uid="uid://b53k3yelplj0g" path="res://Scripts/combatant/combatant.gd" id="1_ddi1i"]
-[ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/bird_sprite_frames.tres" id="2_bhuil"]
+[ext_resource type="SpriteFrames" uid="uid://druu3xurtnyka" path="res://SpritesAndStuffs/thug_sprite_frames.tres" id="2_bhuil"]
 [ext_resource type="Script" uid="uid://e2os3tigqex1" path="res://Scripts/SpriteAnimation/combatant_sprite_player.gd" id="2_ddi1i"]
 [ext_resource type="PackedScene" uid="uid://b1ryleahhgw4h" path="res://scenes/ui/stats_bar_ui.tscn" id="3_gqvtd"]
 [ext_resource type="Script" uid="uid://qiaqjw8djnsq" path="res://Scripts/Status Effects/status_effect_manager.gd" id="5_88lpd"]
@@ -12,12 +12,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crx7y"]
 
-[node name="Combatant" type="Node2D" unique_id=1903320986 node_paths=PackedStringArray("status_manager", "modifier_manager", "card_piles_handler", "skill_container", "stats_ui") groups=["character"]]
+[node name="Combatant" type="Node2D" unique_id=961496672 node_paths=PackedStringArray("status_manager", "modifier_manager", "card_piles_handler", "combatant_ui", "skill_container", "stats_ui") groups=["character"]]
 y_sort_enabled = true
 script = ExtResource("1_ddi1i")
 status_manager = NodePath("Handlers/StatusHandler")
 modifier_manager = NodePath("Handlers/ModifierHandler")
 card_piles_handler = NodePath("Handlers/CardPilesHandler")
+combatant_ui = NodePath("CombatantUI")
 skill_container = NodePath("CombatantUI/HandDisplay")
 stats_ui = NodePath("CombatantUI/StatsUI")
 
@@ -29,7 +30,8 @@ animation = &"stab"
 script = ExtResource("2_ddi1i")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1975118247]
-collision_layer = 2
+collision_layer = 15
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1604127139]
 shape = SubResource("RectangleShape2D_crx7y")

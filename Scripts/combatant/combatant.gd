@@ -5,9 +5,9 @@ signal im_dead(combatant: Combatant)
 signal card_played(card: Card)
 signal anim_done
 
-@export var stats: CombatantStats #: set = set_combatant_stats
-@export var ai_behavior: CombatantAIBase
-@export var combatant_name: String
+var stats: CombatantStats
+var combatant_name: String
+var ai_behaviour: CombatantAIBase
 
 @export var status_manager: StatusEffectHandler
 @export var modifier_manager: ModifierManager
@@ -16,6 +16,7 @@ signal anim_done
 @export var appearance: CombatantSpriteResource
 @onready var sprite_2d: CombatantAnimationPlayer = $AnimatedSprite2D
 
+@export var combatant_ui: Control
 @export var skill_container: HandDisplay
 @export var stats_ui: CombatantStatsUI
 
@@ -30,6 +31,15 @@ func _on_self_turn_started() -> void:
 	
 func _on_self_turn_ended() -> void:
 	pass
+
+func setup(data: CombatantData) -> void:
+	stats = data.stats   # _ready() duplicates it via create_instance(), so sharing the .tres is fine
+	appearance = data.appearance
+	ai_behaviour = data.ai_behaviour
+	combatant_name = data.combatant_name
+	position = data.position
+	scale = data.scale
+	
 
 func _ready() -> void:
 	sprite_2d.bind(appearance)
@@ -84,7 +94,7 @@ func gain_shield(shield: int) -> void:
 
 func _die() -> void:
 	is_dead = true
-	stats_ui.visible = false
+	combatant_ui.visible = false
 	im_dead.emit(self)
 	
 	

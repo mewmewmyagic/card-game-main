@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CombatantData" format=3 uid="uid://bce00kiyd2dqu"]
+
+[ext_resource type="Resource" uid="uid://dyu4ultwn37qp" path="res://SpritesAndStuffs/tourist_sprite_resource.tres" id="1_1enud"]
+[ext_resource type="Script" uid="uid://bf211oi55b8fk" path="res://Resources/CombatantData/combatant_data.gd" id="2_83mjl"]
+[ext_resource type="Resource" uid="uid://8s8fasvcdm5k" path="res://Scripts/combatant_characters/tourist/tourist_stats.tres" id="3_wmkph"]
+
+[resource]
+script = ExtResource("2_83mjl")
+stats = ExtResource("3_wmkph")
+appearance = ExtResource("1_1enud")
+combatant_name = "Tourist"
+position = Vector2(100, 100)
+metadata/_custom_type_script = "uid://bf211oi55b8fk"

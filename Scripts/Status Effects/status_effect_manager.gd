@@ -39,3 +39,6 @@ func remove_status(id: String) -> void:
 	status_effects.erase(id)
 	s.on_effect_removed()
 	s.instance_removed.emit()
+	
+func remove_all_statuses() -> void:
+	status_effects.clear()

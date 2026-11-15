@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cw1u3et28weyh"]
+
+[ext_resource type="Texture2D" uid="uid://b8a8jys8qs8a8" path="res://Textures/Backgrounds/trainfight/sky.png" id="1_rdeee"]
+[ext_resource type="Texture2D" uid="uid://dmio6emqccni7" path="res://Textures/Backgrounds/trainfight/mountains.png" id="2_6y4bx"]
+[ext_resource type="Texture2D" uid="uid://b31b23umste4q" path="res://Textures/Backgrounds/trainfight/further_hills.png" id="3_af310"]
+[ext_resource type="Texture2D" uid="uid://4nsr7sgota5r" path="res://Textures/Backgrounds/trainfight/hills.png" id="4_kq8nq"]
+[ext_resource type="Texture2D" uid="uid://vnd0awfsnm7l" path="res://Textures/Backgrounds/trainfight/trees.png" id="5_6y4bx"]
+[ext_resource type="Texture2D" uid="uid://dxdbtuag63bqh" path="res://Textures/Backgrounds/trainfight/road.png" id="5_qucvm"]
+
+[node name="TrainBackground" type="Node2D" unique_id=1780145559]
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1908039361]
+texture = ExtResource("1_rdeee")
+
+[node name="mountains" type="Parallax2D" parent="." unique_id=1983636786]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-32, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="mountains" unique_id=536347167]
+texture = ExtResource("2_6y4bx")
+
+[node name="further_hills" type="Parallax2D" parent="." unique_id=733508808]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-96, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="further_hills" unique_id=288177114]
+texture = ExtResource("3_af310")
+
+[node name="hills" type="Parallax2D" parent="." unique_id=1756513069]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-160, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="hills" unique_id=866687940]
+texture = ExtResource("4_kq8nq")
+
+[node name="trees" type="Parallax2D" parent="." unique_id=546674799]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-240, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="trees" unique_id=1675238594]
+texture = ExtResource("5_6y4bx")
+
+[node name="road" type="Sprite2D" parent="." unique_id=70306691]
+texture = ExtResource("5_qucvm")
